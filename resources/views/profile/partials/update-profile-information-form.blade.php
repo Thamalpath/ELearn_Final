@@ -17,12 +17,14 @@
         @csrf
         @method('patch')
 
+        <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        <!-- Email -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
@@ -45,6 +47,20 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <!-- Phone -->
+        <div>
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)"  autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+
+        <!-- Address -->
+        <div>
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" autofocus autocomplete="address" />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
 
         <div class="flex items-center gap-4">
