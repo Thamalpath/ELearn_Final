@@ -5,30 +5,29 @@
         <p>Home</p>
     </a>
 </li>
-{{-- @can('rooms') --}}
+
+{{-- Category Option --}}
 <li class="nav-item">
     <a href="#" class="nav-link">
-        <i class="nav-icon fas fa-bed"></i>
+        <i class="nav-icon fas fa-th-large"></i>
+        {{-- <i class="fas fa-th"></i> For Sub Category --}}
         <p>
-            Example
+            Category
             <i class="fas fa-angle-left right"></i>
         </p>
     </a>
     <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-            {{-- <a href="{{route('room.index')}}" class="nav-link  {{ Request::is('room.index') ? 'active' : '' }}"> --}}
-            <a href="#" class="nav-link">
+            <a href="{{route('category.index')}}" class="nav-link  {{ Request::is('category.index') ? 'active' : '' }}">
                 <i class="fas fa-list nav-icon"></i>
-                <p>Example 1</p>
+                <p>All Categories</p>
             </a>
         </li>
         <li class="nav-item">
-            {{-- <a href="{{route('room.create')}}" class="nav-link  {{ Request::is('room.create') ? 'active' : '' }}"> --}}
-            <a href="#" class="nav-link">
-                <i class="fas fa-folder-plus nav-icon"></i>
-                <p>Example 2</p>
+            <a href="{{route('category.create')}}" class="nav-link  {{ Request::is('category.create') ? 'active' : '' }}">
+                <i class="fas fa-plus-circle nav-icon"></i>
+                <p>Add Category</p>
             </a>
         </li>
     </ul>
 </li>
-{{-- @endcan --}}

@@ -1,0 +1,20 @@
+/*  The button used to remove the uploaded image */
+.drop-img-preview{
+    position: relative;
+}
+.drop-img-preview .remove-btn {
+    background-color: red;
+    border-radius: 44%;
+    font-size: 20px;
+    border: none;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -10px;
+    right: -10px;
+    color: aliceblue;
+}

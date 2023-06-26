@@ -1,6 +1,7 @@
 <x-laravel-ui-adminlte::adminlte-layout>
-
     <body class="hold-transition login-page">
+
+    <div class="offcanvas-overlay"></div>
         <div class="login-box">
             <div class="login-logo">
                 <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
