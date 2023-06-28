@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\StoreSubCategoryRequest;
+use App\Http\Requests\UpdateSubCategoryRequest;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::all();
+        $sub_categories = SubCategory::all();
 
-        return view('admin.category.index', compact('categories'));
+        return view('admin.sub_category.index', compact('sub_categories'));
     }
 
     /**
@@ -25,17 +25,17 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $statuses = Category::categoryStatus;
-        return view('admin.category.create', compact('statuses'));
+        $statuses = SubCategory::SubcategoryStatus;
+        return view('admin.sub_category.create', compact('statuses'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreSubCategoryRequest $request)
     {
         $data = [
-            'number' => $request->category_no,
+            'number' => $request->sub_category_no,
             'name' => $request->name,
             'slug' => $request->slug,
             'description' => strip_tags($request->description), //Strip_tags - Remove <p> Tag
@@ -47,33 +47,32 @@ class CategoryController extends Controller
             'meta_keywords' => $request->meta_keywords,
         ];
 
-        $category = new Category();
-        Category::create($data);
-        return redirect()->route('category.index', compact('category'))->with('status',"Category Inserted Successfully");
+        $sub_category = new SubCategory();
+        SubCategory::create($data);
+        return redirect()->route('sub_category.index', compact('sub_category'))->with('status',"Sub Category Inserted Successfully");
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(SubCategory $sub_category)
     {
-        $category = Category::find($category->id);
-        $statuses = Category::categoryStatus;
-        return view('admin.category.edit', compact('category', 'statuses'));
+        $sub_category = SubCategory::find($sub_category->id);
+        $statuses = SubCategory::SubcategoryStatus;
+        return view('admin.sub_category.edit', compact('sub_category', 'statuses'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateSubCategoryRequest $request, SubCategory $sub_category)
     {
         // Delete the previous image if a new image is provided
-        if($request->image != $category->image && !empty($category->image)){
-            Storage::disk('public')->delete($category->image);
+        if($request->image != $sub_category->image && !empty($sub_category->image)){
+            Storage::disk('public')->delete($sub_category->image);
         }
         $data = [
-            'number' => $request->category_no,
+            'number' => $request->sub_category_no,
             'name' => $request->name,
             'slug' => $request->slug,
             'description' => strip_tags($request->description), //Strip_tags - Remove <p> Tag
@@ -85,17 +84,17 @@ class CategoryController extends Controller
             'meta_keywords' => $request->meta_keywords,
         ];
 
-        $category->update($data);
-        return redirect()->route('category.index')->with('status',"Category Updated Successfully");
+        $sub_category->update($data);
+        return redirect()->route('sub_category.index')->with('status',"Sub Category Updated Successfully");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(SubCategory $sub_category)
     {
-        $category->delete($category);
-        return redirect()->route('category.index')->with('status',"Category Deleted Successfully");
+        $sub_category->delete($sub_category);
+        return redirect()->route('sub_category.index')->with('status',"Sub Category Deleted Successfully");
     }
 
     // Image Upload Function
@@ -105,7 +104,7 @@ class CategoryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3072', // 3MB
         ]); 
         $file = $request->file('image');
-        $path = $file->store('category', 'public');
+        $path = $file->store('sub_category', 'public');
 
         // Check if the file was successfully stored
         if($path){

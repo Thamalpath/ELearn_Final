@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class SubCategory extends Model
 {
     use HasFactory;
 
@@ -23,8 +23,8 @@ class Category extends Model
         'meta_keywords',
     ];
 
-    // Define category status options
-    const categoryStatus = [
+    // Define sub_category status options
+    const SubcategoryStatus = [
         'Available' => 'Available',
         'Unavailable' => 'Unavailable',
     ];
