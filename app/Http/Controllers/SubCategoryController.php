@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class SubCategoryController extends Controller
@@ -25,8 +26,9 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
+        $categories = Category::pluck('name', 'id');
         $statuses = SubCategory::SubcategoryStatus;
-        return view('admin.sub_category.create', compact('statuses'));
+        return view('admin.sub_category.create', compact('categories', 'statuses'));
     }
 
     /**
@@ -35,21 +37,25 @@ class SubCategoryController extends Controller
     public function store(StoreSubCategoryRequest $request)
     {
         $data = [
+            'category_id' => $request->category_id, // Assign the selected category_id
+            'category_name' => $request->category_id ? Category::findOrFail($request->category_id)->name : null,
             'number' => $request->sub_category_no,
             'name' => $request->name,
             'slug' => $request->slug,
-            'description' => strip_tags($request->description), //Strip_tags - Remove <p> Tag
+            'description' => strip_tags($request->description),
             'status' => $request->status ?? 'Unavailable',
-            'popular' => $request->has('popular') ? 1 : 0, //Pass 1 & 0 using checkbox
+            'popular' => $request->has('popular') ? 1 : 0,
             'image' => $request->image,
             'meta_title' => $request->meta_title,
-            'meta_description' => strip_tags($request->meta_description), //Strip_tags - Remove <p> Tag
+            'meta_description' => strip_tags($request->meta_description),
             'meta_keywords' => $request->meta_keywords,
         ];
 
         $sub_category = new SubCategory();
-        SubCategory::create($data);
-        return redirect()->route('sub_category.index', compact('sub_category'))->with('status',"Sub Category Inserted Successfully");
+        $sub_category->fill($data);
+        $sub_category->save();
+
+        return redirect()->route('sub_category.index')->with('status', "Sub Category Inserted Successfully");
     }
 
     /**
@@ -57,9 +63,10 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $sub_category)
     {
-        $sub_category = SubCategory::find($sub_category->id);
         $statuses = SubCategory::SubcategoryStatus;
-        return view('admin.sub_category.edit', compact('sub_category', 'statuses'));
+        $categories = Category::pluck('name', 'id'); // Retrieve all categories for dropdown
+
+        return view('admin.sub_category.edit', compact('sub_category', 'statuses', 'categories'));
     }
 
     /**
@@ -71,21 +78,29 @@ class SubCategoryController extends Controller
         if($request->image != $sub_category->image && !empty($sub_category->image)){
             Storage::disk('public')->delete($sub_category->image);
         }
+
         $data = [
             'number' => $request->sub_category_no,
             'name' => $request->name,
             'slug' => $request->slug,
-            'description' => strip_tags($request->description), //Strip_tags - Remove <p> Tag
+            'description' => strip_tags($request->description),
             'status' => $request->status ?? 'Unavailable',
-            'popular' => $request->has('popular') ? 1 : 0, //Pass 1 & 0 using checkbox
+            'popular' => $request->has('popular') ? 1 : 0,
             'image' => $request->image,
             'meta_title' => $request->meta_title,
-            'meta_description' => strip_tags($request->meta_description), //Strip_tags - Remove <p> Tag
+            'meta_description' => strip_tags($request->meta_description),
             'meta_keywords' => $request->meta_keywords,
         ];
 
+        // Get the category name based on the selected category_id
+        $category = Category::find($request->category_id);
+        if ($category) {
+            $data['category_id'] = $request->category_id; // Update the category_id
+            $data['category_name'] = $category->name;
+        }
+
         $sub_category->update($data);
-        return redirect()->route('sub_category.index')->with('status',"Sub Category Updated Successfully");
+        return redirect()->route('sub_category.index')->with('status', "Sub Category Updated Successfully");
     }
 
     /**
