@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('description');
-            $table->tinyInteger('status')->default('0');
+            $table->string('status', 50)->default('Unavailable'); // Reduce the length to fit within the limit
             $table->tinyInteger('popular')->default('0');
             $table->string('image')->nullable();
             $table->string('meta_title');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

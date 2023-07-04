@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('category_name'); // Add category_name column
+            $table->string('category_name'); 
             $table->string('number', 10)->unique();
             $table->string('name');
             $table->string('slug');
             $table->longText('description');
-            $table->tinyInteger('status')->default('0');
+            $table->string('status', 50)->default('Unavailable');
             $table->tinyInteger('popular')->default(0);
             $table->string('image')->nullable();
             $table->string('meta_title');

@@ -67,13 +67,13 @@
     </a>
     <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-            {{-- <a href="{{route('product.index')}}" class="nav-link  {{ Request::is('product.index') ? 'active' : '' }}"> --}}
+            <a href="{{route('product.index')}}" class="nav-link  {{ Request::is('product.index') ? 'active' : '' }}">
                 <i class="fas fa-list nav-icon"></i>
                 <p>All Products</p>
             </a>
         </li>
         <li class="nav-item">
-            {{-- <a href="{{route('product.create')}}" class="nav-link  {{ Request::is('product.create') ? 'active' : '' }}"> --}}
+            <a href="{{route('product.create')}}" class="nav-link  {{ Request::is('product.create') ? 'active' : '' }}">
                 <i class="fas fa-plus-circle nav-icon"></i>
                 <p>Add product</p>
             </a>

@@ -77,6 +77,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::put('/{product}/edit',[ProductController::class, 'update'])->name('product.update');
             Route::delete('/{product}/delete',[ProductController::class, 'destroy'])->name('product.destroy');
             Route::post('/image-upload', [ProductController::class, 'imageUpload'])->name('product.image.upload');
+            Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('product.get.subcategories');
         });
     });
 });

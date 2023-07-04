@@ -13,23 +13,25 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('category_name');
+            $table->foreignId('sub_category_id')->constrained('sub_categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('sub_category_name');
             $table->string('number', 10)->unique();
-            $table->bigInteger('cat_id');
-            $table->bigInteger('sub_cat_id');
             $table->string('name');
-            $table->mediumText('small_description');
+            $table->string('slug');
             $table->longText('description');
             $table->string('original_price');
             $table->string('selling_price');
             $table->string('image');
             $table->string('qty');
-            $table->string('weight');
             $table->string('material');
-            $table->string('size');
-            $table->string('color');
-            $table->string('tax');
-            $table->tinyInteger('status');
-            $table->tinyInteger('trending');
+            $table->string('size')->nullable()->default(null);
+            $table->string('color')->nullable()->default(null);
+            $table->string('tax')->nullable();
+            $table->string('status', 50)->default('Unavailable');
+            $table->tinyInteger('trending')->default(0)->nullable();
+            $table->tinyInteger('popular')->default(0)->nullable();
             $table->mediumText('meta_title');
             $table->mediumText('meta_keywords');
             $table->mediumText('meta_description');

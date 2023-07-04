@@ -114,24 +114,25 @@
                 <div class="col col-lg-auto align-self-center pl-0">
                     <div class="header-actions">
                         @auth
-                            @if (auth()->user()->role_as == '0')
-                                <div class="dropdown">
-                                    <a href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        {{ session('user')->name }} <i class="pe-7s-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                        <li><a class="dropdown-item" href="#">Account</a></li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">Logout</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            @endif
+                        @if (auth()->check() && auth()->user()->role_as == '0')
+                        <div class="dropdown">
+                            <a href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{ auth()->user()->name }} <i class="pe-7s-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" href="#">Account</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @endif
+                    
                         @else
                             <a href="login.html" class="header-action-btn login-btn" data-bs-toggle="modal"
                                 data-bs-target="#loginActive">Sign In</a>

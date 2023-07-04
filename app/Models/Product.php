@@ -11,23 +11,30 @@ class Product extends Model
 
     // Define the fillable fields
     protected $fillable = [
+        'category_id',
+        'category_name',
+        'sub_category_id',
+        'sub_category_name',
         'number',
-        'cat_id',
-        'sub_cat_id',
         'name',
-        'small_description',
+        'slug',
         'description',
         'original_price',
         'selling_price',
         'image',
         'qty',
-        'weight',
+        'material',
+        'size',
+        'color',
         'tax',
+        'status',
         'trending',
+        'popular',
         'meta_title',
         'meta_keywords',
         'meta_description',
     ];
+    
 
     // Define the available options for material
     const productMaterials = [
@@ -38,7 +45,15 @@ class Product extends Model
         'Leather' => 'Leather',
     ];
 
-    // Define the available options for size
+
+    // Define the available options for status
+    const productStatus = [
+        'Available' => 'Available',
+        'Out of Stock' => 'Out of Stock',
+    ];
+
+
+    // Define the available options for sizes
     const productSizes = [
         'XS' => 'XS',
         'S' => 'S',
@@ -47,8 +62,9 @@ class Product extends Model
         'XL' => 'XL',
         'XLL' => 'XLL',
     ];
+    
 
-    // Define the available options for color
+    // Define the available options for colors
     const productColors = [
         'Red' => 'Red',
         'Blue' => 'Blue',
@@ -57,11 +73,7 @@ class Product extends Model
         'Black' => 'Black',
         'White' => 'White',
     ];
-
-    // Define the available options for status
-    const productStatus = [
-        'Available' => 'Available',
-        'Out of Stock' => 'Out of Stock',
-    ];
 }
+
+
 
