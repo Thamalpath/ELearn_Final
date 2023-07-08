@@ -85,7 +85,7 @@
                     <!-- single item -->
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/1.png" alt="">
+                            <img src="images/icons/1.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Free Shipping</h4>
@@ -97,7 +97,7 @@
                 <div class="col-lg-4 col-md-6 mb-md-30px mb-lm-30px mt-lm-30px">
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/2.png" alt="">
+                            <img src="images/icons/2.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Card Payments</h4>
@@ -109,7 +109,7 @@
                 <div class="col-lg-4 col-md-6 ">
                     <div class="single-feature">
                         <div class="feature-icon">
-                            <img src="assets/images/icons/3.png" alt="">
+                            <img src="images/icons/3.png" alt="">
                         </div>
                         <div class="feature-content">
                             <h4 class="title">Easy Returns</h4>
