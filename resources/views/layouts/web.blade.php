@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 align-self-center sm-center-view">
                                 <div class="hero-slide-content slider-animated-1">
-                                    <span class="category">Offer 2021</span>
+                                    <span class="category">Offer 2023</span>
                                     <h2 class="title-1">Sale Up To </h2>
                                     <h2 class="title-2"><span>50%</span> Off</h2>
                                     <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark"> Shop Now <i
@@ -34,17 +34,7 @@
                                 class="col-xl-7 col-lg-7 col-md-7 col-sm-7 d-flex justify-content-center position-relative">
                                 <div class="show-case">
                                     <div class="hero-slide-image">
-                                        <img src="assets/images/slider-image/slider-1.png" alt="" />
-                                    </div>
-                                    <div class="display-wrapper">
-                                        <div class="content-side">
-                                            <h4 class="title">Full Dress</h4>
-                                            <span class="price">$21.00</span>
-                                            <a href="shop-left-sidebar.html" class="shop-link">Shop Now</a>
-                                        </div>
-                                        <div class="image-side">
-                                            <img src="assets/images/slider-image/display-image.png" alt="">
-                                        </div>
+                                        <img src="images/slider-image/slider-1.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +47,7 @@
                         <div class="row">
                             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 align-self-center sm-center-view">
                                 <div class="hero-slide-content slider-animated-1">
-                                    <span class="category">Offer 2021</span>
+                                    <span class="category">Offer 2023</span>
                                     <h2 class="title-1">Sale Up To </h2>
                                     <h2 class="title-2"><span>50%</span> Off</h2>
                                     <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark"> Shop Now <i
@@ -68,17 +58,7 @@
                                 class="col-xl-7 col-lg-7 col-md-7 col-sm-7 d-flex justify-content-center position-relative">
                                 <div class="show-case">
                                     <div class="hero-slide-image">
-                                        <img src="assets/images/slider-image/slider-2.png" alt="" />
-                                    </div>
-                                    <div class="display-wrapper">
-                                        <div class="content-side">
-                                            <h4 class="title">Full Dress</h4>
-                                            <span class="price">$21.00</span>
-                                            <a href="shop-left-sidebar.html" class="shop-link">Shop Now</a>
-                                        </div>
-                                        <div class="image-side">
-                                            <img src="assets/images/slider-image/display-image.png" alt="">
-                                        </div>
+                                        <img src="images/slider-image/slider-2.png" alt="" />
                                     </div>
                                 </div>
                             </div>
