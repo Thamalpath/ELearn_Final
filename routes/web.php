@@ -49,36 +49,28 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
             Route::post('/image-upload', [CategoryController::class, 'imageUpload'])->name('category.image.upload');
         });
     });
-});
 
-Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::prefix('/dashboard')->group(function () {
     //Sub Categories CRUD
-        Route::get('/sub_categories', [SubCategoryController::class, 'index'])->name('sub_category.index');
-        Route::prefix('/sub_category')->group(function(){
-            Route::get('/add',[SubCategoryController::class, 'create'])->name('sub_category.create');
-            Route::post('/add',[SubCategoryController::class, 'store'])->name('sub_category.store');
-            Route::get('/{sub_category}/edit',[SubCategoryController::class, 'edit'])->name('sub_category.edit');
-            Route::put('/{sub_category}/edit',[SubCategoryController::class, 'update'])->name('sub_category.update');
-            Route::delete('/{sub_category}/delete',[SubCategoryController::class, 'destroy'])->name('sub_category.destroy');
-            Route::post('/image-upload', [SubCategoryController::class, 'imageUpload'])->name('sub_category.image.upload');
-        });
+    Route::get('/sub_categories', [SubCategoryController::class, 'index'])->name('sub_category.index');
+    Route::prefix('/sub_category')->group(function(){
+        Route::get('/add',[SubCategoryController::class, 'create'])->name('sub_category.create');
+        Route::post('/add',[SubCategoryController::class, 'store'])->name('sub_category.store');
+        Route::get('/{sub_category}/edit',[SubCategoryController::class, 'edit'])->name('sub_category.edit');
+        Route::put('/{sub_category}/edit',[SubCategoryController::class, 'update'])->name('sub_category.update');
+        Route::delete('/{sub_category}/delete',[SubCategoryController::class, 'destroy'])->name('sub_category.destroy');
+        Route::post('/image-upload', [SubCategoryController::class, 'imageUpload'])->name('sub_category.image.upload');
     });
-});
-
-Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::prefix('/dashboard')->group(function () {
+    
     //Products CRUD
-        Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-        Route::prefix('/product')->group(function(){
-            Route::get('/add',[ProductController::class, 'create'])->name('product.create');
-            Route::post('/add',[ProductController::class, 'store'])->name('product.store');
-            Route::get('/{product}/edit',[ProductController::class, 'edit'])->name('product.edit');
-            Route::put('/{product}/edit',[ProductController::class, 'update'])->name('product.update');
-            Route::delete('/{product}/delete',[ProductController::class, 'destroy'])->name('product.destroy');
-            Route::post('/image-upload', [ProductController::class, 'imageUpload'])->name('product.image.upload');
-            Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('product.get.subcategories');
-        });
+    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+    Route::prefix('/product')->group(function(){
+        Route::get('/add',[ProductController::class, 'create'])->name('product.create');
+        Route::post('/add',[ProductController::class, 'store'])->name('product.store');
+        Route::get('/{product}/edit',[ProductController::class, 'edit'])->name('product.edit');
+        Route::put('/{product}/edit',[ProductController::class, 'update'])->name('product.update');
+        Route::delete('/{product}/delete',[ProductController::class, 'destroy'])->name('product.destroy');
+        Route::post('/image-upload', [ProductController::class, 'imageUpload'])->name('product.image.upload');
+        Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('product.get.subcategories');
     });
 });
 
