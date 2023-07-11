@@ -124,7 +124,7 @@ class ProductController extends Controller
                 Storage::disk('public')->delete($removedImage);
             }
         }
-
+        
         $data = [
             'category_id' => $request->category_id,
             'category_name' => $request->category_id ? Category::findOrFail($request->category_id)->name : null,
