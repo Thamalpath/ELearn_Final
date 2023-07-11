@@ -71,8 +71,8 @@
             let table = new DataTable('#sub_categories');
             $('.delete-btn').on('click', function(){
                 let sub_category_id = $(this).data('sub_category_id');
-                $('#deleteForm').attr('action', '/dashboard/sub_category/'+sub_category_id+'/delete');
-            })
+                $('#deleteForm').attr('action', '/sub_category/' + sub_category_id + '/delete');
+            });
         </script>
     @endsection
 </x-app-layout>

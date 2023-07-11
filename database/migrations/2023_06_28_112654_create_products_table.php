@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('original_price');
             $table->string('selling_price');
-            $table->string('image');
+            $table->text('images');
             $table->string('qty');
             $table->string('material');
             $table->string('size')->nullable()->default(null);

@@ -180,17 +180,23 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label>Images</label>
-                                <div id="ProductImageDrop" class="dropzone {{ $product->image ? 'd-none' : '' }} "></div>
-                                <x-drop-img-preview class="{{ $product->image ? 'd-block' : 'd-none' }} w-50"
-                                    src="{{ asset('storage/' . $product->image) }}" id="ProductImage">
-                                </x-drop-img-preview>
-                                <input type="hidden" name="image" id="image" value="{{ $product->image }}">
+                                <div id="ProductImageDrop" class="dropzone"></div>
+                                <div id="ProductImagePreview" class="mt-3">
+                                    @foreach ((array) json_decode($product->images) as $image)
+                                        <div class="d-inline-block mr-2">
+                                            <img src="{{ asset('storage/'.$image) }}" alt="Image" height="100px" width="auto">
+                                            <button class="btn btn-sm btn-danger remove-btn" data-image="{{ $image }}">Remove</button>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <input type="hidden" name="images" id="images" value="{{ $product->images }}">
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
                 <div class="card-footer">
@@ -216,7 +222,7 @@
             });
 
 
-            ///Image Upload Function using Dropzone
+            //Image Upload Function using Dropzone
             Dropzone.autoDiscover = false;
 
             let myDropzone = new Dropzone("#ProductImageDrop", {
@@ -225,29 +231,54 @@
                 acceptedFiles: 'image/*',
                 paramName: 'image',
                 addRemoveLinks: true,
+                multipleuploads: true, 
+                parallelUploads: 5, 
+
                 init: function() {
                     this.on('sending', function(file, xhr, formData) {
                         formData.append('_token', '{{ csrf_token() }}');
                     });
+
                     this.on('success', function(file, response) {
                         console.log(response);
                         if (response.status) {
-                            $('#image').val(response.image);
-                            notyf.success('Image uploaded successfully')
-                        } else {
-                            notyf.error('Image upload failed')
-                        }
+                            // Add the uploaded image path to the hidden input field
+                            let imagesInput = document.getElementById('images');
+                            let existingImages = imagesInput.value ? JSON.parse(imagesInput.value) : [];
+                            existingImages.push(response.image);
+                            imagesInput.value = JSON.stringify(existingImages);
 
+                            notyf.success('Image uploaded successfully');
+                        } else {
+                            notyf.error('Image upload failed');
+                        }
+                    });
+
+                    this.on('removedfile', function(file) {
+                        // Remove the deleted image path from the hidden input field
+                        let imagesInput = document.getElementById('images');
+                        let existingImages = imagesInput.value ? JSON.parse(imagesInput.value) : [];
+                        let removedIndex = existingImages.indexOf(file.path);
+                        if (removedIndex !== -1) {
+                            existingImages.splice(removedIndex, 1);
+                            imagesInput.value = JSON.stringify(existingImages);
+                        }
                     });
                 }
             });
-
-            //Image Remove Button Function
-            $('#ProductImage .remove-btn').on('click', function() {
-                $('#image').val('');
-                $('#ProductImage').addClass('d-none').removeClass('d-block');
-                $('#ProductImageDrop').removeClass('d-none');
+            
+            // Image Remove Button Function
+            $('#ProductImagePreview').on('click', '.remove-btn', function() {
+                let removedImage = $(this).data('image');
+                let existingImages = JSON.parse($('#images').val());
+                let removedIndex = existingImages.indexOf(removedImage);
+                if (removedIndex !== -1) {
+                    existingImages.splice(removedIndex, 1);
+                    $('#images').val(JSON.stringify(existingImages));
+                }
+                $(this).parent().remove();
             });
+
         </script>
         
     @endpush

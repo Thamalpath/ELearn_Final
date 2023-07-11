@@ -38,7 +38,9 @@
                             <td>{{$product->selling_price}}</td>
                             <td>{{$product->tax}}</td>
                             <td>
-                                <img src="{{ asset('storage/'.$product->image) }}" alt="Image" height="125px" width="90px">
+                                @foreach ((array) json_decode($product->images) as $image)
+                                    <img src="{{ asset('storage/'.$image) }}" alt="Image" height="100px" width="auto" class="mb-2">
+                                @endforeach
                             </td>
                             <td>{{$product->qty}}</td>
                             <td>{{$product->material}}</td>
@@ -53,9 +55,9 @@
                             <td>
                                 <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a> 
                                 
-                                 <button type="button" class="btn btn-danger delete-btn"  data-product_id={{$product->id}} data-bs-toggle="modal" data-bs-target="#deleteproductModal">
+                                <button type="button" class="btn btn-danger delete-btn" data-product_id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#deleteproductModal">
                                     Delete
-                                </button> 
+                                </button>                                
                             </td>
                     @endforeach
                 <tbody>
@@ -91,8 +93,8 @@
             let table = new DataTable('#products');
             $('.delete-btn').on('click', function(){
                 let product_id = $(this).data('product_id');
-                $('#deleteForm').attr('action', '/dashboard/product/'+product_id+'/delete');
-            })
+                $('#deleteForm').attr('action', '/product/' + product_id + '/delete');
+            });
         </script>
     @endsection
 </x-app-layout>

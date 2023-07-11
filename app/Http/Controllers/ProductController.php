@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
@@ -55,7 +57,7 @@ class ProductController extends Controller
             'description' => strip_tags($request->description),
             'original_price' => $request->original_price,
             'selling_price' => $request->selling_price,
-            'image' => $request->image,
+            'images' => $request->images,
             'qty' => $request->qty,
             'material' => $request->material,
             'tax' => $request->tax,
@@ -110,6 +112,18 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $validatedData = $request->validated();
+        
+        // Delete the previous images if new images are provided or if existing images are removed
+        $existingImages = json_decode($product->images);
+        $newImages = $request->images ? json_decode($request->images) : [];
+
+        $removedImages = array_diff($existingImages, $newImages);
+
+        if (!empty($removedImages)) {
+            foreach ($removedImages as $removedImage) {
+                Storage::disk('public')->delete($removedImage);
+            }
+        }
 
         $data = [
             'category_id' => $request->category_id,
@@ -122,7 +136,7 @@ class ProductController extends Controller
             'description' => strip_tags($request->description),
             'original_price' => $request->original_price,
             'selling_price' => $request->selling_price,
-            'image' => $request->image,
+            'images' => $request->images,
             'qty' => $request->qty,
             'material' => $request->material,
             'tax' => $request->tax,
@@ -162,21 +176,23 @@ class ProductController extends Controller
     }
 
     // Image Upload Function
-    public function imageUpload(Request $request){
+    public function imageUpload(Request $request)
+    {
         // Validate the uploaded image file
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3072', // 3MB
-        ]); 
+        ]);
+
         $file = $request->file('image');
         $path = $file->store('product', 'public');
 
         // Check if the file was successfully stored
-        if($path){
+        if ($path) {
             return response()->json([
                 'status' => true,
                 'image' => $path
             ]);
-        }else{
+        } else {
             return response()->json([
                 'status' => false,
                 'message' => 'Image upload failed'
@@ -184,6 +200,7 @@ class ProductController extends Controller
         }
     }
 
+    
     /**
      * AJAX endpoint to fetch related sub-categories for a given category.
      */

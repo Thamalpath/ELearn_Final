@@ -21,7 +21,7 @@ class Product extends Model
         'description',
         'original_price',
         'selling_price',
-        'image',
+        'images',
         'qty',
         'material',
         'size',

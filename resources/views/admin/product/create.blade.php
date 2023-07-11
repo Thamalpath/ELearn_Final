@@ -167,7 +167,7 @@
                             <div class="form-group">
                                 <label>Images</label>
                                 <div id="ProductImageDrop" class="dropzone"></div>
-                                <input type="hidden" name="image" id="image">
+                                <input type="hidden" name="images" id="images">
                             </div>
                         </div>
                     </div>
@@ -204,19 +204,27 @@
                 acceptedFiles: 'image/*',
                 paramName: 'image',
                 addRemoveLinks: true,
+                multipleuploads: true, 
+                parallelUploads: 5, 
+
                 init: function() {
                     this.on('sending', function(file, xhr, formData) {
                         formData.append('_token', '{{ csrf_token() }}');
                     });
+
                     this.on('success', function(file, response) {
                         console.log(response);
-                        if(response.status){
-                            $('#image').val(response.image);
-                            notyf.success('Image uploaded successfully')
-                        }else{
-                            notyf.error('Image upload failed')
-                        }
+                        if (response.status) {
+                            // Add the uploaded image path to the hidden input field
+                            let imagesInput = document.getElementById('images');
+                            let existingImages = imagesInput.value ? JSON.parse(imagesInput.value) : [];
+                            existingImages.push(response.image);
+                            imagesInput.value = JSON.stringify(existingImages);
 
+                            notyf.success('Image uploaded successfully');
+                        } else {
+                            notyf.error('Image upload failed');
+                        }
                     });
                 }
             });
