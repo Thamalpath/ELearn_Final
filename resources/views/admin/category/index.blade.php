@@ -29,7 +29,7 @@
                             <td>{{$category->meta_description}}</td>
                             <td>{{$category->meta_keywords}}</td>
                             <td>
-                                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">Edit</a> 
+                                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary mr-2">Edit</a> 
                                 
                                  <button type="button" class="btn btn-danger delete-btn"  data-category_id={{$category->id}} data-bs-toggle="modal" data-bs-target="#deletecategoryModal">
                                     Delete

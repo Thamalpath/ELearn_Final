@@ -53,7 +53,7 @@
                             <td>{{$product->meta_description}}</td>
                             <td>{{$product->meta_keywords}}</td>
                             <td>
-                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">Edit</a> 
+                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary mb-2">Edit</a> 
                                 
                                 <button type="button" class="btn btn-danger delete-btn" data-product_id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#deleteproductModal">
                                     Delete
