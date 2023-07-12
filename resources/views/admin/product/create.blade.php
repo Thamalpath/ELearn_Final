@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="size">Sizes</label><br>
                                 @foreach ($sizes as $size => $sizeName)
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="form-group">
                                 <label for="color">Colors</label><br>
                                 @foreach ($colors as $color => $colorName)

@@ -60,17 +60,25 @@ class Product extends Model
         'M' => 'M',
         'L' => 'L',
         'XL' => 'XL',
-        'XLL' => 'XLL',
+        'XXL' => 'XXL',
+        'XXXL' => 'XXXL',
     ];
     
 
     // Define the available options for colors
     const productColors = [
         'Red' => 'Red',
+        'Pink' => 'Pink',
+        'Purple' => 'Purple',
         'Blue' => 'Blue',
+        'Light Blue' => 'Light Blue',
         'Green' => 'Green',
+        'Light Green' => 'Light Green',
         'Yellow' => 'Yellow',
+        'Orange' => 'Orange',
+        'Brown' => 'Brown',
         'Black' => 'Black',
+        'Grey' => 'Grey',
         'White' => 'White',
     ];
 }
