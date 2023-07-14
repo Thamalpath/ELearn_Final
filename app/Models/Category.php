@@ -28,4 +28,9 @@ class Category extends Model
         'Available' => 'Available',
         'Unavailable' => 'Unavailable',
     ];
+
+    public function subCategories()
+    {
+        return $this->hasMany(SubCategory::class);
+    }
 }

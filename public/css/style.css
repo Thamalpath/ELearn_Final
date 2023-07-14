@@ -603,7 +603,7 @@ input {
     margin-left: 50px;
 }
 .main-menu ul li a {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
@@ -732,7 +732,7 @@ input {
 }
 .main-menu ul li .mega-menu li ul li.title a {
     color: #000000;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     display: block;
     border-bottom: 1px solid #ebebeb;
@@ -749,7 +749,7 @@ input {
     text-transform: capitalize;
     line-height: 30px;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     display: block;
     padding: 0;
     border: 0;

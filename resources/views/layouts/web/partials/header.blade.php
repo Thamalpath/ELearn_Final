@@ -10,91 +10,35 @@
                 <div class="col align-self-center d-none d-lg-block">
                     <div class="main-menu">
                         <ul>
-                            <li class="dropdown"><a href="#">Home <i class="pe-7s-angle-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Home 1</a></li>
-                                    <li><a href="index-2.html">Home 2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown position-static"><a href="#">Shop <i
-                                        class="pe-7s-angle-down"></i></a>
+                            <li><a href="#">Home</a></li>
+                            <li class="dropdown position-static">
+                                <a href="#">Shop <i class="pe-7s-angle-down"></i></a>
                                 <ul class="mega-menu d-block">
                                     <li class="d-flex">
                                         <ul class="d-block">
-
-                                            <li class="title"><a href="#">Shop Page</a></li>
-                                            <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                                            <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                                            <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                            <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
-                                            </li>
-                                            <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
-                                            </li>
+                                            <div class="image-wrapper mt-4">
+                                                <img src="{{ asset('images/banner/Shop_Image.jpg') }}" alt="Shop Image" width="250px" height="auto" class="shop-image">
+                                                @foreach($categories as $category)
+                                                    @foreach($category->subCategories as $subCategory)
+                                                        <img src="{{ asset('storage/' . $subCategory->image) }}" alt="{{ $subCategory->name }} Image" width="250px" height="auto" class="sub-category-image">
+                                                    @endforeach
+                                                @endforeach
+                                            </div>
                                         </ul>
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">product Details Page</a></li>
-                                            <li><a href="single-product.html">Product Single</a></li>
-                                            <li><a href="single-product-variable.html">Product Variable</a></li>
-                                            <li><a href="single-product-affiliate.html">Product Affiliate</a></li>
-                                            <li><a href="single-product-group.html">Product Group</a></li>
-                                            <li><a href="single-product-tabstyle-2.html">Product Tab 2</a></li>
-                                            <li><a href="single-product-tabstyle-3.html">Product Tab 3</a></li>
-                                        </ul>
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">Single Product Page</a></li>
-                                            <li><a href="single-product-slider.html">Product Slider</a></li>
-                                            <li><a href="single-product-gallery-left.html">Product Gallery Left</a>
-                                            </li>
-                                            <li><a href="single-product-gallery-right.html">Product Gallery
-                                                    Right</a>
-                                            </li>
-                                            <li><a href="single-product-sticky-left.html">Product Sticky Left</a>
-                                            </li>
-                                            <li><a href="single-product-sticky-right.html">Product Sticky Right</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">Other Shop Pages</a></li>
-                                            <li><a href="cart.html">Cart Page</a></li>
-                                            <li><a href="checkout.html">Checkout Page</a></li>
-                                            <li><a href="compare.html">Compare Page</a></li>
-                                            <li><a href="wishlist.html">Wishlist Page</a></li>
-                                            <li><a href="my-account.html">Account Page</a></li>
-                                            <li><a href="login.html">Login & Register Page</a></li>
-                                            <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                                        </ul>
-                                        <ul class="d-block">
-                                            <li class="title"><a href="#">Pages</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
-                                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                            <li><a href="faq.html">Faq Page</a></li>
-                                            <li><a href="coming-soon.html">Coming Soon Page</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li>
-
-                                        <ul class="menu-banner w-100">
-                                            <li>
-                                                <a class="p-0" href="shop-left-sidebar.html"><img
-                                                        class="img-responsive w-100"
-                                                        src="assets/images/banner/7.jpg" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="p-0" href="shop-left-sidebar.html"><img
-                                                        class="img-responsive w-100"
-                                                        src="assets/images/banner/8.jpg" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a class="p-0" href="shop-left-sidebar.html"><img
-                                                        class="img-responsive w-100"
-                                                        src="assets/images/banner/9.jpg" alt=""></a>
-                                            </li>
-                                        </ul>
+                                        @foreach($categories as $category)
+                                            <ul class="d-block">
+                                                <li class="title"><a href="#">{{ $category->name }}</a></li>
+                                                @foreach($category->subCategories as $subCategory)
+                                                    <li>
+                                                        <a href="#" class="sub-category-link">{{ $subCategory->name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endforeach
                                     </li>
                                 </ul>
                             </li>
+                            
                             <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
                                 <ul class="sub-menu">
                                     <li><a href="blog-grid.html">Blog Grid Page</a></li>

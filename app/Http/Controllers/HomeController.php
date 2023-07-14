@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories = Category::with('subCategories')->get();
         $allProducts = Product::inRandomOrder()->limit(8)->get();
 
         $menProducts = Product::where('category_name', 'Men\'s Wear')->inRandomOrder()->limit(8)->get();
@@ -33,8 +36,7 @@ class HomeController extends Controller
         $trendingProducts = Product::where('trending', 1)->inRandomOrder()->limit(8)->get();
         $popularProducts = Product::where('popular', 1)->inRandomOrder()->limit(8)->get();
 
-        return view('home.index', compact('allProducts', 'menProducts', 'womenProducts', 'kidsProducts', 'trendingProducts', 'popularProducts'));
+        return view('home.index', compact('categories', 'allProducts', 'menProducts', 'womenProducts', 'kidsProducts', 'trendingProducts', 'popularProducts'));
     }
-
 
 }
