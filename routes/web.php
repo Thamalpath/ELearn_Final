@@ -22,13 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// Define routes with middleware for authenticated users and admin role
-Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+Route::resource('product', ProductController::class); // Product routes
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,7 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Define routes with middleware for authenticated users and admin role
 Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
     Route::prefix('/dashboard')->group(function () {
     //Categories CRUD
         Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
@@ -73,6 +71,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('product.get.subcategories');
     });
 });
+
+// Route::get('/products', [WebRoomController::class, 'index'])->name('products');
+// Route::get('/product/{slug}', [WebproductController::class, 'show'])->name('product.show');
 
 // Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 

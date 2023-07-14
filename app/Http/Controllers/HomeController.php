@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $allProducts = Product::inRandomOrder()->limit(8)->get();
+
+        $menProducts = Product::where('category_name', 'Men\'s Wear')->inRandomOrder()->limit(8)->get();
+        $womenProducts = Product::where('category_name', 'Women\'s Wear')->inRandomOrder()->limit(8)->get();
+        $kidsProducts = Product::where('category_name', 'Kids\'s Wear')->inRandomOrder()->limit(8)->get();
+
+        $trendingProducts = Product::where('trending', 1)->inRandomOrder()->limit(8)->get();
+        $popularProducts = Product::where('popular', 1)->inRandomOrder()->limit(8)->get();
+
+        return view('home.index', compact('allProducts', 'menProducts', 'womenProducts', 'kidsProducts', 'trendingProducts', 'popularProducts'));
     }
+
+
 }
