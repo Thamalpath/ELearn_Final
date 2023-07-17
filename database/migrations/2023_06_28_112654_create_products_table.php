@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('sub_category_name');
             $table->string('number', 10)->unique();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->longText('description');
             $table->string('original_price');
             $table->string('selling_price');

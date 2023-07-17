@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('number', 10)->unique();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->longText('description');
             $table->string('status', 50)->default('Unavailable'); // Reduce the length to fit within the limit
             $table->tinyInteger('popular')->default('0');
