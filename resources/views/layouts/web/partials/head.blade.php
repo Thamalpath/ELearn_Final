@@ -1,4 +1,4 @@
-<head>
+
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="robots" content="index, follow" />
@@ -10,16 +10,14 @@
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/png">
 
     <!-- vendor css (Icon Font) -->
-    <link rel="stylesheet" href="css/vendor/bootstrap.bundle.min.css" />
-    <link rel="stylesheet" href="css/vendor/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="css/vendor/font.awesome.css" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.bundle.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/pe-icon-7-stroke.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/font.awesome.css') }}" />
 
     <!-- plugins css (All Plugins Files) -->
-    <link rel="stylesheet" href="css/plugins/animate.css" />
-    <link rel="stylesheet" href="css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="css/plugins/nice-select.css" />
-    <link rel="stylesheet" href="css/plugins/venobox.css" />
-    <link rel="stylesheet" href="css/style.css" />
-
-</head>
+    <link rel="stylesheet" href="{{ asset('css/plugins/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/plugins/swiper-bundle.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/plugins/jquery-ui.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/plugins/nice-select.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/plugins/venobox.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
