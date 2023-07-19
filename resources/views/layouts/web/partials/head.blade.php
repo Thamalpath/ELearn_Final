@@ -20,3 +20,4 @@
 <link rel="stylesheet" href="{{ asset('css/plugins/nice-select.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/plugins/venobox.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/dash/custom.css') }}" />
