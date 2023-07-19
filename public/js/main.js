@@ -313,39 +313,39 @@
     /*---------------------------
         Product Details Slider 
     ------------------------------ */
-    var zoomThumb = new Swiper(".zoom-thumbs", {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-    });
-    var zoomTop = new Swiper(".zoom-top", {
-        spaceBetween: 0,
-        slidesPerView: 1,
-        thumbs: {
-            swiper: zoomThumb,
-        },
-    });
+    // var zoomThumb = new Swiper(".zoom-thumbs", {
+    //     spaceBetween: 10,
+    //     slidesPerView: 4,
+    //     freeMode: true,
+    //     watchSlidesVisibility: true,
+    //     watchSlidesProgress: true,
+    // });
+    // var zoomTop = new Swiper(".zoom-top", {
+    //     spaceBetween: 0,
+    //     slidesPerView: 1,
+    //     thumbs: {
+    //         swiper: zoomThumb,
+    //     },
+    // });
 
     /*---------------------------
         Product Details Slider 
     ------------------------------ */
-    var zoomThumb = new Swiper(".zoom-thumbs-2", {
-        spaceBetween: 0,
-        slidesPerView: 4,
-        direction: "vertical",
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-    });
-    var zoomTop = new Swiper(".zoom-top-2", {
-        spaceBetween: 0,
-        loop: true,
-        thumbs: {
-            swiper: zoomThumb,
-        },
-    });
+    // var zoomThumb = new Swiper(".zoom-thumbs-2", {
+    //     spaceBetween: 0,
+    //     slidesPerView: 4,
+    //     direction: "vertical",
+    //     freeMode: true,
+    //     watchSlidesVisibility: true,
+    //     watchSlidesProgress: true,
+    // });
+    // var zoomTop = new Swiper(".zoom-top-2", {
+    //     spaceBetween: 0,
+    //     loop: true,
+    //     thumbs: {
+    //         swiper: zoomThumb,
+    //     },
+    // });
 
     /*----------------------------
         Cart Plus Minus Button
@@ -498,10 +498,39 @@
       Product Gallery - Image Zoom
      --------------------------------*/
 
-    $(".zoom-image-hover").zoom();
+    // $(".zoom-image-hover").zoom();
 
     /*---------------------
         venobox
     --------------------- */
     $(".venobox").venobox();
 })(jQuery);
+
+/*-------------------------------
+        Custom Functions
+--------------------------------*/
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize Swiper for the small product images
+    var zoomThumb = new Swiper(".zoom-thumbs", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+    });
+
+    // When a small product image is clicked, switch the main image
+    var smallImages = document.querySelectorAll(".small-image");
+    smallImages.forEach(function (image, index) {
+        image.addEventListener("click", function () {
+            var mainImage = document.querySelector(".main-image img");
+            var zoomedImageSrc = this.getAttribute("data-zoom-image");
+            mainImage.src = this.src;
+            mainImage.setAttribute("data-zoom-image", zoomedImageSrc);
+            $(".main-image").zoom(); // Re-initialize elevatezoom for the new main image
+        });
+    });
+
+    // Initialize zoom for the main image
+    $(".main-image").zoom();
+});
