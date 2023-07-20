@@ -20,7 +20,13 @@ class WebProductController extends Controller
     {
         $product = Product::where('slug', $slug)->first();
         $categories = Category::with('subCategories')->get();
-        return view('web.products.show', compact('product', 'categories'));
+        
+        // Convert the comma-separated colors and sizes stored in the database to arrays
+        $productColors = explode(',', $product->color);
+        $productSizes = explode(',', $product->size);
+
+        return view('web.products.show', compact('product', 'categories', 'productColors', 'productSizes'));
     }
+
 }
 
