@@ -1,13 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\WebProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\WebProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WebCartController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -23,6 +25,12 @@ use Illuminate\Support\Facades\Route;
 
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::middleware('auth')->group(function () {
+    Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
+    Route::get('/cart', [WebCartController::class, 'show'])->name('cart.show')->middleware('auth');
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -72,7 +80,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
 });
 
-Route::get('/products', [WebProductController::class, 'index'])->name('products');
+Route::get('/all-products', [WebProductController::class, 'index'])->name('all.products');
 Route::get('/product/{slug}', [WebProductController::class, 'show'])->name('product.show');
 
 // Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
