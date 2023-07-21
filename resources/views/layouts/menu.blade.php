@@ -17,13 +17,15 @@
     </a>
     <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-            <a href="{{route('category.index')}}" class="nav-link  {{ Request::is('category.index') ? 'active' : '' }}">
+            <a href="{{ route('category.index') }}"
+                class="nav-link  {{ Request::is('category.index') ? 'active' : '' }}">
                 <i class="fas fa-list nav-icon"></i>
                 <p>All Categories</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('category.create')}}" class="nav-link  {{ Request::is('category.create') ? 'active' : '' }}">
+            <a href="{{ route('category.create') }}"
+                class="nav-link  {{ Request::is('category.create') ? 'active' : '' }}">
                 <i class="fas fa-plus-circle nav-icon"></i>
                 <p>Add Category</p>
             </a>
@@ -42,13 +44,15 @@
     </a>
     <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-            <a href="{{route('sub_category.index')}}" class="nav-link  {{ Request::is('sub_category.index') ? 'active' : '' }}">
+            <a href="{{ route('sub_category.index') }}"
+                class="nav-link  {{ Request::is('sub_category.index') ? 'active' : '' }}">
                 <i class="fas fa-list nav-icon"></i>
                 <p>All Sub Categories</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('sub_category.create')}}" class="nav-link  {{ Request::is('sub_category.create') ? 'active' : '' }}">
+            <a href="{{ route('sub_category.create') }}"
+                class="nav-link  {{ Request::is('sub_category.create') ? 'active' : '' }}">
                 <i class="fas fa-plus-circle nav-icon"></i>
                 <p>Add Sub Category</p>
             </a>
@@ -67,13 +71,15 @@
     </a>
     <ul class="nav nav-treeview" style="display: none;">
         <li class="nav-item">
-            <a href="{{route('product.index')}}" class="nav-link  {{ Request::is('product.index') ? 'active' : '' }}">
+            <a href="{{ route('product.index') }}"
+                class="nav-link  {{ Request::is('product.index') ? 'active' : '' }}">
                 <i class="fas fa-list nav-icon"></i>
                 <p>All Products</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('product.create')}}" class="nav-link  {{ Request::is('product.create') ? 'active' : '' }}">
+            <a href="{{ route('product.create') }}"
+                class="nav-link  {{ Request::is('product.create') ? 'active' : '' }}">
                 <i class="fas fa-plus-circle nav-icon"></i>
                 <p>Add product</p>
             </a>
