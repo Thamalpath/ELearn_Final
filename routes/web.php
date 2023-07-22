@@ -28,8 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
-    Route::get('/cart', [WebCartController::class, 'show'])->name('cart.show')->middleware('auth');
-
+    Route::get('/cart', [WebCartController::class, 'show'])->name('cart.show');
 });
 
 Route::middleware('auth')->group(function () {
