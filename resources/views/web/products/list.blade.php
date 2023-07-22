@@ -1,4 +1,9 @@
 @extends('layouts.web2')
+
+@section('title')
+    All Products
+@endsection
+
 @section('pageTitle')
     <!-- breadcrumb-area start -->
     <div class="breadcrumb-area">
