@@ -191,7 +191,6 @@
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                             class="pe-7s-search"></i></a>
                                                 </div>
-                                                <button title="Add To Cart" class="add-to-cart">Add To Cart</button>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -247,7 +246,6 @@
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                             class="pe-7s-search"></i></a>
                                                 </div>
-                                                <button title="Add To Cart" class="add-to-cart">Add To Cart</button>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -303,7 +301,6 @@
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                             class="pe-7s-search"></i></a>
                                                 </div>
-                                                <button title="Add To Cart" class="add-to-cart">Add To Cart</button>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -359,7 +356,6 @@
                                                         data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                             class="pe-7s-search"></i></a>
                                                 </div>
-                                                <button title="Add To Cart" class="add-to-cart">Add To Cart</button>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -522,8 +518,6 @@
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                                 class="pe-7s-search"></i></a>
                                                     </div>
-                                                    <button title="Add To Cart" class="add-to-cart">Add To
-                                                        Cart</button>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -587,8 +581,6 @@
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                                 class="pe-7s-search"></i></a>
                                                     </div>
-                                                    <button title="Add To Cart" class="add-to-cart">Add To
-                                                        Cart</button>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -652,8 +644,6 @@
                                                             data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                                 class="pe-7s-search"></i></a>
                                                     </div>
-                                                    <button title="Add To Cart" class="add-to-cart">Add To
-                                                        Cart</button>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -683,7 +673,6 @@
                             </div>
                         </div>
                         <!-- Popular tab end -->
-
                     </div>
                 </div>
             </div>
