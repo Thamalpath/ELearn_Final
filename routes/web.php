@@ -26,10 +26,9 @@ use App\Http\Controllers\HomeController;
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::middleware('auth')->group(function () {
-    Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
-    Route::get('/cart', [WebCartController::class, 'show'])->name('cart.show');
-});
+// Handle adding a product to the cart
+Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
+Route::get('/cart', [WebCartController::class, 'show'])->name('cart.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -79,6 +78,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
 });
 
+// Show all products listing & show individual product details
 Route::get('/all-products', [WebProductController::class, 'index'])->name('all.products');
 Route::get('/product/{slug}', [WebProductController::class, 'show'])->name('product.show');
 
