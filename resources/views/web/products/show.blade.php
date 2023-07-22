@@ -5,11 +5,11 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 text-center">
-                    <h2 class="breadcrumb-title">Products</h2>
+                    <h2 class="breadcrumb-title">{{ $product->name }}</h2>
                     <!-- breadcrumb-list start -->
                     <ul class="breadcrumb-list">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active">Products</li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ url('all-products') }}">Products</a></li>
                     </ul>
                     <!-- breadcrumb-list end -->
                 </div>

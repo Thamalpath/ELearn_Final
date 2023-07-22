@@ -13,7 +13,7 @@
                     <h2 class="breadcrumb-title">Shop</h2>
                     <!-- breadcrumb-list start -->
                     <ul class="breadcrumb-list">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="breadcrumb-item active">Shop</li>
                     </ul>
                     <!-- breadcrumb-list end -->
