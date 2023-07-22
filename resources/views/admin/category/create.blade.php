@@ -53,7 +53,7 @@
                                 <label for="status"> Status</label>
                                 <select class="custom-select" name="status">
                                     <option>Select Status type</option>
-                                    @foreach ($statuses as $key => $status )
+                                    @foreach ($statuses as $key => $status)
                                         <option value="{{ $key }}">{{ $status }}</option>
                                     @endforeach
                                 </select>
@@ -64,7 +64,7 @@
                                 <label for="popular">Popular</label>
                                 <input type="checkbox" name="popular" id="popular" value="1" class="form-control">
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -84,7 +84,7 @@
         </div>
     @endsection
     @push('css')
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@6.4.2/skins/ui/oxide/content.min.css">
     @endpush
     @push('scripts')
@@ -94,7 +94,7 @@
             tinymce.init({
                 selector: '#description'
             });
-        
+
             tinymce.init({
                 selector: '#meta_description'
             });
@@ -114,10 +114,10 @@
                     });
                     this.on('success', function(file, response) {
                         console.log(response);
-                        if(response.status){
+                        if (response.status) {
                             $('#image').val(response.image);
                             notyf.success('Image uploaded successfully')
-                        }else{
+                        } else {
                             notyf.error('Image upload failed')
                         }
 
