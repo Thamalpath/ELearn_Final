@@ -20,7 +20,7 @@
                 <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
             </div>
-            <button title="Add To Cart" class=" add-to-cart">Add To Cart</button>
+            {{-- <button title="Add To Cart" class=" add-to-cart">Add To Cart</button> --}}
         </div>
         <div class="content">
             <span class="ratings">
