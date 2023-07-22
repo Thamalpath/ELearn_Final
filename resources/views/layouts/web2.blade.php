@@ -90,12 +90,11 @@
                         notyf.success(response.status);
                     },
                     error: function(xhr, status, error) {
-                        if (xhr.status === 401) {
-                            // 401 Unauthorized - User not logged in
-                            notyf.error('Login To Continue');
+                        if (xhr.status === 400) {
+                            // If the response has 400 status code, show as an error notification
+                            notyf.error(xhr.responseJSON.status);
                         } else {
-                            var errorMessage = xhr.responseJSON.status;
-                            notyf.error(errorMessage);
+                            // Handle other error scenarios here if needed
                         }
                     },
                 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
@@ -37,7 +38,7 @@ class WebCartController extends Controller
                 }
             }
         } else {
-            return response()->json(['status' => "Login To Continue"]);
+            return response()->json(['status' => "Login To Continue"], Response::HTTP_BAD_REQUEST);
         }
     }
 
