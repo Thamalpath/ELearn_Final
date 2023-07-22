@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->longText('description');
-            $table->string('status', 50)->default('Unavailable'); // Reduce the length to fit within the limit
+            $table->string('status', 50)->default('Unavailable');
             $table->tinyInteger('popular')->default('0');
             $table->string('image')->nullable();
             $table->string('meta_title');
