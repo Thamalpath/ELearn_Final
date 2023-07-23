@@ -101,7 +101,7 @@
             });
 
 
-            // Cart Remove Button
+            // Product Remove Button in Cart
             $(".delete-cart-item").click(function(e) {
                 e.preventDefault();
 
