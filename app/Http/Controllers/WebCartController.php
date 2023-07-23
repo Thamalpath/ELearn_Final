@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Cart;
 
@@ -24,7 +25,8 @@ class WebCartController extends Controller
             // If the product exists
             if ($prod_check) {
                 // Check if the product with the same $product_id is already in the user's cart
-                if (Cart::where('prod_id', $product_id)->where('user_id', Auth::id())->exists()) {
+                if (Cart::where('prod_id', $product_id)->where('user_id', Auth::id())->exists()) 
+                {
                     return response()->json(['status' => $prod_check->name . " Already Added To Cart"]);
                 } else {
                     // Check if the product with the same $product_id is already in the user's cart
@@ -37,12 +39,33 @@ class WebCartController extends Controller
                     return response()->json(['status' => $prod_check->name . " Added To Cart"]);
                 }
             }
-        } else {
+        } 
+        else {
             return response()->json(['status' => "Login To Continue"], Response::HTTP_BAD_REQUEST);
         }
     }
 
-    public function show()
+    public function viewcart()
     {
+        $categories = Category::with('subCategories')->get();
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        return view ('web.cart.cart', compact('categories', 'cartItems'));
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        // Check if the user is authenticated (logged in)
+        if (Auth::check()) {
+            $prod_id = $request->input('prod_id');
+            if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
+            {
+                $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+                $cartItem->delete();
+                return response()->json(['status' => "Product Deleted Successfully"]);
+            }
+        } 
+        else {
+            return response()->json(['status' => "Login To Continue"], Response::HTTP_BAD_REQUEST);
+        }
     }
 }
