@@ -28,7 +28,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Handle adding a product to the cart
 Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
-Route::get('/cart', [WebCartController::class, 'show'])->name('cart.show');
+Route::post('delete-cart-item', [WebCartController::class, 'deleteProduct']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('cart', [WebCartController::class, 'viewcart'])->name('cart');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
