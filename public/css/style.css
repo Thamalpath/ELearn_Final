@@ -3846,13 +3846,17 @@ body.offcanvas-open {
 .cart-main-area .table-content table tbody > tr td.product-remove {
     width: 100px;
 }
-.cart-main-area .table-content table tbody > tr td.product-remove a {
-    color: #474747;
-    font-size: 16px;
-    margin: 0 10px;
-}
-.cart-main-area .table-content table tbody > tr td.product-remove a:hover {
+.cart-main-area .table-content table tbody > tr td.product-remove button {
     color: #fb5d5d;
+    font-size: 16px;
+    padding: 15px;
+    border: 1px solid #fb5d5d;
+    background-color: transparent;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+.cart-main-area .table-content table tbody > tr td.product-remove button:hover {
+    color: #ffffff;
+    background-color: #fb5d5d;
 }
 .cart-main-area .table-content table tbody > tr td.product-wishlist-cart > a {
     background-color: #fb5d5d;
