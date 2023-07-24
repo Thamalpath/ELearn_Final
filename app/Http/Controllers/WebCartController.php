@@ -68,4 +68,19 @@ class WebCartController extends Controller
             return response()->json(['status' => "Login To Continue"], Response::HTTP_BAD_REQUEST);
         }
     }
+
+    public function clearCart()
+    {
+        // Check if the user is authenticated (logged in)
+        if (Auth::check()) {
+            // Clear the cart items for the logged-in user
+            Cart::where('user_id', Auth::id())->delete();
+
+            return response()->json(['status' => "Shopping Cart Cleared Successfully"]);
+        } else {
+            return response()->json(['status' => "Login To Continue"], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+
 }

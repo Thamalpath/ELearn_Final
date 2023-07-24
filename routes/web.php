@@ -26,9 +26,10 @@ use App\Http\Controllers\HomeController;
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Handle adding a product to the cart
+// Handle product cart
 Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
 Route::post('delete-cart-item', [WebCartController::class, 'deleteProduct']);
+Route::post('/clear-cart', [WebCartController::class, 'clearCart'])->name('cart.clear');
 
 Route::middleware('auth')->group(function () {
     Route::get('cart', [WebCartController::class, 'viewcart'])->name('cart');

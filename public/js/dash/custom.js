@@ -75,4 +75,26 @@ $(document).ready(function () {
             },
         });
     });
+
+    /*----------------------------------
+        Clear Shopping Cart Button
+    -----------------------------------*/
+    $(".cart-clear a").click(function (e) {
+        e.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "/clear-cart",
+            success: function (response) {
+                window.location.reload();
+                notyf.success(response.status);
+            },
+        });
+    });
 });
