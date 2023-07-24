@@ -4271,25 +4271,41 @@ body.offcanvas-open {
     list-style: outside none none;
     color: #000000;
 }
+/* Updated styles for your-order-middle */
 .your-order-area .your-order-wrap .your-order-product-info .your-order-middle {
     border-bottom: 1px solid #dee0e4;
     border-top: 1px solid #dee0e4;
     margin: 29px 0;
     padding: 19px 0 18px;
 }
-.your-order-area
-    .your-order-wrap
-    .your-order-product-info
-    .your-order-middle
-    li {
-    display: -webkit-box;
-    display: -ms-flexbox;
+
+/* Updated styles for your-order-middle li */
+.your-order-area .your-order-wrap .your-order-product-info .your-order-middle li {
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
+    align-items: center;
     margin: 0 0 10px;
 }
+
+/* Additional styles for the quantity-related elements */
+.order-middle-left {
+    width: 70%; /* Adjust the width as per your design preference */
+}
+
+.order-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.product-quantity {
+    margin-right: 10px; /* Add space to the right of the product quantity */
+}
+
+.quantity-text {
+    margin-left: 10px; /* Add space between the product quantity and the "Quantity" text */
+}
+
+
 .your-order-area
     .your-order-wrap
     .your-order-product-info
