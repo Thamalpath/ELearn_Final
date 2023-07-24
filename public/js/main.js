@@ -506,9 +506,9 @@
     $(".venobox").venobox();
 })(jQuery);
 
-/*-------------------------------
-        Custom Functions
---------------------------------*/
+/*--------------------------------------------------
+        Product Image Zoom & Switch Functions
+---------------------------------------------------*/
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize Swiper for the small product images
     var zoomThumb = new Swiper(".zoom-thumbs", {
