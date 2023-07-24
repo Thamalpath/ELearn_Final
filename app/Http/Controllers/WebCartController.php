@@ -52,6 +52,24 @@ class WebCartController extends Controller
         return view ('web.cart.cart', compact('categories', 'cartItems'));
     }
 
+    public function updateCart(Request $request)
+    {
+        $prod_id = $request->input('prod_id');
+        $product_qty = $request->input('prod_qty');
+
+        // Check if the user is authenticated (logged in)
+        if (Auth::check()) 
+        {
+            if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
+            {
+                $cart = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+                $cart->prod_qty = $product_qty;
+                $cart->update();
+                return response()->json(['status'=> "Quantity Updated"]);
+            }
+        }
+    }
+
     public function deleteProduct(Request $request)
     {
         // Check if the user is authenticated (logged in)
