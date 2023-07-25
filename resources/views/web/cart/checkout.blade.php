@@ -37,57 +37,57 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>First Name</label>
-                                        <input type="text" />
+                                        <input type="text" name="fname" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Last Name</label>
-                                        <input type="text" />
+                                        <input type="text" name="lname" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Email Address</label>
-                                        <input type="text" />
+                                        <input type="text" name="email" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Phone</label>
-                                        <input type="text" />
+                                        <input type="text" name="phone" />
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-4">
                                         <label>Street Address</label>
                                         <input class="billing-address" placeholder="House number and street name"
-                                            type="text" />
-                                        <input placeholder="Apartment, suite, unit etc." type="text" />
+                                            type="text" name="address1" />
+                                        <input placeholder="Apartment, suite, unit etc." type="text" name="address2" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Town / City</label>
-                                        <input type="text" />
+                                        <input type="text" name="city" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>State</label>
-                                        <input type="text" />
+                                        <input type="text" name="state" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Country</label>
-                                        <input type="text" />
+                                        <input type="text" name="country" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Postcode / ZIP</label>
-                                        <input type="text" />
+                                        <input type="text" name="zipcode" />
                                     </div>
                                 </div>
 
