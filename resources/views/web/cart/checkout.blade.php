@@ -29,6 +29,7 @@
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
             <form action="{{ url('place-order') }}" method="POST">
+                <!-- CSRF token to protect against Cross-Site Request Forgery (CSRF) attacks -->
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-6">
@@ -201,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="Place-order mt-25">
-                                <a class="btn-hover" type="submit" href="#">Place Order</a>
+                                <button class="btn-hover btn-full-width" type="submit">Place Order</button>
                             </div>
                         </div>
                     </div>

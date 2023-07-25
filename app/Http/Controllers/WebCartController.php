@@ -11,6 +11,9 @@ use App\Models\Cart;
 
 class WebCartController extends Controller
 {
+    /**
+    *Add a product to the user's cart.
+    */
     public function addProduct(Request $request)
     {
         // Get product_id and product_qty from the request input
@@ -45,6 +48,9 @@ class WebCartController extends Controller
         }
     }
 
+    /**
+    * Display the user's cart.  
+    */
     public function viewCart()
     {
         $categories = Category::with('subCategories')->get();
@@ -52,33 +58,46 @@ class WebCartController extends Controller
         return view ('web.cart.cart', compact('categories', 'cartItems'));
     }
 
+    /**
+    * Update the quantity of a product in the user's cart.
+    */
     public function updateCart(Request $request)
     {
+        // Get the product ID and new quantity from the request input
         $prod_id = $request->input('prod_id');
         $product_qty = $request->input('prod_qty');
 
         // Check if the user is authenticated (logged in)
-        if (Auth::check()) 
-        {
-            if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
-            {
+        if (Auth::check()) {
+            // Check if the cart item with the given product ID exists for the logged-in user
+            if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists()) {
+                // Find the cart item associated with the product ID and user ID
                 $cart = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+
+                // Update the quantity of the cart item with the new product quantity
                 $cart->prod_qty = $product_qty;
                 $cart->update();
-                return response()->json(['status'=> "Quantity Updated"]);
+
+                return response()->json(['status' => "Quantity Updated"]);
             }
         }
     }
 
+    /**
+    * Delete a product from the user's cart.
+    */
     public function deleteProduct(Request $request)
     {
         // Check if the user is authenticated (logged in)
         if (Auth::check()) {
+            // Get the product ID from the request input
             $prod_id = $request->input('prod_id');
+            // Check if the cart item with the given product ID exists for the logged-in user
             if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
             {
+                // Find the cart item associated with the product ID and user ID
                 $cartItem = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
-                $cartItem->delete();
+                $cartItem->delete(); // Delete the cart item
                 return response()->json(['status' => "Product Deleted Successfully"]);
             }
         } 
@@ -87,6 +106,9 @@ class WebCartController extends Controller
         }
     }
 
+    /**
+    * Clear all cart items for the authenticated user.
+    */
     public function clearCart()
     {
         // Check if the user is authenticated (logged in)
@@ -100,11 +122,16 @@ class WebCartController extends Controller
         }
     }
 
+    /**
+    * Validate products in the user's cart.
+    */
     public function validateCartProducts()
     {
+        // Get all cart items for the authenticated user
         $cartItems = Cart::where('user_id', Auth::id())->get();
-        $outOfStockProducts = [];
+        $outOfStockProducts = []; // Get all cart items for the authenticated user
 
+        // Loop through each cart item and check if the product is out of stock
         foreach ($cartItems as $item) {
             $product = Product::find($item->prod_id);
             if ($product->status === 'Out of Stock') {
@@ -113,6 +140,7 @@ class WebCartController extends Controller
             }
         }
 
+        // If there are out-of-stock products in the cart, return an error response with the product names
         if (count($outOfStockProducts) > 0) {
             return response()->json([
                 'status' => 'error',
@@ -120,7 +148,7 @@ class WebCartController extends Controller
             ]);
         }
 
-        // All products in the cart are available
+        // If there are out-of-stock products in the cart, return an error response with the product names
         return response()->json(['status' => 'success']);
     }
 }

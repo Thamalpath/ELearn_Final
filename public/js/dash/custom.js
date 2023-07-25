@@ -127,9 +127,9 @@ $(document).ready(function () {
         });
     });
 
-    /*----------------------------------
+    /*---------------------------------------------------------------------------------------------------
         Checking whether the products added to the cart are out of stock before proceeding to checkout
-    -----------------------------------*/
+    ----------------------------------------------------------------------------------------------------*/
     $(".proceed-to-checkout-btn").click(function (e) {
         e.preventDefault();
 

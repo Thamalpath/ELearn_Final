@@ -4280,7 +4280,11 @@ body.offcanvas-open {
 }
 
 /* Updated styles for your-order-middle li */
-.your-order-area .your-order-wrap .your-order-product-info .your-order-middle li {
+.your-order-area
+    .your-order-wrap
+    .your-order-product-info
+    .your-order-middle
+    li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -4304,7 +4308,6 @@ body.offcanvas-open {
 .quantity-text {
     margin-left: 10px; /* Add space between the product quantity and the "Quantity" text */
 }
-
 
 .your-order-area
     .your-order-wrap
@@ -4404,20 +4407,24 @@ body.offcanvas-open {
 .your-order-area .Place-order {
     margin-top: 25px;
 }
-.your-order-area .Place-order a {
+
+.your-order-area .Place-order .btn-full-width {
+    width: 100%;
     background-color: #fb5d5d;
     color: #fff;
     display: block;
     font-weight: 700;
     letter-spacing: 1px;
     line-height: 1;
-    padding: 18px 20px;
+    padding: 18px 0;
     text-align: center;
     text-transform: uppercase;
-    border-radius: 0px;
+    border: none;
+    border-radius: 0;
     z-index: 9;
 }
-.your-order-area .Place-order a:hover {
+
+.your-order-area .Place-order .btn-full-width:hover {
     background-color: #000000;
 }
 

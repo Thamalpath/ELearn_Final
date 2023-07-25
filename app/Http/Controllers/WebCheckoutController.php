@@ -13,16 +13,24 @@ use App\Models\User;
 
 class WebCheckoutController extends Controller
 {
+    /**
+     * Display the checkout page.
+     */
     public function index()
     {
         $categories = Category::with('subCategories')->get();
 
+        // Retrieve cart items for the authenticated user
         $cartItems = Cart::where('user_id', Auth::id())->get();
         return view('web.cart.checkout', compact('categories', 'cartItems'));
     }
 
+    /**
+     * Place an order and process the checkout.
+     */
     public function placeOrder(Request $request)
     {
+        // Create a new Order instance and save order details in the database
         $order = new Order();
         $order->user_id = Auth::id();
         $order->fname = $request->input('fname');
@@ -38,8 +46,10 @@ class WebCheckoutController extends Controller
         $order->tracking_no = 'daisy' . rand(1111, 9999);
         $order->save();
 
+        // Retrieve the order ID after saving the order
         $order->id;
 
+        // Process each cart item and create order items in the database
         $cartItems = Cart::where('user_id', Auth::id())->get();
         foreach ($cartItems as $item) {
             OrderItem::create([
@@ -49,11 +59,13 @@ class WebCheckoutController extends Controller
                 'price' => $item->products->selling_price,
             ]);
 
+            // Update product quantity after placing the order
             $prod = Product::where('id', $item->prod_id)->first();
             $prod->qty = $prod->qty - $item->prod_qty;
             $prod->update();
         }
 
+        // Update user information if address1 is NULL
         if (Auth::user()->address1 == NULL) {
             $user = User::find(Auth::id())->first();
             $user->fname = $request->input('fname');
@@ -68,8 +80,9 @@ class WebCheckoutController extends Controller
             $user->update();
         }
 
+        // Remove cart items after placing the order
         $cartItems = Cart::where('user_id', Auth::id())->get();
         Cart::destroy($cartItems);
-        return redirect('/')->with('status', 'Order Placed Successfully');
+        return view('web.cart.place-order')->with('status', 'Order Details Stored Successfully');
     }
 }
