@@ -29,6 +29,7 @@
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
             <form action="{{ url('place-order') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="billing-info-wrap">
@@ -37,57 +38,58 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>First Name</label>
-                                        <input type="text" name="fname" />
+                                        <input type="text" value="{{ Auth::user()->fname }}" name="fname" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Last Name</label>
-                                        <input type="text" name="lname" />
+                                        <input type="text" value="{{ Auth::user()->lname }}" name="lname" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Email Address</label>
-                                        <input type="text" name="email" />
+                                        <input type="text" value="{{ Auth::user()->email }}" name="email" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Phone</label>
-                                        <input type="text" name="phone" />
+                                        <input type="text" value="{{ Auth::user()->phone }}" name="phone" />
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-4">
                                         <label>Street Address</label>
                                         <input class="billing-address" placeholder="House number and street name"
-                                            type="text" name="address1" />
-                                        <input placeholder="Apartment, suite, unit etc." type="text" name="address2" />
+                                            type="text" value="{{ Auth::user()->address1 }}" name="address1" />
+                                        <input placeholder="Apartment, suite, unit etc." type="text"
+                                            value="{{ Auth::user()->address2 }}" name="address2" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Town / City</label>
-                                        <input type="text" name="city" />
+                                        <input type="text" value="{{ Auth::user()->city }}" name="city" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>State</label>
-                                        <input type="text" name="state" />
+                                        <input type="text" value="{{ Auth::user()->state }}" name="state" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Country</label>
-                                        <input type="text" name="country" />
+                                        <input type="text" value="{{ Auth::user()->country }}" name="country" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Postcode / ZIP</label>
-                                        <input type="text" name="zipcode" />
+                                        <input type="text" value="{{ Auth::user()->zipcode }}" name="zipcode" />
                                     </div>
                                 </div>
 
