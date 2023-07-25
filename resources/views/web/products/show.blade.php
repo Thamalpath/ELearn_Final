@@ -107,9 +107,12 @@
                                     value="1" />
                             </div>
 
-                            <div class="pro-details-cart">
-                                <button class="add-to-cart" href="#"> Add To Cart</button>
-                            </div>
+                            @if ($product->status === 'Available')
+                                <div class="pro-details-cart">
+                                    <button class="add-to-cart" href="#"> Add To Cart</button>
+                                </div>
+                            @elseif($product->status === 'Out of Stock')
+                            @endif
 
                             <div class="pro-details-compare-wishlist pro-details-wishlist ">
                                 <a href="wishlist.html"><i class="pe-7s-like"></i></a>
