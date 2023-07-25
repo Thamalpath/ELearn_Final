@@ -151,7 +151,9 @@ $(document).ready(function () {
                     // Some products in the cart are out of stock
                     // Show error message with the product names
                     notyf.error(
-                        "Now out of stock: " + response.product_names.join(", ")
+                        "Now out of stock: " +
+                            response.product_names.join(", ") +
+                            " Can't Proceet to checkout."
                     );
                 }
             },
