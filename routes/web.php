@@ -34,9 +34,10 @@ Route::post('/clear-cart', [WebCartController::class, 'clearCart']);
 Route::post('update-cart', [WebCartController::class, 'updateCart']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('cart', [WebCartController::class, 'viewcart'])->name('cart');
+    Route::get('cart', [WebCartController::class, 'viewCart'])->name('cart');
     Route::get('checkout', [WebCheckoutController::class, 'index']);
     Route::get('validate-cart-products', [WebCartController::class, 'validateCartProducts']);
+    Route::post('place-order', [WebCheckoutController::class, 'placeOrder']);
 });
 
 
