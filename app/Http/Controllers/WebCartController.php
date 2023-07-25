@@ -45,7 +45,7 @@ class WebCartController extends Controller
         }
     }
 
-    public function viewcart()
+    public function viewCart()
     {
         $categories = Category::with('subCategories')->get();
         $cartItems = Cart::where('user_id', Auth::id())->get();
