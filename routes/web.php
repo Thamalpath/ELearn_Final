@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\WebCheckoutController;
 use App\Http\Controllers\WebProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -34,7 +35,10 @@ Route::post('update-cart', [WebCartController::class, 'updateCart']);
 
 Route::middleware('auth')->group(function () {
     Route::get('cart', [WebCartController::class, 'viewcart'])->name('cart');
+    Route::get('checkout', [WebCheckoutController::class, 'index']);
+    Route::get('validate-cart-products', [WebCartController::class, 'validateCartProducts']);
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

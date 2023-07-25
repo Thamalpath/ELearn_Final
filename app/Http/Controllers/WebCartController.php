@@ -100,5 +100,27 @@ class WebCartController extends Controller
         }
     }
 
+    public function validateCartProducts()
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        $outOfStockProducts = [];
 
+        foreach ($cartItems as $item) {
+            $product = Product::find($item->prod_id);
+            if ($product->status === 'Out of Stock') {
+                // If any product in the cart is out of stock, add its name to the array
+                $outOfStockProducts[] = $product->name;
+            }
+        }
+
+        if (count($outOfStockProducts) > 0) {
+            return response()->json([
+                'status' => 'error',
+                'product_names' => $outOfStockProducts,
+            ]);
+        }
+
+        // All products in the cart are available
+        return response()->json(['status' => 'success']);
+    }
 }

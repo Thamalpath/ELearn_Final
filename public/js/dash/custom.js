@@ -1,5 +1,5 @@
 const notyf = new Notyf({
-    duration: 2000,
+    duration: 3000,
     position: {
         x: "right",
         y: "top",
@@ -44,7 +44,6 @@ $(document).ready(function () {
                     // If the response has 400 status code, show as an error notification
                     notyf.error(xhr.responseJSON.status);
                 } else {
-                    // Handle other error scenarios here if needed
                 }
             },
         });
@@ -125,6 +124,38 @@ $(document).ready(function () {
                 window.location.reload();
                 notyf.success(response.status);
             },
+        });
+    });
+
+    /*----------------------------------
+        Checking whether the products added to the cart are out of stock before proceeding to checkout
+    -----------------------------------*/
+    $(".proceed-to-checkout-btn").click(function (e) {
+        e.preventDefault();
+
+        // Perform the check before proceeding to checkout
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            method: "GET",
+            url: "/validate-cart-products",
+            success: function (response) {
+                if (response.status === "success") {
+                    // All products in the cart are available, proceed to checkout
+                    window.location.href = "/checkout";
+                } else {
+                    // Some products in the cart are out of stock
+                    // Show error message with the product names
+                    notyf.error(
+                        "Now out of stock: " + response.product_names.join(", ")
+                    );
+                }
+            },
+            error: function (xhr, status, error) {},
         });
     });
 });
