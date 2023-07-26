@@ -4396,13 +4396,14 @@ body.offcanvas-open {
     font-weight: 600;
 }
 .your-order-area .payment-accordion .panel-body {
-    padding: 5px 0 0 0;
+    padding: 10px 0 0 0;
 }
 .your-order-area .payment-accordion .panel-body p {
     padding: 0 0 0 10px;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
     color: #474747;
-    line-height: 24px;
+    line-height: 18px;
 }
 .your-order-area .Place-order {
     margin-top: 25px;

@@ -111,20 +111,26 @@
                                         </ul>
                                     </div>
                                     <div class="your-order-middle">
-                                        @foreach ($cartItems as $item)
+                                        @if ($cartItems->count() > 0)
+                                            @foreach ($cartItems as $item)
+                                                <ul>
+                                                    <li>
+                                                        <span class="order-middle-left">
+                                                            {{ $item->products->name }}
+                                                        </span>
+                                                        <span class="order-quantity">
+                                                            <span class="product-quantity">{{ $item->prod_qty }}</span>
+                                                        </span>
+                                                        <span
+                                                            class="order-price">Rs.{{ $item->products->selling_price * $item->prod_qty }}</span>
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        @else
                                             <ul>
-                                                <li>
-                                                    <span class="order-middle-left">
-                                                        {{ $item->products->name }}
-                                                    </span>
-                                                    <span class="order-quantity">
-                                                        <span class="product-quantity">{{ $item->prod_qty }}</span>
-                                                    </span>
-                                                    <span
-                                                        class="order-price">Rs.{{ $item->products->selling_price * $item->prod_qty }}</span>
-                                                </li>
+                                                <li>No Products in Cart</li>
                                             </ul>
-                                        @endforeach
+                                        @endif
                                     </div>
 
                                     <div class="your-order-bottom">
@@ -163,8 +169,10 @@
                                                     data-bs-parent="#faq">
 
                                                     <div class="panel-body">
-                                                        <p>Please send a check to Store Name, Store Street, Store Town,
-                                                            Store State / County, Store Postcode.</p>
+                                                        <p>Name: Daisy Wardrobe</p>
+                                                        <p>Bank: Commercial Bank</p>
+                                                        <p>Branch: Maharagama</p>
+                                                        <p>Account Number: 1234567890</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,7 +180,8 @@
                                                 <div class="panel-heading my-account-title">
                                                     <h4 class="panel-title"><a data-bs-toggle="collapse"
                                                             href="#my-account-2" aria-expanded="false"
-                                                            class="collapsed">Check payments</a></h4>
+                                                            class="collapsed">Card payments</a>
+                                                    </h4>
                                                 </div>
                                                 <div id="my-account-2" class="panel-collapse collapse"
                                                     data-bs-parent="#faq">
@@ -192,8 +201,26 @@
                                                     data-bs-parent="#faq">
 
                                                     <div class="panel-body">
-                                                        <p>Please send a check to Store Name, Store Street, Store Town,
-                                                            Store State / County, Store Postcode.</p>
+                                                        <p>Dear Customer,</p>
+                                                        <p>
+                                                            Thank you for placing your order with us. We are pleased to
+                                                            inform you that your order has been successfully processed, and
+                                                            you have chosen the Cash on Delivery (COD) payment method.
+                                                        </p>
+                                                        <p>
+                                                            You can expect our delivery personnel to arrive at the provided
+                                                            address with your package.</p>
+                                                        <p>
+                                                            If you have any questions or need assistance, feel free to
+                                                            contact our customer support team at support@example.com or call
+                                                            us at +1-800-123-4567.</p>
+                                                        <p>
+                                                            Thank you for choosing us for your purchase. We hope you enjoy
+                                                            your new product!</p>
+                                                        <p>
+                                                            Best Regards,
+                                                            [Daisy Wardrobe]
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
