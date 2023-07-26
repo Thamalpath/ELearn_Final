@@ -3903,9 +3903,9 @@ body.offcanvas-open {
 .cart-shiping-update-wrapper .cart-shiping-update > a,
 .cart-shiping-update-wrapper .cart-clear > button,
 .cart-shiping-update-wrapper .cart-clear > a {
-    background-color: #f2f2f2;
+    background-color: #fb5d5d;
     border-radius: 0px;
-    color: #000000;
+    color: #f2f2f2;
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
@@ -3931,7 +3931,7 @@ body.offcanvas-open {
 
 .cart-shiping-update-wrapper .cart-shiping-update > a:hover,
 .cart-shiping-update-wrapper .cart-clear > button:hover {
-    background-color: #fb5d5d;
+    background-color: #000000;
     color: #fff;
 }
 
