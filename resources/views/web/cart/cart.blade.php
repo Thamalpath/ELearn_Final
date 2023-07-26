@@ -44,46 +44,61 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @php $total = 0; @endphp
-                                    @foreach ($cartItems as $item)
-                                        @php
-                                            $subtotal = $item->products->selling_price * $item->prod_qty;
-                                            $total += $subtotal;
-                                        @endphp
-                                        <tr class="product_data">
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img class="img-responsive ml-15px"
-                                                        src="{{ asset('storage/' . json_decode($item->products->images)[0]) }}"
-                                                        alt="" /></a>
+                                @if ($cartItems->count() > 0)
+                                    <tbody>
+                                        @php $total = 0; @endphp
+                                        @foreach ($cartItems as $item)
+                                            @php
+                                                $subtotal = $item->products->selling_price * $item->prod_qty;
+                                                $total += $subtotal;
+                                            @endphp
+                                            <tr class="product_data">
+                                                <td class="product-thumbnail">
+                                                    <a href="#"><img class="img-responsive ml-15px"
+                                                            src="{{ asset('storage/' . json_decode($item->products->images)[0]) }}"
+                                                            alt="" /></a>
+                                                </td>
+                                                <td class="product-name"><a href="#">{{ $item->products->name }}</a>
+                                                </td>
+                                                <td class="product-price-cart"><span
+                                                        class="amount">Rs.{{ $item->products->selling_price }}.00</span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <input type="hidden" value="{{ $item->prod_id }}" class="prod_id">
+                                                    <div class="cart-plus-minus changeQuantity">
+                                                        <input class="cart-plus-minus-box qty-input" type="text"
+                                                            name="qtybutton" value="{{ $item->prod_qty }}" />
+                                                    </div>
+                                                </td>
+                                                <td class="product-subtotal">Rs.{{ $subtotal }}.00</td>
+                                                <td class="product-remove">
+                                                    <button class="btn btn-danger delete-cart-item">
+                                                        <i class="fa fa-trash" style="margin-right: 5px;"></i>
+                                                        Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td class="product-total" style="font-weight: 700; font-size: 18px">Total:
+                                                Rs.{{ $total }}.00
                                             </td>
-                                            <td class="product-name"><a href="#">{{ $item->products->name }}</a></td>
-                                            <td class="product-price-cart"><span
-                                                    class="amount">Rs.{{ $item->products->selling_price }}.00</span></td>
-                                            <td class="product-quantity">
-                                                <input type="hidden" value="{{ $item->prod_id }}" class="prod_id">
-                                                <div class="cart-plus-minus changeQuantity">
-                                                    <input class="cart-plus-minus-box qty-input" type="text"
-                                                        name="qtybutton" value="{{ $item->prod_qty }}" />
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">Rs.{{ $subtotal }}.00</td>
-                                            <td class="product-remove">
-                                                <button class="btn btn-danger delete-cart-item">
-                                                    <i class="fa fa-trash" style="margin-right: 5px;"></i>
-                                                    Remove
-                                                </button>
-                                            </td>
+                                            <td></td>
                                         </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="4"></td>
-                                        <td class="product-total" style="font-weight: 700; font-size: 18px">Total:
-                                            Rs.{{ $total }}.00
+                                    </tbody>
+                                @else
+                                    <tbody>
+                                        <td colspan="6" style="text-align: center;">
+                                            <p style="font-weight: 700; font-size: 22px;">
+                                                Your <i class="fa fa-shopping-cart"></i> Cart is Empty
+                                            </p>
+                                            <p style="font-weight: 700; font-size: 18px;">
+                                                Continue Shopping
+                                            </p>
                                         </td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                         <div class="row">
