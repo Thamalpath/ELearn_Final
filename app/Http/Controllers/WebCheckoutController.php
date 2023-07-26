@@ -30,6 +30,14 @@ class WebCheckoutController extends Controller
      */
     public function placeOrder(Request $request)
     {
+        // Calculate the total price before creating the order
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $subtotal = $item->products->selling_price * $item->prod_qty;
+            $total += $subtotal;
+        }
+        
         // Create a new Order instance and save order details in the database
         $order = new Order();
         $order->user_id = Auth::id();
@@ -43,6 +51,8 @@ class WebCheckoutController extends Controller
         $order->state = $request->input('state');
         $order->country = $request->input('country');
         $order->zipcode = $request->input('zipcode');
+        $order->total = $total;
+
         $order->tracking_no = 'daisy' . rand(1111, 9999);
         $order->save();
 
@@ -83,6 +93,6 @@ class WebCheckoutController extends Controller
         // Remove cart items after placing the order
         $cartItems = Cart::where('user_id', Auth::id())->get();
         Cart::destroy($cartItems);
-        return view('web.cart.place-order')->with('status', 'Order Details Stored Successfully');
+        return redirect('/')->with('status', 'Order Details Stored Successfully');
     }
 }

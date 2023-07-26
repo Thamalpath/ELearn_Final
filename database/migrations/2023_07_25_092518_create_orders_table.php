@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('country');
             $table->string('zipcode');
+            $table->string('total');
             $table->tinyInteger('status')->default('0');
             $table->string('message')->nullable();
             $table->string('tracking_no');

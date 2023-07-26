@@ -25,5 +25,6 @@ class Order extends Model
         'status',
         'message',
         'tracking_no',
+        'total',
     ];
 }
