@@ -66,7 +66,7 @@
                                 <div class="dropdown">
                                     <a href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                        {{ auth()->user()->name }} <i class="pe-7s-angle-down"></i>
+                                        {{ auth()->user()->fname }} <i class="pe-7s-angle-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="accountDropdown">
                                         <li><a class="dropdown-item" href="#">Account</a></li>
@@ -96,7 +96,7 @@
 
                         @auth
                             @if (auth()->user()->role_as == '0')
-                                <a href="{{ route('cart.show') }}" class="header-action-btn header-action-btn-cart pr-0">
+                                <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
                                     <i class="pe-7s-shopbag"></i>
                                 </a>
                             @endif

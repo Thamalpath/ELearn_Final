@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebCartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 
 
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('checkout', [WebCheckoutController::class, 'index']); // Route to access the checkout page
     Route::get('validate-cart-products', [WebCartController::class, 'validateCartProducts']); // Route to validate the cart products before proceeding to checkout
     Route::post('place-order', [WebCheckoutController::class, 'placeOrder'])->name('place-order'); // Route to place an order
+
+    Route::get('my-account', [UserController::class, 'index']);
 });
 
 
