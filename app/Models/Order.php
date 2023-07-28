@@ -26,7 +26,9 @@ class Order extends Model
         'status',
         'message',
         'tracking_no',
-        'total',
+        'total_price',
+        'payment_mode',
+        'payment_id',
     ];
 
     public function orderItems()
@@ -34,3 +36,4 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 }
+

@@ -28,9 +28,10 @@
     <!-- checkout area start -->
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
-            <form action="{{ url('place-order') }}" method="POST">
+            <form action="{{ url('pay') }}" method="POST">
                 <!-- CSRF token to protect against Cross-Site Request Forgery (CSRF) attacks -->
                 {{ csrf_field() }}
+                @csrf
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="billing-info-wrap">
@@ -39,58 +40,77 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>First Name</label>
-                                        <input type="text" value="{{ Auth::user()->fname }}" name="fname" />
+                                        <input type="text" required class="firstname" value="{{ Auth::user()->fname }}"
+                                            name="fname" />
+                                        <span style="color: red" id="fname_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Last Name</label>
-                                        <input type="text" value="{{ Auth::user()->lname }}" name="lname" />
+                                        <input type="text" required class="lastname" value="{{ Auth::user()->lname }}"
+                                            name="lname" />
+                                        <span style="color: red" id="lname_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Email Address</label>
-                                        <input type="text" value="{{ Auth::user()->email }}" name="email" />
+                                        <input type="text" required class="email" value="{{ Auth::user()->email }}"
+                                            name="email" />
+                                        <span style="color: red" id="email_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Phone</label>
-                                        <input type="text" value="{{ Auth::user()->phone }}" name="phone" />
+                                        <input type="text" required class="phone" value="{{ Auth::user()->phone }}"
+                                            name="phone" />
+                                        <span style="color: red" id="phone_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-4">
                                         <label>Street Address</label>
                                         <input class="billing-address" placeholder="House number and street name"
-                                            type="text" value="{{ Auth::user()->address1 }}" name="address1" />
-                                        <input placeholder="Apartment, suite, unit etc." type="text"
-                                            value="{{ Auth::user()->address2 }}" name="address2" />
+                                            type="text" required class="address1" value="{{ Auth::user()->address1 }}"
+                                            name="address1" />
+                                        <span style="color: red" id="address1_error"></span>
+                                        <input placeholder="Apartment, suite, unit etc." type="text" required
+                                            class="address2" value="{{ Auth::user()->address2 }}" name="address2" />
+                                        <span style="color: red" id="address2_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Town / City</label>
-                                        <input type="text" value="{{ Auth::user()->city }}" name="city" />
+                                        <input type="text" required class="city" value="{{ Auth::user()->city }}"
+                                            name="city" />
+                                        <span style="color: red" id="city_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>State</label>
-                                        <input type="text" value="{{ Auth::user()->state }}" name="state" />
+                                        <input type="text" required class="state" value="{{ Auth::user()->state }}"
+                                            name="state" />
+                                        <span style="color: red" id="state_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Country</label>
-                                        <input type="text" value="{{ Auth::user()->country }}" name="country" />
+                                        <input type="text" required class="country" value="{{ Auth::user()->country }}"
+                                            name="country" />
+                                        <span style="color: red" id="country_error"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-4">
                                         <label>Postcode / ZIP</label>
-                                        <input type="text" value="{{ Auth::user()->zipcode }}" name="zipcode" />
+                                        <input type="text" required class="zipcode" value="{{ Auth::user()->zipcode }}"
+                                            name="zipcode" />
+                                        <span style="color: red" id="zipcode_error"></span>
                                     </div>
                                 </div>
 
@@ -229,7 +249,12 @@
                                 </div>
                             </div>
                             <div class="Place-order mt-25">
-                                <button class="btn-hover btn-full-width" type="submit">Place Order</button>
+                                <input type="hidden" name="payment_mode" value="COD">
+                                <button class="btn-hover btn-full-width" type="submit" value="cash" id="cash"
+                                    name="paymethod">Place
+                                    Order | COD</button>
+                                <button class="btn-hover btn-full-width payhere_btn mt-3" type="button" value="payhere"
+                                    id="payhere" name="paymethod">Place Order</button>
                             </div>
                         </div>
                     </div>

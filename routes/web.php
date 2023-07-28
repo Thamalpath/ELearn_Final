@@ -38,7 +38,12 @@ Route::middleware('auth')->group(function () {
     Route::get('cart', [WebCartController::class, 'viewCart'])->name('cart'); // Route to view the user's cart
     Route::get('checkout', [WebCheckoutController::class, 'index']); // Route to access the checkout page
     Route::get('validate-cart-products', [WebCartController::class, 'validateCartProducts']); // Route to validate the cart products before proceeding to checkout
-    Route::post('place-order', [WebCheckoutController::class, 'placeOrder'])->name('place-order'); // Route to place an order
+    Route::post('place-order', [WebCheckoutController::class, 'confirm'])->name('place-order'); // Route to place an order
+
+    //Payhere
+    Route::post('payhere/pay', [WebCheckoutController::class, 'payCheck'])->name('payhere.pay');
+    Route::post('payhere.return', [WebCheckoutController::class, 'return'])->name('payhere.return');
+    Route::post('payhere.cancel', [WebCheckoutController::class, 'cancel'])->name('payhere.cancel');
 
     Route::get('my-account', [UserController::class, 'index']);
 });

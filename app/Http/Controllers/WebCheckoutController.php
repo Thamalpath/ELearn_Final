@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\OrderItem;
 use App\Models\Category;
@@ -28,7 +29,7 @@ class WebCheckoutController extends Controller
     /**
      * Place an order and process the checkout.
      */
-    public function placeOrder(Request $request)
+    public function confirm (Request $request)
     {
         // Calculate the total price before creating the order
         $cartItems = Cart::where('user_id', Auth::id())->get();
@@ -51,6 +52,7 @@ class WebCheckoutController extends Controller
         $order->state = $request->input('state');
         $order->country = $request->input('country');
         $order->zipcode = $request->input('zipcode');
+        $order->payment_mode = $request->input('payment_mode');
         $order->total = $total;
 
         $order->tracking_no = 'daisy' . rand(1111, 9999);
@@ -91,8 +93,120 @@ class WebCheckoutController extends Controller
         }
 
         // Remove cart items after placing the order
+        // $cartItems = Cart::where('user_id', Auth::id())->get();
+        // Cart::destroy($cartItems);
+
+        if($request->input('payment_mode') == "Paid by Payhere")
+        {
+            return response()->json(['status'=> 'Order Details Stored Successfully']);
+        }
+        return redirect()->route('cart.place-order')->with('status', 'Order Details Stored Successfully');
+    }
+
+    public function payCheck(Request $request)
+    {
         $cartItems = Cart::where('user_id', Auth::id())->get();
-        Cart::destroy($cartItems);
-        return redirect('/')->with('status', 'Order Details Stored Successfully');
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $total += $item->products->selling_price * $item->prod_qty;
+        }
+
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $address1 = $request->input('address1');
+        $address2 = $request->input('address2');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $country = $request->input('country');
+        $zipcode = $request->input('zipcode');
+
+        // Retrieve the order instance
+        $orderId = $request->input('order_id');
+        
+        $hash = strtoupper(
+            md5(
+                env('PAYHERE_MERCHANT_ID') .
+                $orderId .
+                number_format($total, 2, '.', '') .
+                'LKR' .
+                strtoupper(md5(env('PAYHERE_SECRET')))
+            )
+        );
+
+        return response()->json([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'phone' => $phone,
+            'address1' => $address1,
+            'address2' => $address2,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'zipcode' => $zipcode,
+            'total' => $total,
+            'hash' => $hash
+        ]);
+    }
+
+    public function return($orderId)
+    {
+        return 'Payment Successful';
+    }
+
+    public function cancel($orderId)
+    {
+        return 'Payment Cancelled';
+    }
+
+    public function notify(Request $request)
+    {
+        Log::debug('request to noyify'.json_encode($request->all(),JSON_PRETTY_PRINT));
+
+        $orderId = $request->order_id;
+        $order = Order::find($orderId);
+        
+        if($order && $order->payment_status == 'pending'){
+            
+            $local_md5sig = strtoupper(
+                md5(
+                    env('PAYHERE_MERCHANT_ID') . 
+                    $orderId . 
+                    $request->payhere_amount . 
+                    $request->payhere_currency . 
+                    $request->status_code . 
+                    strtoupper(md5(env('PAYHERE_SECRET'))) 
+                ) 
+            );
+
+            if($local_md5sig == $request->md5sig && $request->status_code == 2){
+                
+                $payment_meta = [];
+
+                if($order->payment_meta){
+                    $payment_meta[] = json_decode($order->payment_meta);
+                    $payment_meta[] = $request->all();
+                }else{
+                    $payment_meta[] = $request->all();
+                }
+                
+                if($order->update([
+                    'payment_status' => 'paid',
+                    'payment_id' => $request->payment_id ,
+                    'payment_meta' => json_encode($payment_meta),
+                ])){
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => 'Payment Successfull',
+                    ]);
+                }
+            }
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Payment Failed',
+        ]);
     }
 }
