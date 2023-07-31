@@ -14,6 +14,7 @@
                     <!-- breadcrumb-list start -->
                     <ul class="breadcrumb-list">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('register') }}">Register</a></li>
                         <li class="breadcrumb-item active">Login</li>
                     </ul>
                     <!-- breadcrumb-list end -->
