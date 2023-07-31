@@ -49,9 +49,9 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        $categories = Category::with('subCategories')->get(); // Retrieve the categories
+        $categories = Category::with('subCategories')->get();
 
-        return view('auth.login', compact('categories')); // Pass the categories to the view
+        return view('auth.login', compact('categories'));
     }
 
     /**
