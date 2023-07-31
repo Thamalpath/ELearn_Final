@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
+
 
 class LoginController extends Controller
 {
@@ -40,6 +42,17 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        $categories = Category::with('subCategories')->get(); // Retrieve the categories
+
+        return view('auth.login', compact('categories')); // Pass the categories to the view
+    }
 
     /**
      * Create a new controller instance.

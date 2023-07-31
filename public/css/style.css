@@ -4942,10 +4942,10 @@ Pages - My Account
     color: #fb5d5d !important;
 }
 .login-register-wrapper .login-register-tab-list a h4 {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
     margin: 0 20px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     color: #000000;
@@ -4955,8 +4955,8 @@ Pages - My Account
 }
 .login-register-wrapper .login-form-container {
     background: transparent none repeat scroll 0 0;
-    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
     padding: 80px;
     text-align: left;
 }
@@ -5025,13 +5025,14 @@ Pages - My Account
     .login-register-form
     .button-box
     button {
-    background-color: #f2f2f2;
+    background-color: #fb5d5d;
     border: medium none;
-    color: #000000;
+    color: #f2f2f2;
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     line-height: 1;
+    width: 100%;
     padding: 11px 30px;
     text-transform: uppercase;
     -webkit-transition: all 0.3s ease 0s;
@@ -5045,9 +5046,19 @@ Pages - My Account
     .login-register-form
     .button-box
     button:hover {
-    background-color: #fb5d5d;
-    color: #fff;
+    background-color: #ffffff;
+    border: 1px solid #fb5d5d;
+    color: #fb5d5d;
 }
+.login-register-wrapper a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.login-register-wrapper a:hover {
+    color: #fb5d5d;
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .login-register-wrapper .login-form-container {
         padding: 80px 50px;
