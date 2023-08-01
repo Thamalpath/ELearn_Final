@@ -28,7 +28,7 @@
     <!-- checkout area start -->
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
-            <form action="{{ url('pay') }}" method="POST">
+            <form action="{{ route('place-order') }}" method="POST">
                 <!-- CSRF token to protect against Cross-Site Request Forgery (CSRF) attacks -->
                 {{ csrf_field() }}
                 @csrf
@@ -113,7 +113,24 @@
                                         <span style="color: red" id="zipcode_error"></span>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="radio" name="paymethod" value="payhere"
+                                            id="payhere">
+                                        <label class="form-check-label" for="payhere">
+                                            <img src="https://www.payhere.lk/downloads/images/payhere_long_banner_dark.png"
+                                                alt="payhere" width="80%">
+                                        </label>
+                                    </div>
 
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="radio" name="paymethod" value="cash"
+                                            id="cash">
+                                        <label class="form-check-label" for="cash">
+                                            Cash
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -249,12 +266,9 @@
                                 </div>
                             </div>
                             <div class="Place-order mt-25">
-                                <input type="hidden" name="payment_mode" value="COD">
-                                <button class="btn-hover btn-full-width" type="submit" value="cash" id="cash"
-                                    name="paymethod">Place
-                                    Order | COD</button>
-                                <button class="btn-hover btn-full-width payhere_btn mt-3" type="button" value="payhere"
-                                    id="payhere" name="paymethod">Place Order</button>
+                                <button class="btn-hover btn-full-width mt-3" type="button" value=""
+                                    id="" name="">Place
+                                    Order</button>
                             </div>
                         </div>
                     </div>

@@ -160,9 +160,10 @@ $(document).ready(function () {
             error: function (xhr, status, error) {},
         });
     });
-});
 
-$(document).ready(function () {
+    /*-----------------------------------------
+            Checkout & Payment Validate
+    ------------------------------------------*/
     $(".payhere_btn").click(function (e) {
         e.preventDefault();
 
@@ -280,26 +281,26 @@ $(document).ready(function () {
             zipcode_error != ""
         ) {
             return false;
-        } else {
-            var data = {
-                firstname: firstname,
-                lastname: lastname,
-                email: email,
-                phone: phone,
-                address1: address1,
-                address2: address2,
-                city: city,
-                state: state,
-                country: country,
-                zipcode: zipcode,
-            };
+        // } else {
+        //     var data = {
+        //         firstname: firstname,
+        //         lastname: lastname,
+        //         email: email,
+        //         phone: phone,
+        //         address1: address1,
+        //         address2: address2,
+        //         city: city,
+        //         state: state,
+        //         country: country,
+        //         zipcode: zipcode,
+        //     };
 
-            $.ajax({
-                method: "",
-                url: "/proceed-to-pay",
-                data: data,
-                success: function (response) {},
-            });
+        //     $.ajax({
+        //         method: "POST",
+        //         url: "/proceed-to-pay",
+        //         data: data,
+        //         success: function (response) {},
+        //     });
         }
     });
 });

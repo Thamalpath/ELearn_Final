@@ -43,16 +43,16 @@
                 <input type="hidden" name="order_id" value="{{ $order->id }}">
                 <input type="hidden" name="items" value="{{ $order->id }}">
                 <input type="hidden" name="currency" value="LKR">
-                <input type="hidden" name="amount" value="{{ $order->total }}">
+                <input type="hidden" name="amount" value="{{ number_format($order->total, 2, '.', '') }}">
 
-                <input type="hidden" name="first_name" value="{{ $order->firstname ?? '' }}">
-                <input type="hidden" name="last_name" value="Perera">
-                <input type="hidden" name="email" value="samanp@gmail.com">
-                <input type="hidden" name="phone" value="0771234567">
-                <input type="hidden" name="address" value="No.1, Galle Road">
-                <input type="hidden" name="city" value="Colombo">
-                <input type="hidden" name="country" value="Sri Lanka">
-                <input type="hidden" name="hash" value="098F6BCD4621D373CADE4E832627B4F6">
+                <input type="hidden" name="first_name" value="{{ $user->fname ?? '' }}">
+                <input type="hidden" name="last_name" value="{{ $user->lname ?? '' }}">
+                <input type="hidden" name="email" value="{{ $user->email ?? '' }}">
+                <input type="hidden" name="phone" value="{{ $user->phone ?? '' }}">
+                <input type="hidden" name="address" value="{{ $user->address1 . $user->address2 ?? '' }}">
+                <input type="hidden" name="city" value="{{ $user->city ?? '' }}">
+                <input type="hidden" name="country" value="{{ $user->country ?? '' }}">
+                <input type="hidden" name="hash" value="{{ $hash }}">
                 <!-- Replace with generated hash -->
                 <input type="submit" value="Buy Now">
                 <div class="Place-order mt-25">
