@@ -10,7 +10,7 @@
                 <div class="col align-self-center d-none d-lg-block">
                     <div class="main-menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{ url('/') }}">Home</a></li>
                             <li class="dropdown position-static">
                                 <a href="#">Shop <i class="pe-7s-angle-down"></i></a>
                                 <ul class="mega-menu d-block">
@@ -82,8 +82,7 @@
                                 </form>
                             @endif
                         @else
-                            <a href="login.html" class="header-action-btn login-btn" data-bs-toggle="modal"
-                                data-bs-target="#loginActive">Sign In</a>
+                            <a href="{{ route('login') }}" class="header-action-btn login-btn">Sign In</a>
                         @endauth
 
 
@@ -120,7 +119,7 @@
 
         <div class="offcanvas-menu mb-4">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ url('/') }}">Home</a></li>
 
                 <li class="dropdown position-static">
                     <a href="#">Shop <i class="pe-7s-angle-down"></i></a>
