@@ -26,9 +26,6 @@
     <!-- Search Modal -->
     <x-home.search-modal />
 
-    <!-- Login Modal -->
-    <x-home.login-modal />
-
     <!-- Product Modal -->
     <x-home.product-modal />
 
