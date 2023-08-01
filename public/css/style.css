@@ -187,7 +187,7 @@ input {
     display: inline-block;
     line-height: 50px;
     height: 50px;
-    font-size: 15px;
+    font-size: 20px;
     width: 100%;
     background: transparent;
     border-radius: 0;
@@ -195,7 +195,7 @@ input {
     text-align: left;
     box-shadow: none;
     -webkit-box-shadow: none;
-    padding-left: 20px;
+    padding-left: 10px;
     padding-right: 10px;
     outline: 0;
 }
