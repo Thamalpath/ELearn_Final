@@ -889,6 +889,14 @@
     <script src="js/plugins/venobox.min.js"></script>
     <script src="js/plugins/ajax-mail.js"></script>
     <script src="js/main.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @if (session('status'))
+        <script>
+            swal("Good job!", "{{ session('status') }}", "success");
+        </script>
+    @endif
 </body>
 
 </html>
