@@ -1,4 +1,4 @@
-<!-- need to remove -->
+<!-- Dashboard -->
 <li class="nav-item">
     <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
         <i class="nav-icon fas fa-home"></i>
@@ -85,4 +85,20 @@
             </a>
         </li>
     </ul>
+</li>
+<br>
+{{-- Orders Option --}}
+<li class="nav-item">
+    <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('orders') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-truck"></i>
+        <p>Orders</p>
+    </a>
+</li>
+<br>
+<!-- Users Option -->
+<li class="nav-item">
+    <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-user"></i>
+        <p>User</p>
+    </a>
 </li>

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WebCheckoutController;
 use App\Http\Controllers\WebProductController;
@@ -98,8 +98,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('product.get.subcategories');
     });
 
-    Route::get('orders',[OrdersController::class, 'orders']);
-    Route::get('users',[UsersController::class, 'users']);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('view-order/{id}', [OrderController::class, 'view'])->name('orders.view');   
+    Route::put('update-order/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('order-history', [OrderController::class, 'orderHistory'])->name('orders.orderHistory');  
+
+    Route::get('users', [UsersController::class, 'index'])->name('users.index');
 });
 
 // Show all products listing & show individual product details
