@@ -106,7 +106,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::get('order-history', [OrderController::class, 'orderHistory'])->name('orders.orderHistory');  
     });
 
-    Route::get('users', [UsersController::class, 'index'])->name('users.index');
+    //User CRUD
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::prefix('/user')->group(function(){
+        Route::get('view-user/{id}', [UsersController::class, 'view'])->name('users.view');   
+    }); 
 });
 
 // Show all products listing & show individual product details
