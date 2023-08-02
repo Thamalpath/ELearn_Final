@@ -3,7 +3,8 @@
         <div class="card card-primary m-3">
             <div class="card-header">
                 <h3 class="card-title">New Orders</h3>
-                <a href="{{ 'order-history' }}" class="btn btn-warning float-right" style="width: 150px">Order Hostory</a>
+                <a href="{{ route('orders.orderHistory') }}" class="btn btn-warning float-right" style="width: 150px">Order
+                    History</a>
             </div>
             <div class="m-3">
                 <table id="orders" class="table table-bordered table-striped dataTable dtr-inline">

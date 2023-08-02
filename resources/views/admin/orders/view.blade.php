@@ -42,16 +42,16 @@
                                     <td rowspan="{{ count($orders->orderItems) }}">
                                         {{ $orders->zipcode }}</td>
                                 @endif
-                                <form action="{{ url('update-order/' . $orders->id) }}" method="POST">
+                                <form action="{{ route('orders.update', $orders->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     @if ($index === 0)
                                         <td rowspan="{{ count($orders->orderItems) }}">
                                             <div class="form-group">
                                                 <select class="form-control" name="status">
-                                                    <option {{ $orders->status == '0' ? 'Selected' : '' }} value="0">
+                                                    <option {{ $orders->status == '0' ? 'selected' : '' }} value="0">
                                                         Pending</option>
-                                                    <option {{ $orders->status == '1' ? 'Selected' : '' }} value="1">
+                                                    <option {{ $orders->status == '1' ? 'selected' : '' }} value="1">
                                                         Completed</option>
                                                 </select>
                                             </div>
