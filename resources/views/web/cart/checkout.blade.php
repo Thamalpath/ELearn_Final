@@ -139,30 +139,31 @@
                             <h3>Order Details</h3>
                             <div class="your-order-wrap gray-bg-4">
                                 <div class="your-order-product-info">
-
                                     <div class="your-order-top">
-                                        <ul>
-                                            <li>Products</li>
-                                            <li>Quantity</li>
-                                            <li>Total</li>
-                                        </ul>
-                                    </div>
-                                    <div class="your-order-middle">
                                         @if ($cartItems->count() > 0)
-                                            @foreach ($cartItems as $item)
-                                                <ul>
-                                                    <li>
-                                                        <span class="order-middle-left">
-                                                            {{ $item->products->name }}
-                                                        </span>
-                                                        <span class="order-quantity">
-                                                            <span class="product-quantity">{{ $item->prod_qty }}</span>
-                                                        </span>
-                                                        <span
-                                                            class="order-price">Rs.{{ $item->products->selling_price * $item->prod_qty }}</span>
-                                                    </li>
-                                                </ul>
-                                            @endforeach
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Products</th>
+                                                        <th>Quantity</th>
+                                                        <th>Color</th>
+                                                        <th>Size</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($cartItems as $item)
+                                                        <tr>
+                                                            <td>{{ $item->products->name }}</td>
+                                                            <td>{{ $item->prod_qty }}</td>
+                                                            <td>{{ $item->color }}</td>
+                                                            <td>{{ $item->size }}</td>
+                                                            <td>Rs.{{ $item->products->selling_price * $item->prod_qty }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         @else
                                             <ul>
                                                 <li>No Products in Cart</li>
@@ -170,7 +171,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="your-order-bottom">
+                                    <div class="your-order-bottom mt-4">
                                         <ul>
                                             <li class="your-order-shipping">Shipping</li>
                                             <li>Free shipping</li>

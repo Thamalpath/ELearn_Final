@@ -71,6 +71,8 @@ class WebCheckoutController extends Controller
                 'prod_id' => $item->prod_id,
                 'qty' => $item->prod_qty,
                 'price' => $item->products->selling_price,
+                'color' => $item->color,
+                'size' => $item->size,
             ]);
 
             // Update product quantity after placing the order

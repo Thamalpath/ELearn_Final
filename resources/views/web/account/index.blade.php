@@ -58,6 +58,8 @@
                                             <th>Tracking No</th>
                                             <th>Date</th>
                                             <th>Product Name</th>
+                                            <th>Color</th>
+                                            <th>Size</th>
                                             <th>Qty</th>
                                             <th>Image</th>
                                             <th>Email</th>
@@ -79,6 +81,8 @@
                                                             {{ $order->created_at }}</td>
                                                     @endif
                                                     <td>{{ $item->products->name }}</td>
+                                                    <td>{{ $item->color }}</td>
+                                                    <td>{{ $item->size }}</td>
                                                     <td>{{ $item->qty }}</td>
                                                     <td><img src="{{ asset('storage/' . json_decode($item->products->images)[0]) }}"
                                                             width="60px" height="auto" alt="Product Image"></td>
