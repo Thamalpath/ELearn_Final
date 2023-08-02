@@ -7,10 +7,13 @@
                         <th>Product_ID</th>
                         <th>Cat_Name & Sub_Cat_Name</th>
                         <th>Name</th>
-                        <th>Description</th>
+                        <th>Original Price</th>
                         <th>Selling Price</th>
                         <th>Image</th>
                         <th>Quantity</th>
+                        <th>Material</th>
+                        <th>Sizes</th>
+                        <th>Colors</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -21,13 +24,15 @@
                             <td>{{ $product->number }}</td>
                             <td>{{ $product->category_name }} <br> & <br> {{ $product->sub_category_name }}</td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ strlen($product->description) > 200 ? substr($product->description, 0, 150) . '...' : $product->description }}
-                            </td>
+                            <td>{{ $product->original_price }}</td>
                             <td>{{ $product->selling_price }}</td>
                             <td><img src="{{ asset('storage/' . json_decode($product->images)[0]) }}"
                                     alt="{{ $product->name }}" height="100px" width="auto" />
                             </td>
                             <td>{{ $product->qty }}</td>
+                            <td>{{ $product->material }}</td>
+                            <td>{{ $product->size }}</td>
+                            <td>{{ $product->color }}</td>
                             <td>{{ $product->status }}</td>
                             <td>
                                 <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary mb-2">Edit</a>
