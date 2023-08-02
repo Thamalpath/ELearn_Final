@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WebCheckoutController;
 use App\Http\Controllers\WebProductController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebCartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -95,6 +97,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::post('/image-upload', [ProductController::class, 'imageUpload'])->name('product.image.upload');
         Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('product.get.subcategories');
     });
+
+    Route::get('orders',[OrdersController::class, 'orders']);
+    Route::get('users',[UsersController::class, 'users']);
 });
 
 // Show all products listing & show individual product details
