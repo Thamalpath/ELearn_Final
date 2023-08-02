@@ -82,6 +82,9 @@ $(document).ready(function () {
         });
     });
 
+    /*----------------------------------
+          Color and Size Selection
+    ----------------------------------*/
     $(".color-selection").click(function (e) {
         e.preventDefault();
         var selectedColor = $(this).data("color");
