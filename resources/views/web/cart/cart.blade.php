@@ -38,6 +38,8 @@
                                     <tr>
                                         <th>Image</th>
                                         <th>Product Name</th>
+                                        <th>Color</th>
+                                        <th>Size</th>
                                         <th>Until Price</th>
                                         <th>Qty</th>
                                         <th>Subtotal</th>
@@ -58,8 +60,10 @@
                                                             src="{{ asset('storage/' . json_decode($item->products->images)[0]) }}"
                                                             alt="" /></a>
                                                 </td>
-                                                <td class="product-name"><a href="#">{{ $item->products->name }}</a>
-                                                </td>
+                                                <td class="product-name">{{ $item->products->name }}</td>
+                                                <td class="product-thumbnail">{{ $item->color }}</td>
+                                                <td class="product-thumbnail">{{ $item->size }}</td>
+
                                                 <td class="product-price-cart"><span
                                                         class="amount">Rs.{{ $item->products->selling_price }}.00</span>
                                                 </td>
@@ -80,7 +84,7 @@
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td colspan="4"></td>
+                                            <td colspan="6"></td>
                                             <td class="product-total" style="font-weight: 700; font-size: 18px">Total:
                                                 Rs.{{ $total }}.00
                                             </td>

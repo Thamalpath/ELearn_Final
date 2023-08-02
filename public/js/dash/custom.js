@@ -44,6 +44,14 @@ $(document).ready(function () {
             .closest(".product_data")
             .find(".qty-input")
             .val();
+        var selected_color = $(this)
+            .closest(".product_data")
+            .find(".selected_color")
+            .val();
+        var selected_size = $(this)
+            .closest(".product_data")
+            .find(".selected_size")
+            .val();
 
         $.ajaxSetup({
             headers: {
@@ -57,6 +65,8 @@ $(document).ready(function () {
             data: {
                 product_id: product_id,
                 product_qty: product_qty,
+                color: selected_color,
+                size: selected_size,
             },
             success: function (response) {
                 notyf.success(response.status);
@@ -70,6 +80,18 @@ $(document).ready(function () {
                 }
             },
         });
+    });
+
+    $(".color-selection").click(function (e) {
+        e.preventDefault();
+        var selectedColor = $(this).data("color");
+        $(".selected_color").val(selectedColor);
+    });
+
+    $(".pro-details-size a").click(function (e) {
+        e.preventDefault();
+        var selectedSize = $(this).data("size");
+        $(".selected_size").val(selectedSize);
     });
 
     /*----------------------------------

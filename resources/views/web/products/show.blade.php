@@ -81,7 +81,10 @@
                             <div class="pro-details-color">
                                 <ul>
                                     @foreach ($productColors as $color)
-                                        <li><a class="{{ strtolower($color) }}" href="#"></a></li>
+                                        <li>
+                                            <a class="color-selection" style="background-color: {{ $color }};"
+                                                href="#" data-color="{{ $color }}"></a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -92,7 +95,10 @@
                             <div class="pro-details-size">
                                 <ul>
                                     @foreach ($productSizes as $size)
-                                        <li><a class="gray" href="#">{{ $size }}</a></li>
+                                        <li>
+                                            <a class="gray" href="#"
+                                                data-size="{{ $size }}">{{ $size }}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -102,6 +108,8 @@
 
                         <div class="pro-details-quality">
                             <input type="hidden" value="{{ $product->id }}" class="prod_id">
+                            <input type="hidden" value="" class="selected_color">
+                            <input type="hidden" value="" class="selected_size">
                             <div class="cart-plus-minus">
                                 <input class="cart-plus-minus-box qty-input" type="text" name="qtybutton"
                                     value="1" />
@@ -113,10 +121,6 @@
                                 </div>
                             @elseif($product->status === 'Out of Stock')
                             @endif
-
-                            <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                <a href="wishlist.html"><i class="pe-7s-like"></i></a>
-                            </div>
                         </div>
 
                         <div class="pro-details-sku-info pro-details-same-style  d-flex mb-2">

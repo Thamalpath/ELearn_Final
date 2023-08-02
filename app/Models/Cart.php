@@ -15,6 +15,8 @@ class Cart extends Model
         'user_id',
         'prod_id',
         'prod_qty',
+        'color',
+        'size'
     ];
 
     // Get the product associated with the cart item.

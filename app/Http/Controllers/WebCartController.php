@@ -37,6 +37,8 @@ class WebCartController extends Controller
                     $cartItem->prod_id = $product_id;
                     $cartItem->user_id = Auth::id();
                     $cartItem->prod_qty = $product_qty;
+                    $cartItem->color = $request->input('color');
+                    $cartItem->size = $request->input('size');
 
                     $cartItem->save();
                     return response()->json(['status' => $prod_check->name . " Added To Cart"]);
