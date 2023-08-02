@@ -31,6 +31,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Handle product cart
+Route::get('load-cart-data', [WebCartController::class, 'cartCount']);
 Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
 Route::post('delete-cart-item', [WebCartController::class, 'deleteProduct']);
 Route::post('/clear-cart', [WebCartController::class, 'clearCart']);

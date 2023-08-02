@@ -151,4 +151,13 @@ class WebCartController extends Controller
         // If there are out-of-stock products in the cart, return an error response with the product names
         return response()->json(['status' => 'success']);
     }
+
+    /**
+    * Load Cart Item Count
+    */
+    public function cartCount()
+    {
+        $cartCount = Cart::where('user_id', Auth::id())->count();
+        return response()->json(['count'=> $cartCount]);
+    }
 }

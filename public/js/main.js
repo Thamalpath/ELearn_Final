@@ -534,3 +534,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize zoom for the main image
     $(".main-image").zoom();
 });
+
+/*----------------------------------
+        Load Cart Item Count
+----------------------------------*/
+$(document).ready(function () {
+    loadCart();
+
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
+    function loadCart() {
+        $.ajax({
+            method: "GET",
+            url: "/load-cart-data",
+            success: function (response) {
+                $(".cart-count").html("");
+                $(".cart-count").html(response.count);
+                // console.log(response.count);
+            },
+        });
+    }
+});

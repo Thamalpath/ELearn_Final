@@ -85,21 +85,25 @@
                             <a href="{{ route('login') }}" class="header-action-btn login-btn">Sign In</a>
                         @endauth
 
-
-                        <!-- Single Wedge Start -->
                         <a href="#" class="header-action-btn" data-bs-toggle="modal"
                             data-bs-target="#searchActive">
                             <i class="pe-7s-search"></i>
                         </a>
-                        <!-- Single Wedge End -->
 
                         @auth
                             @if (auth()->user()->role_as == '0')
                                 <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
                                     <i class="pe-7s-shopbag"></i>
+                                    <span class="header-action-num cart-count">0</span>
                                 </a>
                             @endif
+                        @else
+                            <a href="{{ route('cart') }}" class="header-action-btn header-action-btn-cart pr-0">
+                                <i class="pe-7s-shopbag"></i>
+                                <span class="header-action-num cart-count">0</span>
+                            </a>
                         @endauth
+
 
                         <a href="#offcanvas-mobile-menu"
                             class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">

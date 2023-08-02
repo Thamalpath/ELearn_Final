@@ -8,9 +8,31 @@ const notyf = new Notyf({
 
 $(document).ready(function () {
     /*----------------------------------
+            Load Cart Item Count
+    ----------------------------------*/
+    loadCart();
+
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+
+    function loadCart() {
+        $.ajax({
+            method: "GET",
+            url: "/load-cart-data",
+            success: function (response) {
+                $(".cart-count").html("");
+                $(".cart-count").html(response.count);
+                // console.log(response.count);
+            },
+        });
+    }
+
+    /*----------------------------------
             Add To Cart Button
     ----------------------------------*/
-
     $(".add-to-cart").click(function (e) {
         e.preventDefault();
 
@@ -38,6 +60,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 notyf.success(response.status);
+                loadCart();
             },
             error: function (xhr, status, error) {
                 if (xhr.status === 400) {
@@ -281,26 +304,26 @@ $(document).ready(function () {
             zipcode_error != ""
         ) {
             return false;
-        // } else {
-        //     var data = {
-        //         firstname: firstname,
-        //         lastname: lastname,
-        //         email: email,
-        //         phone: phone,
-        //         address1: address1,
-        //         address2: address2,
-        //         city: city,
-        //         state: state,
-        //         country: country,
-        //         zipcode: zipcode,
-        //     };
+            // } else {
+            //     var data = {
+            //         firstname: firstname,
+            //         lastname: lastname,
+            //         email: email,
+            //         phone: phone,
+            //         address1: address1,
+            //         address2: address2,
+            //         city: city,
+            //         state: state,
+            //         country: country,
+            //         zipcode: zipcode,
+            //     };
 
-        //     $.ajax({
-        //         method: "POST",
-        //         url: "/proceed-to-pay",
-        //         data: data,
-        //         success: function (response) {},
-        //     });
+            //     $.ajax({
+            //         method: "POST",
+            //         url: "/proceed-to-pay",
+            //         data: data,
+            //         success: function (response) {},
+            //     });
         }
     });
 });
