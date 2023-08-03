@@ -10,11 +10,11 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\WebCheckoutController;
 use App\Http\Controllers\WebProductController;
+use App\Http\Controllers\WebRatingController;
 use App\Http\Controllers\WebCartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ use App\Http\Controllers\HomeController;
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Handle product cart
+// Handle Cart
 Route::get('load-cart-data', [WebCartController::class, 'cartCount']);
 Route::post('add-to-cart', [WebCartController::class, 'addProduct']);
 Route::post('delete-cart-item', [WebCartController::class, 'deleteProduct']);
@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::post('payhere/pay', [PayhereController::class, 'pay'])->name('payhere.pay');
     Route::post('payhere.return', [PayhereController::class, 'return'])->name('payhere.return');
     Route::post('payhere.cancel', [PayhereController::class, 'cancel'])->name('payhere.cancel');
+
+    Route::get('add-rating', [WebRatingController::class, 'add']); 
 
     Route::get('my-account', [UserController::class, 'index']);
 });
