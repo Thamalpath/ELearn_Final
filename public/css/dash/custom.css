@@ -18,3 +18,65 @@
     right: -10px;
     color: aliceblue;
 }
+
+/* Product Rating */
+.rating-css div {
+    color: #fdd835;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.rating-css input {
+    display: none;
+}
+
+.rating-css input + label {
+    font-size: 30px;
+    text-shadow: 1px 1px 0 #8f8420;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.rating-css input:checked + label ~ label {
+    color: #b4afaf;
+}
+
+.rating-css label:active {
+    transform: scale(0.8);
+    transition: 0.3s ease;
+}
+
+/* Product Rating Model Button */
+.btn-custom-close {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+.btn-custom-close:hover {
+    background-color: #fff;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+}
+
+.btn-custom-save {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+.btn-custom-save:hover {
+    background-color: #fff;
+    color: #5cb85c;
+    border: 1px solid #5cb85c;
+}
+
+.modal-footer .btn {
+    padding: 15px 20px;
+    height: 40px;
+}
+
+.modal-footer .btn + .btn {
+    margin-left: 10px;
+}

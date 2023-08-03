@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Rating;
 
 
 class WebProductController extends Controller
@@ -20,6 +22,9 @@ class WebProductController extends Controller
     {
         $product = Product::where('slug', $slug)->first();
         $categories = Category::with('subCategories')->get();
+        $ratings = Rating::where('prod_id', $product->id)->get();
+        $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
+        $user_rating = Rating::where('prod_id', $product->id)->where('user_id', Auth::id())->first();
 
         // Fetch related products by filtering products with the same subcategory name
         $relatedProducts = Product::where('sub_category_name', $product->sub_category_name)
@@ -31,7 +36,15 @@ class WebProductController extends Controller
         $productColors = explode(',', $product->color);
         $productSizes = explode(',', $product->size);
 
-        return view('web.products.show', compact('product', 'categories', 'productColors', 'productSizes', 'relatedProducts'));
+        if($ratings->count() > 0)
+        {
+            $rating_value = $rating_sum/$ratings->count();
+        }
+        else
+        {
+            $rating_value = 0;
+        }
+        return view('web.products.show', compact('product', 'ratings', 'rating_value', 'user_rating', 'categories', 'productColors', 'productSizes', 'relatedProducts'));
     }
 
 }
