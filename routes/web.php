@@ -120,4 +120,6 @@ Route::get('email', [WebCheckoutController::class, 'email']);
 // Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 require __DIR__.'/auth.php';
-Auth::routes();
+Auth::routes([
+    'verify' => true
+]);
