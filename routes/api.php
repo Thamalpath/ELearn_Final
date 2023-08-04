@@ -18,5 +18,3 @@ use App\Http\Controllers\Payment\WebCheckoutController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('payhere.notify', [WebCheckoutController::class, 'notify'])->name('payhere.notify');
