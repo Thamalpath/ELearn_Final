@@ -24,8 +24,16 @@
                             <tr>
                                 <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                 <td>{{ $item->tracking_no }}</td>
-                                <td>{{ $item->color }}</td>
-                                <td>{{ $item->size }}</td>
+                                <td>
+                                    @foreach ($item->orderItems as $orderItem)
+                                        {{ $orderItem->color }}
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($item->orderItems as $orderItem)
+                                        {{ $orderItem->size }}
+                                    @endforeach
+                                </td>
                                 <td>Rs.{{ $item->total }}.00</td>
                                 <td>{{ $item->status == '0' ? 'Pending' : 'Completed' }}</td>
                                 <td>

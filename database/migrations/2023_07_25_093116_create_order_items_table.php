@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('prod_id');
             $table->string('qty');
             $table->string('price');
+            $table->string('color');
+            $table->string('size');
             $table->timestamps();
         });
     }
