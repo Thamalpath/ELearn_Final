@@ -7,13 +7,12 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\WebCheckoutController;
 use App\Http\Controllers\WebProductController;
 use App\Http\Controllers\WebRatingController;
 use App\Http\Controllers\WebCartController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -41,13 +40,12 @@ Route::middleware('auth')->group(function () {
     Route::get('cart', [WebCartController::class, 'viewCart'])->name('cart'); // View the user's cart
     Route::get('checkout', [WebCheckoutController::class, 'index']); // Access the checkout page
     Route::get('validate-cart-products', [WebCartController::class, 'validateCartProducts']); // Vlidate the cart products before proceeding to checkout
-    Route::post('place-order', [WebCheckoutController::class, 'placeOrder'])->name('place-order');
-
-    Route::post('proceed-to-pay', [WebCheckoutController::class, 'razorPayCheck']);
+    Route::post('place-order', [WebCheckoutController::class, 'placeOrder'])->name('place-order'); // Placing Order
+    Route::post('proceed-to-pay', [WebCheckoutController::class, 'razorPayCheck']); //Proceed Payment with RazorPay
 
     Route::get('add-rating', [WebRatingController::class, 'add']); 
 
-    Route::get('my-account', [UserController::class, 'index']);
+    Route::get('my-account', [HomeController::class, 'orderDetails']);
 });
 
 
@@ -107,9 +105,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
 
     //User CRUD
-    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::prefix('/user')->group(function(){
-        Route::get('view-user/{id}', [UsersController::class, 'view'])->name('users.view');   
+        Route::get('view-user/{id}', [UserController::class, 'view'])->name('users.view');   
     }); 
 });
 
