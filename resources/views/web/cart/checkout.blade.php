@@ -31,7 +31,6 @@
             <form action="{{ route('place-order') }}" method="POST">
                 <!-- CSRF token to protect against Cross-Site Request Forgery (CSRF) attacks -->
                 {{ csrf_field() }}
-                @csrf
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="billing-info-wrap">
@@ -72,12 +71,12 @@
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-4">
                                         <label>Street Address</label>
-                                        <input class="billing-address" placeholder="House number and street name"
-                                            type="text" required class="address1" value="{{ Auth::user()->address1 }}"
-                                            name="address1" />
+                                        <input type="text" required class="billing-address address1"
+                                            value="{{ Auth::user()->address1 }}" name="address1" />
                                         <span style="color: red" id="address1_error"></span>
                                         <input placeholder="Apartment, suite, unit etc." type="text" required
-                                            class="address2" value="{{ Auth::user()->address2 }}" name="address2" />
+                                            class="billing-address address2" value="{{ Auth::user()->address2 }}"
+                                            name="address2" />
                                         <span style="color: red" id="address2_error"></span>
                                     </div>
                                 </div>
@@ -111,24 +110,6 @@
                                         <input type="text" required class="zipcode" value="{{ Auth::user()->zipcode }}"
                                             name="zipcode" />
                                         <span style="color: red" id="zipcode_error"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-check mt-2">
-                                        <input class="form-check-input" type="radio" name="paymethod" value="payhere"
-                                            id="payhere">
-                                        <label class="form-check-label" for="payhere">
-                                            <img src="https://www.payhere.lk/downloads/images/payhere_long_banner_dark.png"
-                                                alt="payhere" width="80%">
-                                        </label>
-                                    </div>
-
-                                    <div class="form-check mt-2">
-                                        <input class="form-check-input" type="radio" name="paymethod" value="cash"
-                                            id="cash">
-                                        <label class="form-check-label" for="cash">
-                                            Cash
-                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -267,9 +248,11 @@
                                 </div>
                             </div>
                             <div class="Place-order mt-25">
-                                <button class="btn-hover btn-full-width mt-3" type="button" value=""
-                                    id="" name="">Place
-                                    Order</button>
+                                <input type="hidden" name="payment_mode" value="COD">
+                                <button class="btn-hover btn-full-width mt-3" type="submit"> Place Order | COD</button>
+
+                                <button class="btn-hover btn-full-width mt-3 razorPay_btn" type="button">Pay with
+                                    Razorpay</button>
                             </div>
                         </div>
                     </div>
@@ -278,4 +261,10 @@
         </div>
     </div>
     <!-- checkout area end -->
+@endsection
+
+@section('scripts')
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection

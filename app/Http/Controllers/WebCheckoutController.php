@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 use App\Mail\OrderPlaced;
 use App\Models\OrderItem;
 use App\Models\Category;
-use App\Models\Cart;
-use App\Models\Order;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\User;
+use App\Models\Cart;
 
 class WebCheckoutController extends Controller
 {
@@ -55,6 +55,7 @@ class WebCheckoutController extends Controller
         $order->country = $request->input('country');
         $order->zipcode = $request->input('zipcode');
         $order->payment_mode = $request->input('payment_mode');
+        $order->payment_id = $request->input('payment_id');
         $order->total = $total;
 
         $order->tracking_no = 'daisy' . rand(1111, 9999);
@@ -83,7 +84,7 @@ class WebCheckoutController extends Controller
 
         // Update user information if address1 is NULL
         if (Auth::user()->address1 == NULL) {
-            $user = User::find(Auth::id())->first();
+            $user = User::find(Auth::id());
             $user->fname = $request->input('fname');
             $user->lname = $request->input('lname');
             $user->phone = $request->input('phone');
@@ -97,125 +98,49 @@ class WebCheckoutController extends Controller
         }
 
         // Remove cart items after placing the order
-        // $cartItems = Cart::where('user_id', Auth::id())->get();
-        // Cart::destroy($cartItems);
-        $order = Order::where('user_id', Auth::id())->get();
-        $order->update([
-            'payment_mode' => $order->payment_mode,
-        ]);
-        if($order->payment_mode == 'cash'){
-            return response()->json(['status' => "Order Placed Successfully"]);
-        }elseif($order->payment_mode == 'payhere'){
-            return redirect()->route('.payment.payhere.pay');
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        Cart::destroy($cartItems);
+
+        if($request->input('payment_mode') == "Paid by Razorpay")
+        {
+            return response()->json(['status'=> "Order Placed Successfully"]);
         }
+        return redirect('/')->with('status', "Order Placed Successfully");
     }
 
-    // public function payCheck(Request $request)
-    // {
-    //     $cartItems = Cart::where('user_id', Auth::id())->get();
-    //     $total = 0;
-    //     foreach ($cartItems as $item) {
-    //         $total += $item->products->selling_price * $item->prod_qty;
-    //     }
+    public function razorPayCheck(Request $request)
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $total += $item->products->selling_price * $item->prod_qty;
+        }
 
-    //     $firstname = $request->input('firstname');
-    //     $lastname = $request->input('lastname');
-    //     $email = $request->input('email');
-    //     $phone = $request->input('phone');
-    //     $address1 = $request->input('address1');
-    //     $address2 = $request->input('address2');
-    //     $city = $request->input('city');
-    //     $state = $request->input('state');
-    //     $country = $request->input('country');
-    //     $zipcode = $request->input('zipcode');
+        $firstname = $request->input('firstname');
+        $lastname = $request->input('lastname');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $address1 = $request->input('address1');
+        $address2 = $request->input('address2');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $country = $request->input('country');
+        $zipcode = $request->input('zipcode');
 
-    //     // Retrieve the order instance
-    //     $orderId = $request->input('order_id');
-        
-    //     $hash = strtoupper(
-    //         md5(
-    //             env('PAYHERE_MERCHANT_ID') .
-    //             $orderId .
-    //             number_format($total, 2, '.', '') .
-    //             'LKR' .
-    //             strtoupper(md5(env('PAYHERE_SECRET')))
-    //         )
-    //     );
-
-    //     return response()->json([
-    //         'firstname' => $firstname,
-    //         'lastname' => $lastname,
-    //         'email' => $email,
-    //         'phone' => $phone,
-    //         'address1' => $address1,
-    //         'address2' => $address2,
-    //         'city' => $city,
-    //         'state' => $state,
-    //         'country' => $country,
-    //         'zipcode' => $zipcode,
-    //         'total' => $total,
-    //         'hash' => $hash
-    //     ]);
-    // }
-
-    // public function return($orderId)
-    // {
-    //     return 'Payment Successful';
-    // }
-
-    // public function cancel($orderId)
-    // {
-    //     return 'Payment Cancelled';
-    // }
-
-    // public function notify(Request $request)
-    // {
-    //     Log::debug('request to noyify'.json_encode($request->all(),JSON_PRETTY_PRINT));
-
-    //     $orderId = $request->order_id;
-    //     $order = Order::find($orderId);
-        
-    //     if($order && $order->payment_status == 'pending'){
-            
-    //         $local_md5sig = strtoupper(
-    //             md5(
-    //                 env('PAYHERE_MERCHANT_ID') . 
-    //                 $orderId . 
-    //                 $request->payhere_amount . 
-    //                 $request->payhere_currency . 
-    //                 $request->status_code . 
-    //                 strtoupper(md5(env('PAYHERE_SECRET'))) 
-    //             ) 
-    //         );
-
-    //         if($local_md5sig == $request->md5sig && $request->status_code == 2){
-                
-    //             $payment_meta = [];
-
-    //             if($order->payment_meta){
-    //                 $payment_meta[] = json_decode($order->payment_meta);
-    //                 $payment_meta[] = $request->all();
-    //             }else{
-    //                 $payment_meta[] = $request->all();
-    //             }
-                
-    //             if($order->update([
-    //                 'payment_status' => 'paid',
-    //                 'payment_id' => $request->payment_id ,
-    //                 'payment_meta' => json_encode($payment_meta),
-    //             ])){
-    //                 return response()->json([
-    //                     'status' => 'success',
-    //                     'message' => 'Payment Successfull',
-    //                 ]);
-    //             }
-    //         }
-    //     }
-    //     return response()->json([
-    //         'status' => 'error',
-    //         'message' => 'Payment Failed',
-    //     ]);
-    // }
+        return response()->json([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'phone' => $phone,
+            'address1' => $address1,
+            'address2' => $address2,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'zipcode' => $zipcode,
+            'total' => $total,
+        ]);
+    }
 
     // public function email(){
     //     $order = Order::find(5);

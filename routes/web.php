@@ -43,10 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('validate-cart-products', [WebCartController::class, 'validateCartProducts']); // Vlidate the cart products before proceeding to checkout
     Route::post('place-order', [WebCheckoutController::class, 'placeOrder'])->name('place-order');
 
-    //Payhere
-    Route::post('payhere/pay', [PayhereController::class, 'pay'])->name('payhere.pay');
-    Route::post('payhere.return', [PayhereController::class, 'return'])->name('payhere.return');
-    Route::post('payhere.cancel', [PayhereController::class, 'cancel'])->name('payhere.cancel');
+    Route::post('proceed-to-pay', [WebCheckoutController::class, 'razorPayCheck']);
 
     Route::get('add-rating', [WebRatingController::class, 'add']); 
 

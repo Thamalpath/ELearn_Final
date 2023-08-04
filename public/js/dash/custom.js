@@ -212,7 +212,7 @@ $(document).ready(function () {
     /*-----------------------------------------
             Checkout & Payment Validate
     ------------------------------------------*/
-    $(".payhere_btn").click(function (e) {
+    $(".razorPay_btn").click(function (e) {
         e.preventDefault();
 
         var firstname = $(".firstname").val();
@@ -329,26 +329,77 @@ $(document).ready(function () {
             zipcode_error != ""
         ) {
             return false;
-            // } else {
-            //     var data = {
-            //         firstname: firstname,
-            //         lastname: lastname,
-            //         email: email,
-            //         phone: phone,
-            //         address1: address1,
-            //         address2: address2,
-            //         city: city,
-            //         state: state,
-            //         country: country,
-            //         zipcode: zipcode,
-            //     };
+        } else {
+            var data = {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                phone: phone,
+                address1: address1,
+                address2: address2,
+                city: city,
+                state: state,
+                country: country,
+                zipcode: zipcode,
+            };
 
-            //     $.ajax({
-            //         method: "POST",
-            //         url: "/proceed-to-pay",
-            //         data: data,
-            //         success: function (response) {},
-            //     });
+            $.ajax({
+                method: "POST",
+                url: "/proceed-to-pay",
+                data: data,
+                success: function (response) {
+                    var options = {
+                        key: "rzp_test_XG04j6f5xfC6tk", // Enter the Key ID generated from the Dashboard
+                        amount: response.total * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        currency: "LKR",
+                        name: response.firstname + " " + response.lastname,
+                        description: "Thank you for choosing us",
+                        image: "https://example.com/your_logo",
+                        // order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                        handler: function (responsea) {
+                            // alert(responsea.razorpay_payment_id);
+                            $.ajax({
+                                method: "POST",
+                                url: "/place-order",
+                                data: {
+                                    fname: response.firstname,
+                                    lname: response.lastname,
+                                    email: response.email,
+                                    phone: response.phone,
+                                    address1: response.address1,
+                                    address2: response.address2,
+                                    city: response.city,
+                                    state: response.state,
+                                    country: response.country,
+                                    zipcode: response.zipcode,
+                                    payment_mode: "Paid by Razorpay",
+                                    payment_id: responsea.razorpay_payment_id,
+                                },
+                                success: function (responseb) {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Order Placed Successfully",
+                                        showConfirmButton: false,
+                                        timer: 2000,
+                                    }).then(() => {
+                                        window.location.href = "/my-account";
+                                    });
+                                },
+                            });
+                        },
+                        prefill: {
+                            name: response.firstname + " " + response.lastname,
+                            email: response.email,
+                            contact: response.phone,
+                        },
+                        theme: {
+                            color: "#3399cc",
+                        },
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                },
+            });
         }
     });
 });
