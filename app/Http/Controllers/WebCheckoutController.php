@@ -97,13 +97,13 @@ class WebCheckoutController extends Controller
             $user->update();
         }
 
+        $this->sendSuccessEmail($order);
         // Remove cart items after placing the order
         $cartItems = Cart::where('user_id', Auth::id())->get();
         Cart::destroy($cartItems);
 
-        if($request->input('payment_mode') == "Paid by Razorpay")
-        {
-            return response()->json(['status'=> "Order Placed Successfully"]);
+        if ($request->input('payment_mode') == "Paid by Razorpay") {
+            return response()->json(['status' => "Order Placed Successfully"]);
         }
         return redirect('/')->with('status', "Order Placed Successfully");
     }
@@ -142,11 +142,25 @@ class WebCheckoutController extends Controller
         ]);
     }
 
-    // public function email(){
-    //     $order = Order::find(5);
-    //     $mail =Mail::to('thamalpathsathimantha3@gmail.com')->send(new OrderPlaced(['order'=>$order]));
-    //     // return view('emails.orders.placed', [
-    //     //     'order'=>$order
-    //     // ]);
-    // }
+    public function email()
+    {
+        // Assuming you want to send the success email for the order with ID 5
+        $order = Order::find(5);
+        $this->sendSuccessEmail($order);
+    }
+
+    public function sendSuccessEmail(Order $order)
+    {
+        try {
+            $mail = new OrderPlaced(['order' => $order]);
+            $mail->from('daisy.wardrobe@gmail.com');
+            Mail::to($order->email)->send($mail);
+
+            if (!$mail) {
+                Log::error("Failed to send success email for order with ID: " . $order->id);
+            }
+        } catch (\Exception $e) {
+            Log::error("Exception occurred while sending success email for order with ID: " . $order->id);
+        }
+    }
 }
