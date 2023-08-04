@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -36,5 +38,13 @@ class HomeController extends Controller
         $popularProducts = Product::where('popular', 1)->inRandomOrder()->limit(8)->get();
 
         return view('home.index', compact('categories', 'products', 'menProducts', 'womenProducts', 'kidsProducts', 'trendingProducts', 'popularProducts'));
+    }
+
+    public function orderDetails()
+    {
+        $categories = Category::with('subCategories')->get();
+        $orders = Order::where('user_id', Auth::id())->get();
+
+        return view('web.account.index', compact('orders', 'categories'));
     }
 }
