@@ -2,52 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Order;
 use App\Models\Rating;
+use App\Models\Order;
 
 class WebRatingController extends Controller
 {
-    public function add(Request $request)
+    public function rate(Request $request, Product $product)
     {
-        $stars_rated = $request->input('product_rating');
-        $product_id = $request->input('product_id');
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'product_rating' => 'required|integer|min:1|max:5',
+        ]);
 
-        $product_check = Product::where('id', $product_id)->where('status', '0')->first();
-        if($product_check)
-        {
-            $verified_purchase = Order::where('orders.user_id', Auth::id())
-                ->join('order_items', 'orders.id', 'order_items.order_id')
-                ->where('order_items.prod_id', $product_id)->get();
+        if ($validator->fails()) {
+            return Response::json(['status' => 'error', 'message' => 'Invalid rating value']);
+        }
 
-            if($verified_purchase->count() > 0)
-            {
-                $existing_rating = Rating::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
-                if($existing_rating)
-                {
-                    $existing_rating->stars_rated = $stars_rated;
-                    $existing_rating->update();
-                }
-                else
-                {
-                    Rating::create([
-                        'user_id' => Auth::id(),
-                        'prod_id' => $product_id,
-                        'stars_rated' => $stars_rated,
-                    ]);
-                }
-                return redirect()->back()->with('status', "Thank you for Rating this product");
-            }
-            else
-            {
-                return redirect()->back()->with('status', "You cannot rate a product without purchase");
-            }
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Check if the user has a verified purchase for the given product
+        $verified_purchase = Order::where('user_id', $user->id)
+            ->join('order_items', 'orders.id', 'order_items.order_id')
+            ->where('order_items.prod_id', $product->id)->get();
+
+        if ($verified_purchase->count() === 0) {
+            return Response::json(['status' => 'error', 'message' => "You cannot rate a product without a purchase"]);
         }
-        else
-        {
-            return redirect()->back()->with('status', "The link you followed was broken");
+
+        // Check if the user has already rated the product
+        $existing_rating = Rating::where('user_id', $user->id)->where('prod_id', $product->id)->first();
+        if ($existing_rating) {
+            $existing_rating->stars_rated = $request->input('product_rating');
+            $existing_rating->update();
+        } else {
+            Rating::create([
+                'user_id' => $user->id,
+                'prod_id' => $product->id,
+                'stars_rated' => $request->input('product_rating'),
+            ]);
         }
+
+        return Response::json(['status' => 'success', 'message' => "Thank you for rating this product"]);
     }
 }

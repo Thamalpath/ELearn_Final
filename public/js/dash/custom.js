@@ -402,4 +402,34 @@ $(document).ready(function () {
             });
         }
     });
+
+    /*--------------------------------------
+                Rating Products
+    ---------------------------------------*/
+    $("#exampleModal form").submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.status === "success") {
+                    notyf.success(data.message);
+                    location.reload();
+                } else if (data.status === "error") {
+                    notyf.error(data.message);
+                    location.reload();
+                }
+                $("#exampleModal").modal("hide");
+            },
+            error: function (xhr, status, error) {
+                // Handle the case when the request fails
+                $("#ratingMessage").html(
+                    '<div class="alert alert-danger">Error occurred while submitting the rating.</div>'
+                );
+                $("#exampleModal").modal("hide");
+            },
+        });
+    });
 });

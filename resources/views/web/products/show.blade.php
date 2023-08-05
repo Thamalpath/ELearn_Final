@@ -9,12 +9,10 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 text-center">
                     <h2 class="breadcrumb-title">{{ $product->name }}</h2>
-                    <!-- breadcrumb-list start -->
                     <ul class="breadcrumb-list">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="breadcrumb-item active"><a href="{{ url('all-products') }}">Products</a></li>
                     </ul>
-                    <!-- breadcrumb-list end -->
                 </div>
             </div>
         </div>
@@ -29,9 +27,8 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ url('add-rating') }}" method="POST">
+                <form action="{{ route('rate', ['product' => $product->id]) }}" method="POST">
                     @csrf
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Rate {{ $product->name }}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -39,29 +36,12 @@
                     <div class="modal-body">
                         <div class="rating-css">
                             <div class="star-icon">
-                                @if ($user_rating)
-                                    @for ($i = 1; $i <= $user_rating->stars_rated; $i++)
-                                        <input type="radio" value="{{ $i }}" name="product_rating" checked
-                                            id="rating{{ $i }}">
-                                        <label for="rating{{ $i }}" class="fa fa-star"></label>
-                                    @endfor
-                                    @for ($j = $user_rating->stars_rated + 1; $j <= 5; $j++)
-                                        <input type="radio" value="{{ $j }}" name="product_rating"
-                                            id="rating{{ $j }}">
-                                        <label for="rating{{ $j }}" class="fa fa-star"></label>
-                                    @endfor
-                                @else
-                                    <input type="radio" value="1" name="product_rating" checked id="rating1">
-                                    <label for="rating1" class="fa fa-star"></label>
-                                    <input type="radio" value="2" name="product_rating" id="rating2">
-                                    <label for="rating2" class="fa fa-star"></label>
-                                    <input type="radio" value="3" name="product_rating" id="rating3">
-                                    <label for="rating3" class="fa fa-star"></label>
-                                    <input type="radio" value="4" name="product_rating" id="rating4">
-                                    <label for="rating4" class="fa fa-star"></label>
-                                    <input type="radio" value="5" name="product_rating" id="rating5">
-                                    <label for="rating5" class="fa fa-star"></label>
-                                @endif
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <input type="radio" value="{{ $i }}" name="product_rating"
+                                        {{ $user_rating && $user_rating->stars_rated == $i ? 'checked' : '' }}
+                                        id="rating{{ $i }}">
+                                    <label for="rating{{ $i }}" class="fa fa-star"></label>
+                                @endfor
                             </div>
                         </div>
                     </div>
@@ -125,6 +105,7 @@
                                 @endif
                             </span>
                         </div>
+                        {{-- <div id="ratingMessage"></div> --}}
 
                         @if ($product->status === 'Available')
                             <li>
@@ -248,10 +229,18 @@
                     </div>
                     <div id="des-details2" class="tab-pane">
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Rate this product
-                            </button>
+                            <!-- Check if the user is logged in -->
+                            @if (Auth::check())
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Rate this product
+                                </button>
+                            @else
+                                <!-- If the user is not logged in, show a message and redirect to login page -->
+                                <button type="button" class="btn btn-primary" onclick="redirectToLogin()">
+                                    Rate this product
+                                </button>
+                            @endif
                         </div>
                     </div>
                     <div id="des-details3" class="tab-pane">

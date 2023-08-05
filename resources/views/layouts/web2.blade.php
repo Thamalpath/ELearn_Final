@@ -52,9 +52,15 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <!-- SweetAlert CDN -->
     <script script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- Custom JS -->
     <script src="{{ asset('js/dash/custom.js') }}"></script>
+
+    <script>
+        function redirectToLogin() {
+            window.location.href = "{{ route('login') }}";
+        }
+    </script>
+
     @yield('scripts')
 </body>
 

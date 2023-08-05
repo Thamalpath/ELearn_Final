@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('place-order', [WebCheckoutController::class, 'placeOrder'])->name('place-order'); // Placing Order
     Route::post('proceed-to-pay', [WebCheckoutController::class, 'razorPayCheck']); //Proceed Payment with RazorPay
 
-    Route::get('add-rating', [WebRatingController::class, 'add']); 
+    Route::post('rate/{product}', [WebRatingController::class, 'rate'])->name('rate');
 
     Route::get('my-account', [HomeController::class, 'orderDetails']);
 });
