@@ -28,7 +28,7 @@
 @section('content')
     <!-- Cart Area Start -->
     <div class="cart-main-area pt-100px pb-100px">
-        <div class="container">
+        <div class="container cartItems">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <form action="#">
@@ -146,7 +146,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- Cart Area End -->

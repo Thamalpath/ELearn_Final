@@ -30,7 +30,7 @@ class WebCartController extends Controller
                 // Check if the product with the same $product_id is already in the user's cart
                 if (Cart::where('prod_id', $product_id)->where('user_id', Auth::id())->exists()) 
                 {
-                    return response()->json(['status' => $prod_check->name . " Already Added To Cart"]);
+                    return response()->json(['status' => $prod_check->name . " Already Added To Cart"], Response::HTTP_BAD_REQUEST);
                 } else {
                     // Check if the product with the same $product_id is already in the user's cart
                     $cartItem = new Cart();

@@ -25,7 +25,6 @@ $(document).ready(function () {
             success: function (response) {
                 $(".cart-count").html("");
                 $(".cart-count").html(response.count);
-                // console.log(response.count);
             },
         });
     }
@@ -100,7 +99,7 @@ $(document).ready(function () {
     /*----------------------------------
         Product Remove Button in Cart
     -----------------------------------*/
-    $(".delete-cart-item").click(function (e) {
+    $(document).on("click", ".delete-cart-item", function (e) {
         e.preventDefault();
 
         $.ajaxSetup({
@@ -117,7 +116,8 @@ $(document).ready(function () {
                 prod_id: prod_id,
             },
             success: function (response) {
-                window.location.reload();
+                loadCart();
+                $(".cartitems").load(location.href + " .cartitems");
                 notyf.success(response.status);
             },
         });
@@ -126,7 +126,7 @@ $(document).ready(function () {
     /*----------------------------------
         Clear Shopping Cart Button
     -----------------------------------*/
-    $(".cart-clear a").click(function (e) {
+    $(document).on("click", ".cart-clear a", function (e) {
         e.preventDefault();
 
         $.ajaxSetup({
@@ -139,7 +139,8 @@ $(document).ready(function () {
             method: "POST",
             url: "/clear-cart",
             success: function (response) {
-                window.location.reload();
+                loadCart();
+                $(".cartitems").load(location.href + " .cartitems");
                 notyf.success(response.status);
             },
         });
@@ -201,7 +202,7 @@ $(document).ready(function () {
                     notyf.error(
                         "Now out of stock: " +
                             response.product_names.join(", ") +
-                            " Can't Proceet to checkout."
+                            " Can't Proceed to checkout."
                     );
                 }
             },
