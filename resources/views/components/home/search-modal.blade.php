@@ -5,11 +5,13 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <h2>Search Your Product</h2>
-                    <form class="navbar-form position-relative" role="search">
+                    <form action="{{ url('searchProduct') }}" method="POST" class="navbar-form position-relative">
+                        @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search here...">
+                            <input type="search" class="form-control" id="search_product" name="product_name" required
+                                placeholder="Search here...">
+                            <button type="submit" class="submit-btn"><i class="pe-7s-search"></i></button>
                         </div>
-                        <button type="submit" class="submit-btn"><i class="pe-7s-search"></i></button>
                     </form>
                 </div>
             </div>

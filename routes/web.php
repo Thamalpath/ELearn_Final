@@ -29,6 +29,8 @@ use App\Http\Controllers\HomeController;
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::post('searchProduct', [HomeController::class, 'search']);
+
 // Handle Cart
 Route::get('load-cart-data', [WebCartController::class, 'cartCount']);
 Route::post('add-to-cart', [WebCartController::class, 'addProduct']);

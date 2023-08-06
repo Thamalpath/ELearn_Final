@@ -47,4 +47,26 @@ class HomeController extends Controller
 
         return view('web.account.index', compact('orders', 'categories'));
     }
+
+    public function search(Request $request)
+    {
+        $searched_product = $request->product_name;
+
+        if($searched_product != "")
+        {
+            $product = Product::where("name","LIKE","%$searched_product%")->first();
+            if ($product)
+            {
+                return redirect('product'.'/'.$product->slug);
+            }
+            else
+            {
+                return redirect()->back()->with("status", "No products match your search");
+            }
+        }
+        else
+        {
+            return redirect()->back();
+        }
+    }
 }
