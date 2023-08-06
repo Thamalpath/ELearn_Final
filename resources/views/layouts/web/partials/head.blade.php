@@ -27,4 +27,5 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/dash/custom.css') }}" />
 
+{{-- Notyf CSS --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
