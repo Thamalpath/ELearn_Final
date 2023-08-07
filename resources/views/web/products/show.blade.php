@@ -219,7 +219,7 @@
                 <div class="description-review-topbar nav">
                     <a class="active" data-bs-toggle="tab" href="#des-details1">Description</a>
                     <a data-bs-toggle="tab" href="#des-details2">Rating</a>
-                    <a data-bs-toggle="tab" href="#des-details3">Reviews ()</a>
+                    <a data-bs-toggle="tab" href="#des-details3">Reviews ({{ $reviews->count() }})</a>
                 </div>
                 <div class="tab-content description-review-bottom">
                     <div id="des-details1" class="tab-pane active">
@@ -246,107 +246,70 @@
                     <div id="des-details3" class="tab-pane">
                         <div class="row">
                             <div class="col-lg-7">
-                                <div class="review-wrapper">
-                                    <div class="single-review">
-                                        <div class="review-img">
-                                            <img src="assets/images/review-image/1.png" alt="" />
-                                        </div>
-                                        <div class="review-content">
-                                            <div class="review-top-wrap">
-                                                <div class="review-left">
-                                                    <div class="review-name">
-                                                        <h4>White Lewis</h4>
-                                                    </div>
-                                                    <div class="rating-product">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                @php $reviewCount = 0; @endphp
+                                @foreach ($reviews as $item)
+                                    @php $reviewCount++; @endphp
+                                    @if ($reviewCount <= 2)
+                                        <div class="review-wrapper">
+                                            <div class="single-review">
+                                                <div class="review-img">
+                                                    <img src="assets/images/review-image/1.png" alt="" />
                                                 </div>
-                                                <div class="review-left">
-                                                    <a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <div class="review-bottom">
-                                                <p>
-                                                    Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                    cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper
-                                                    euismod vehicula. Phasellus quam nisi, congue id nulla.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-review child-review">
-                                        <div class="review-img">
-                                            <img src="assets/images/review-image/2.png" alt="" />
-                                        </div>
-                                        <div class="review-content">
-                                            <div class="review-top-wrap">
-                                                <div class="review-left">
-                                                    <div class="review-name">
-                                                        <h4>White Lewis</h4>
+                                                <div class="review-content">
+                                                    <div class="review-top-wrap">
+                                                        <div class="review-left">
+                                                            <div class="review-name">
+                                                                <h4>{{ $item->user->fname . ' ' . $item->user->lname }}
+                                                                </h4>
+                                                                <small>Reviewed on
+                                                                    {{ $item->created_at->format('d M Y') }}</small>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="rating-product">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                                    <div class="review-bottom">
+                                                        <p>
+                                                            {{ $item->user_review }}
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <div class="review-left">
-                                                    <a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <div class="review-bottom">
-                                                <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                    cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper
-                                                    euismod vehicula.</p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="col-lg-5">
                                 <div class="ratting-form-wrapper pl-50">
-                                    <h3>Add a Review</h3>
                                     <div class="ratting-form">
-                                        <form action="#">
-                                            <div class="star-box">
-                                                <span>Your rating:</span>
-                                                <div class="rating-product">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                                        @if ($verified_purchase)
+                                            <h3 class="mb-3">Add a Review for {{ $product->name }}</h3>
+                                            <form action="{{ route('create') }}" method="POST">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style form-submit">
+                                                            <input type="hidden" name="product_id"
+                                                                value="{{ $product->id }}">
+                                                            <textarea name="user_review" placeholder="Write a Review"></textarea>
+                                                            <button class="btn btn-primary btn-hover-color-primary"
+                                                                type="submit" value="Submit">Submit</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                            </form>
+                                        @else
+                                            <div class="alert alert-danger">
+                                                <h5>You are not eligible to review this product</h5>
+                                                <p>For the trustworthiness of the reviews, only customers who purchased the
+                                                    product can write a
+                                                    review about the product</p>
+                                                <a href="{{ url('/') }}"
+                                                    class="btn btn-primary btn-hover-color-primary">Go to home page</a>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="rating-form-style">
-                                                        <input placeholder="Name" type="text" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="rating-form-style">
-                                                        <input placeholder="Email" type="email" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="rating-form-style form-submit">
-                                                        <textarea name="Your Review" placeholder="Message"></textarea>
-                                                        <button class="btn btn-primary btn-hover-color-primary "
-                                                            type="submit" value="Submit">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

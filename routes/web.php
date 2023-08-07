@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\WebCheckoutController;
 use App\Http\Controllers\WebProductController;
+use App\Http\Controllers\WebReviewController;
 use App\Http\Controllers\WebRatingController;
 use App\Http\Controllers\WebCartController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::post('proceed-to-pay', [WebCheckoutController::class, 'razorPayCheck']); //Proceed Payment with RazorPay
 
     Route::post('rate/{product}', [WebRatingController::class, 'rate'])->name('rate');
+
+    Route::post('add-review', [WebReviewController::class, 'create'])->name('create');
 
     Route::get('my-account', [HomeController::class, 'orderDetails']);
 });
