@@ -80,3 +80,9 @@
 .modal-footer .btn + .btn {
     margin-left: 10px;
 }
+
+.whatsapp-chat {
+    bottom: 10px;
+    left: 10px;
+    position: fixed;
+}

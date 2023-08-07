@@ -379,8 +379,8 @@
                         </div>
                         <!-- Kids tab end -->
                     </div>
-                    <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark m-auto">Load More <i
-                            class="fa fa-arrow-right ml-15px" aria-hidden="true"></i></a>
+                    <a href="{{ url('all-products') }}" class="btn btn-lg btn-primary btn-hover-dark m-auto">Load
+                        More <i class="fa fa-arrow-right ml-15px" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -399,7 +399,7 @@
                             <div class="deal-timing">
                                 <div data-countdown="2023/12/31"></div>
                             </div>
-                            <a href="shop-left-sidebar.html" class="btn btn-lg btn-primary btn-hover-dark m-auto">
+                            <a href="{{ url('all-products') }}" class="btn btn-lg btn-primary btn-hover-dark m-auto">
                                 Shop
                                 Now <i class="fa fa-shopping-basket ml-15px" aria-hidden="true"></i></a>
                         </div>
@@ -862,6 +862,14 @@
     </div>
     <!-- Brand area end -->
 
+    <!-- Whatsapp Chat Start -->
+    <div class="whatsapp-chat">
+        <a href="https://wa.me/+94717578964?text=Thank%20you%20for%20contact%20us" target="_blank">
+            <img src="{{ asset('images/icons/whatsapp.png') }}" alt="whatsapp-logo" height="60px" width="60px">
+        </a>
+    </div>
+    <!-- Whatsapp Chat End -->
+
     <!-- Footer Area Start -->
     @include('layouts.web.partials.footer')
     <!-- Footer Area End -->
@@ -888,6 +896,20 @@
     <script src="js/main.js"></script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/64cfb2db94cf5d49dc68c418/1h75lo68a';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
 
     @if (session('status'))
         <script>

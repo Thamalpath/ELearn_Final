@@ -19,6 +19,14 @@
     @yield('pageTitle')
     @yield('content')
 
+    <!-- Whatsapp Chat Start -->
+    <div class="whatsapp-chat">
+        <a href="https://wa.me/+94717578964?text=Thank%20you%20for%20contact%20us" target="_blank">
+            <img src="{{ asset('images/icons/whatsapp.png') }}" alt="whatsapp-logo" height="60px" width="60px">
+        </a>
+    </div>
+    <!-- Whatsapp Chat End -->
+
     <!-- Footer Area Start -->
     @include('layouts.web.partials.footer')
     <!-- Footer Area End -->
@@ -55,6 +63,20 @@
 
     <!-- Custom JS -->
     <script src="{{ asset('js/dash/custom.js') }}"></script>
+
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/64cfb2db94cf5d49dc68c418/1h75lo68a';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
 
     <script>
         function redirectToLogin() {
