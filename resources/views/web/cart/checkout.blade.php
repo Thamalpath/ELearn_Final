@@ -249,7 +249,7 @@
                             </div>
                             <div class="Place-order mt-25">
                                 <input type="hidden" name="payment_mode" value="COD">
-                                <button class="btn-hover btn-full-width mt-3" type="submit"> Place Order | COD</button>
+                                <button class="btn-hover btn-full-width mt-3" type="submit"> Cash on Delivery</button>
 
                                 <button class="btn-hover btn-full-width mt-3 razorPay_btn" type="button">Pay with
                                     Razorpay</button>
