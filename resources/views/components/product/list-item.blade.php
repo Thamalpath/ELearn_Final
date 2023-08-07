@@ -16,7 +16,6 @@
                 @endif
             </span>
             <div class="actions">
-                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="pe-7s-like"></i></a>
                 <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
                     data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-search"></i></a>
             </div>
@@ -24,9 +23,10 @@
         <div class="content">
             <span class="ratings">
                 <span class="rating-wrap">
-                    <span class="star" style="width: 100%"></span>
+                    <span class="star" style="width: {{ $product->ratings->avg('stars_rated') * 20 }}%"></span>
                 </span>
-                <span class="rating-num">(5 Review)</span>
+                <span class="rating-num">({{ $product->ratings->count() }}
+                    Review{{ $product->ratings->count() !== 1 ? 's' : '' }})</span>
             </span>
             <h5 class="title"><a href="{{ route('product.show', $product->slug) }}">{{ $product->meta_title }}</a></h5>
             <span class="price">
