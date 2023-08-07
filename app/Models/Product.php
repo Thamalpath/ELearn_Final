@@ -79,6 +79,11 @@ class Product extends Model
         'Grey' => 'Grey',
         'White' => 'White',
     ];
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'prod_id');
+    }
 }
 
 
