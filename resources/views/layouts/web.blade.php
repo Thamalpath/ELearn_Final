@@ -837,23 +837,23 @@
             <div class="brand-slider swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/1.png"
+                        <a href="#"><img class=" img-fluid" src="images/brand-logo/1.png"
                                 alt="" /></a>
                     </div>
                     <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/2.png"
+                        <a href="#"><img class=" img-fluid" src="images/brand-logo/2.png"
                                 alt="" /></a>
                     </div>
                     <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/3.png"
+                        <a href="#"><img class=" img-fluid" src="images/brand-logo/3.png"
                                 alt="" /></a>
                     </div>
                     <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/4.png"
+                        <a href="#"><img class=" img-fluid" src="images/brand-logo/4.png"
                                 alt="" /></a>
                     </div>
                     <div class="swiper-slide brand-slider-item text-center">
-                        <a href="#"><img class=" img-fluid" src="assets/images/brand-logo/5.png"
+                        <a href="#"><img class=" img-fluid" src="images/brand-logo/5.png"
                                 alt="" /></a>
                     </div>
                 </div>
