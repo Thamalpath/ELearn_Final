@@ -282,7 +282,7 @@
                                     <div class="ratting-form">
                                         @if ($verified_purchase)
                                             <h3 class="mb-3">Add a Review for {{ $product->name }}</h3>
-                                            <form action="{{ route('create') }}" method="POST">
+                                            <form id="review-form" action="{{ route('create') }}" method="POST">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -297,13 +297,15 @@
                                                 </div>
                                             </form>
                                         @else
-                                            <div class="alert alert-danger">
-                                                <h5>You are not eligible to review this product</h5>
-                                                <p>For the trustworthiness of the reviews, only customers who purchased the
-                                                    product can write a
-                                                    review about the product</p>
-                                                <a href="{{ url('/') }}"
-                                                    class="btn btn-primary btn-hover-color-primary">Go to home page</a>
+                                            <div class="alert alert-danger text-center">
+                                                <h5 class="mt-4">You are not eligible to review this product</h5>
+                                                <p class="mt-4">For the reliability of the reviews, only customers who
+                                                    have bought the
+                                                    product and logged in can write a review about the product</p>
+                                                <div class="d-flex justify-content-center mt-4 mb-3">
+                                                    <a href="{{ url('/') }}"
+                                                        class="btn btn-primary btn-hover-color-primary">Go to home page</a>
+                                                </div>
                                             </div>
                                         @endif
                                     </div>

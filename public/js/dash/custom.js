@@ -433,4 +433,32 @@ $(document).ready(function () {
             },
         });
     });
+
+    /*--------------------------------------
+                Review Products
+    ---------------------------------------*/
+    $(document).ready(function () {
+        $("#review-form").submit(function (e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/add-review",
+                data: formData,
+                dataType: "json",
+                success: function (response) {
+                    if (response.status === "success") {
+                        notyf.success(response.message);
+                        window.location.reload();
+                    } else if (response.status === "error") {
+                        notyf.error(response.message);
+                    }
+                },
+                error: function () {
+                    notyf.error("An error occurred. Please try again.");
+                },
+            });
+        });
+    });
 });

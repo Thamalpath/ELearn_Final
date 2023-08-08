@@ -16,11 +16,11 @@ class WebReviewController extends Controller
         $product = Product::where('id', $product_id)->where('status', 'Available')->first();
 
         if (!$product) {
-            return redirect()->back()->with('status', "The link you followed was broken");
+            return response()->json(['status' => 'error', 'message' => 'The link you followed was broken']);
         }
 
         if (!Auth::check()) {
-            return redirect()->back()->with('status', "You need to be logged in to write a review");
+            return response()->json(['status' => 'error', 'message' => 'You need to be logged in to write a review']);
         }
 
         $userHasPurchased = Order::where('user_id', Auth::id())
@@ -29,7 +29,7 @@ class WebReviewController extends Controller
             ->exists();
 
         if (!$userHasPurchased) {
-            return redirect()->back()->with('status', "You can only write a review for products you've purchased");
+            return response()->json(['status' => 'error', 'message' => "You can only write a review for products you've purchased"]);
         }
 
         $user_review = $request->input('user_review');
@@ -41,7 +41,7 @@ class WebReviewController extends Controller
 
         $prod_slug = $product->slug;
         if ($new_review) {
-            return redirect('product/' . $prod_slug)->with('status', "Thank you for writing a review");
+            return response()->json(['status' => 'success', 'message' => 'Thank you for writing a review']);
         }
     }
 }
