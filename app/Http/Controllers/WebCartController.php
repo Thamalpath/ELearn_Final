@@ -22,7 +22,6 @@ class WebCartController extends Controller
 
         // Check if the user is authenticated (logged in)
         if (Auth::check()) {
-            // Check if the user is authenticated (logged in)
             $prod_check = Product::where('id', $product_id)->first();
 
             // If the product exists
