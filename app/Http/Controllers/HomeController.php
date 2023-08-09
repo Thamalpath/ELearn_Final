@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -44,8 +45,51 @@ class HomeController extends Controller
     {
         $categories = Category::with('subCategories')->get();
         $orders = Order::where('user_id', Auth::id())->get();
+        $user = User::find(Auth::id());
 
-        return view('web.account.index', compact('orders', 'categories'));
+        return view('web.account.index', compact('orders', 'categories', 'user'));
+    }
+
+    public function updateAccount(Request $request)
+    {
+        $request->validate([
+            'fname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
+            'phone' => 'nullable|string|max:20',
+            'address1' => 'nullable|string|max:255',
+            'address2' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'state' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+            'zipcode' => 'nullable|string|max:20',
+        ]);
+
+        $user = User::find(Auth::id());
+
+        if (!$user) {
+            $user = new User();
+            $user->id = Auth::id(); // Set the user ID if creating a new user
+        }
+
+        $user->fname = $request->input('fname');
+        $user->lname = $request->input('lname');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->address1 = $request->input('address1');
+        $user->address2 = $request->input('address2');
+        $user->city = $request->input('city');
+        $user->state = $request->input('state');
+        $user->country = $request->input('country');
+        $user->zipcode = $request->input('zipcode');
+
+        $user->save();
+
+        // return redirect()->route('my-account')->with('success', 'Account details updated successfully.');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Account details updated successfully.'
+        ]);
     }
 
     public function search(Request $request)

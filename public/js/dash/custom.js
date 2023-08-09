@@ -424,13 +424,6 @@ $(document).ready(function () {
                 }
                 $("#exampleModal").modal("hide");
             },
-            error: function (xhr, status, error) {
-                // Handle the case when the request fails
-                $("#ratingMessage").html(
-                    '<div class="alert alert-danger">Error occurred while submitting the rating.</div>'
-                );
-                $("#exampleModal").modal("hide");
-            },
         });
     });
 
@@ -455,10 +448,28 @@ $(document).ready(function () {
                         notyf.error(response.message);
                     }
                 },
-                error: function () {
-                    notyf.error("An error occurred. Please try again.");
-                },
             });
+        });
+    });
+
+    /*--------------------------------------
+                Update User Details
+    ---------------------------------------*/
+    $("#update-account-form").submit(function (e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/my-account",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                if (response.status === "success") {
+                    notyf.success(response.message);
+                    window.location.reload();
+                }
+            },
         });
     });
 });

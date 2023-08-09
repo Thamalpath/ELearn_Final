@@ -69,7 +69,7 @@
                                         {{ auth()->user()->fname }} <i class="pe-7s-angle-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                        <li><a class="dropdown-item" href="#">Account</a></li>
+                                        <li><a class="dropdown-item" href="{{ url('my-account') }}">Account</a></li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();

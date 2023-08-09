@@ -114,72 +114,100 @@
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                         <div class="tab-pane" id="address">
                             <p>The following addresses will be used on the checkout page by default.</p>
                             <h5 class="billing-address">Billing address</h5>
-                            <a href="#" class="view">Edit</a>
-                            <p class="mb-2"><strong>Michael M Hoskins</strong></p>
-                            <address>
-                                <span class="mb-1 d-inline-block"><strong>City:</strong> Seattle</span>,
-                                <br>
-                                <span class="mb-1 d-inline-block"><strong>State:</strong> Washington(WA)</span>,
-                                <br>
-                                <span class="mb-1 d-inline-block"><strong>ZIP:</strong> 98101</span>,
-                                <br>
-                                <span><strong>Country:</strong> USA</span>
-                            </address>
+                            @if ($user)
+                                <p class="mb-2"><strong>{{ $user->fname }} {{ $user->lname }}</strong></p>
+                                <address>
+                                    <span class="mb-1 d-inline-block"><strong>Address1:</strong>
+                                        {{ $user->address1 }}</span>,
+                                    <br>
+                                    <span class="mb-1 d-inline-block"><strong>Address2:</strong>
+                                        {{ $user->address2 }}</span>,
+                                    <br>
+                                    <span class="mb-1 d-inline-block"><strong>City:</strong> {{ $user->city }}</span>,
+                                    <br>
+                                    <span class="mb-1 d-inline-block"><strong>State:</strong> {{ $user->state }}</span>,
+                                    <br>
+                                    <span class="mb-1 d-inline-block"><strong>ZIP:</strong> {{ $user->zipcode }}</span>,
+                                    <br>
+                                    <span><strong>Country:</strong> {{ $user->country }}</span>
+                                </address>
+                            @else
+                                <p>No billing address available.</p>
+                            @endif
                         </div>
+
+
                         <div class="tab-pane fade" id="account-details">
-                            <h3>Account details </h3>
+                            <h3>Account details</h3>
                             <div class="login">
                                 <div class="login_form_container">
                                     <div class="account_login_form">
-                                        <form action="#">
-                                            <p>Already have an account? <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#loginActive">Log in instead!</a></p>
-                                            <div class="input-radio">
-                                                <span class="custom-radio"><input type="radio" value="1"
-                                                        name="id_gender"> Mr.</span>
-                                                <span class="custom-radio"><input type="radio" value="1"
-                                                        name="id_gender"> Mrs.</span>
-                                            </div> <br>
-                                            <div class="default-form-box mb-20">
-                                                <label>First Name</label>
-                                                <input type="text" name="first-name">
+                                        <form id="update-account-form" method="POST" action="{{ route('my-account') }}">
+                                            @csrf
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6 default-form-box mb-20">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="fname"
+                                                            value="{{ Auth::user()->fname }}">
+                                                    </div>
+                                                    <div class="col-md-6 default-form-box mb-20">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="lname"
+                                                            value="{{ Auth::user()->lname }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 default-form-box mb-20">
+                                                        <label>Email</label>
+                                                        <input type="text" name="email"
+                                                            value="{{ Auth::user()->email }}" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 default-form-box mb-20">
+                                                        <label>Phone</label>
+                                                        <input type="text" name="phone"
+                                                            value="{{ Auth::user()->phone }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 default-form-box mb-20">
+                                                        <label>Address1</label>
+                                                        <input type="text" name="address1"
+                                                            value="{{ Auth::user()->address1 }}">
+                                                    </div>
+                                                    <div class="col-md-4 default-form-box mb-20">
+                                                        <label>Address2</label>
+                                                        <input type="text" name="address2"
+                                                            value="{{ Auth::user()->address2 }}">
+                                                    </div>
+                                                    <div class="col-md-4 default-form-box mb-20">
+                                                        <label>City</label>
+                                                        <input type="text" name="city"
+                                                            value="{{ Auth::user()->city }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 default-form-box mb-20">
+                                                        <label>State</label>
+                                                        <input type="text" name="state"
+                                                            value="{{ Auth::user()->state }}">
+                                                    </div>
+                                                    <div class="col-md-4 default-form-box mb-20">
+                                                        <label>Country</label>
+                                                        <input type="text" name="country"
+                                                            value="{{ Auth::user()->country }}">
+                                                    </div>
+                                                    <div class="col-md-4 default-form-box mb-20">
+                                                        <label>Zip Code</label>
+                                                        <input type="text" name="zipcode"
+                                                            value="{{ Auth::user()->zipcode }}">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Last Name</label>
-                                                <input type="text" name="last-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Email</label>
-                                                <input type="text" name="email-name">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Password</label>
-                                                <input type="password" name="user-password">
-                                            </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="birthday">
-                                            </div>
-                                            <span class="example">
-                                                (E.g.: 05/31/1970)
-                                            </span>
-                                            <br>
-                                            <label class="checkbox-default" for="offer">
-                                                <input type="checkbox" id="offer">
-                                                <span>Receive offers from our partners</span>
-                                            </label>
-                                            <br>
-                                            <label class="checkbox-default checkbox-default-more-text" for="newsletter">
-                                                <input type="checkbox" id="newsletter">
-                                                <span>Sign up for our newsletter<br><em>You may unsubscribe at any
-                                                        moment. For that purpose, please find our contact info in the
-                                                        legal notice.</em></span>
-                                            </label>
                                             <div class="save_button mt-3">
                                                 <button class="btn" type="submit">Save</button>
                                             </div>

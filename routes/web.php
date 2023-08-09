@@ -50,7 +50,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('add-review', [WebReviewController::class, 'create'])->name('create');
 
-    Route::get('my-account', [HomeController::class, 'orderDetails']);
+    Route::get('/my-account', [HomeController::class, 'orderDetails'])->name('my-account');
+    Route::post('/my-account', [HomeController::class, 'updateAccount'])->name('my-account');
 });
 
 
@@ -87,6 +88,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/{sub_category}/edit',[SubCategoryController::class, 'update'])->name('sub_category.update');
         Route::delete('/{sub_category}/delete',[SubCategoryController::class, 'destroy'])->name('sub_category.destroy');
         Route::post('/image-upload', [SubCategoryController::class, 'imageUpload'])->name('sub_category.image.upload');
+        Route::get('/dataTable', [SubCategoryController::class, 'dataTable'])->name('sub_category.subCategoriesTable');  
     });
     
     //Products CRUD
@@ -102,11 +104,12 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
 
     //Order CRUD
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::prefix('/order')->group(function(){
+    Route::prefix('orders')->group(function(){
+        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
         Route::get('view-order/{id}', [OrderController::class, 'view'])->name('orders.view');   
         Route::put('update-order/{id}', [OrderController::class, 'update'])->name('orders.update');
-        Route::get('order-history', [OrderController::class, 'orderHistory'])->name('orders.orderHistory');  
+        Route::get('order-history', [OrderController::class, 'orderHistory'])->name('orders.orderHistory');
+        Route::get('/dataTable', [OrderController::class, 'dataTable'])->name('orders.ordersTable');  
     });
 
     //User CRUD
