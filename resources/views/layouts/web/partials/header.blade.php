@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-auto align-self-center">
                     <div class="header-logo text-center">
-                        <a href="index.html" class="d-block">
+                        <a href="{{ url('/') }}" class="d-block">
                             <img src="images/logo/Logo.png" class="img-fluid mx-auto py-2" alt="Site Logo"
                                 style="max-height: 80px; width: auto;" />
                             <span class="d-inline-block mx-2" style="color: #4c4c4c">Daisy</span><span
@@ -19,7 +19,7 @@
                         <ul>
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li class="dropdown position-static">
-                                <a href="#">Shop <i class="pe-7s-angle-down"></i></a>
+                                <a href="{{ route('all.products') }}">Shop <i class="pe-7s-angle-down"></i></a>
                                 <ul class="mega-menu d-block">
                                     <li class="d-flex">
                                         <ul class="d-block">
@@ -40,7 +40,7 @@
                                                 <li class="title"><a href="#">{{ $category->name }}</a></li>
                                                 @foreach ($category->subCategories as $subCategory)
                                                     <li>
-                                                        <a href="#"
+                                                        <a href="{{ route('subcategory.products', $subCategory->slug) }}"
                                                             class="sub-category-link">{{ $subCategory->name }}</a>
                                                     </li>
                                                 @endforeach
@@ -73,7 +73,8 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
                                     @csrf
                                 </form>
                             @endif
@@ -143,7 +144,8 @@
                                     <li class="title"><a href="#">{{ $category->name }}</a></li>
                                     @foreach ($category->subCategories as $subCategory)
                                         <li>
-                                            <a href="#" class="sub-category-link">{{ $subCategory->name }}</a>
+                                            <a href="{{ route('subcategory.products', $subCategory->slug) }}"
+                                                class="sub-category-link">{{ $subCategory->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>

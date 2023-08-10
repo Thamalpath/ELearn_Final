@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
@@ -17,6 +18,14 @@ class WebProductController extends Controller
         $allProducts = Product::with('ratings')->get();
         $categories = Category::with('subCategories')->get();
         return view('web.products.list', compact('allProducts', 'categories'));
+    }
+
+    public function productsBySubcategory(SubCategory $subcategory)
+    {
+        $allProducts = Product::with('ratings')->where('sub_category_id', $subcategory->id)->get();
+        $categories = Category::with('subCategories')->get();
+        
+        return view('web.products.list', compact('allProducts', 'categories', 'subcategory'));
     }
 
     public function show($slug)

@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'isAdmin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -119,9 +119,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     }); 
 });
 
-// Show all products listing & show individual product details
-Route::get('/all-products', [WebProductController::class, 'index'])->name('all.products');
-Route::get('/product/{slug}', [WebProductController::class, 'show'])->name('product.show');
+
+Route::get('/all-products', [WebProductController::class, 'index'])->name('all.products'); // Show all products listing
+Route::get('/subcategory/{subcategory:slug}', [WebProductController::class, 'productsBySubcategory'])->name('subcategory.products'); // Show products by subcategory
+Route::get('/product/{slug}', [WebProductController::class, 'show'])->name('product.show'); // Show individual product details
+
 
 Route::get('email', [WebCheckoutController::class, 'email']);
 

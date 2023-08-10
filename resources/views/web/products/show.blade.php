@@ -11,7 +11,12 @@
                     <h2 class="breadcrumb-title">{{ $product->name }}</h2>
                     <ul class="breadcrumb-list">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ url('all-products') }}">Products</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('subcategory.products', $product->subCategory->slug) }}">
+                                {{ $product->subCategory->name }}
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">{{ $product->name }}</li>
                     </ul>
                 </div>
             </div>
