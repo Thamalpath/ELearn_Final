@@ -3,10 +3,17 @@
         <div class="container position-relative">
             <div class="row">
                 <div class="col-auto align-self-center">
-                    <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /></a>
+                    <div class="header-logo text-center">
+                        <a href="index.html" class="d-block">
+                            <img src="images/logo/Logo.png" class="img-fluid mx-auto py-2" alt="Site Logo"
+                                style="max-height: 80px; width: auto;" />
+                            <span class="d-inline-block mx-2" style="color: #4c4c4c">Daisy</span><span
+                                style="color: #fb5d5d" class="d-inline-block">
+                                Wardrobe</span>
+                        </a>
                     </div>
                 </div>
+
                 <div class="col align-self-center d-none d-lg-block">
                     <div class="main-menu">
                         <ul>
@@ -40,17 +47,6 @@
                                             </ul>
                                         @endforeach
                                     </li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                    <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
-                                    <li><a href="blog-single.html">Blog Single Page</a></li>
-                                    <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                                    <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
                                 </ul>
                             </li>
                             <li><a href="about.html">About us</a></li>
@@ -155,17 +151,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li><a href="#"><span class="menu-text">Blog</span></a>
-                    <ul class="sub-menu">
-                        <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                        <li><a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a></li>
-                        <li><a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a></li>
-                        <li><a href="blog-single.html">Blog Single Page</a></li>
-                        <li><a href="blog-single-left-sidebar.html">Single Left Sidebar</a></li>
-                        <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-                    </ul>
-                </li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
@@ -178,12 +163,6 @@
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-twitter"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-google"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-youtube"></i></a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-instagram"></i></a>

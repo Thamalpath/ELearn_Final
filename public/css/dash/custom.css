@@ -73,7 +73,6 @@
 }
 
 .modal-footer .btn {
-    padding: 15px 20px;
     height: 40px;
 }
 
@@ -85,4 +84,14 @@
     bottom: 20px;
     left: 20px;
     position: fixed;
+}
+
+.header-logo a {
+    font-size: 28px;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    position: relative;
+    line-height: 100px;
 }
