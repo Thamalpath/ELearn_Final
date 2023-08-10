@@ -8,7 +8,7 @@
 <br>
 {{-- Category Option --}}
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="" class="nav-link">
         <i class="nav-icon fas fa-th-large"></i>
         <p>
             Category
@@ -35,7 +35,7 @@
 <br>
 {{-- Sub Category Option --}}
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="" class="nav-link">
         <i class="nav-icon fas fa-th"></i>
         <p>
             Sub Category
@@ -62,7 +62,7 @@
 <br>
 {{-- Product Option --}}
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="" class="nav-link">
         <i class="nav-icon fas fa-store"></i>
         <p>
             product
