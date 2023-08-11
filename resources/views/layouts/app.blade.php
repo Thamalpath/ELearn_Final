@@ -19,14 +19,15 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                            <img src="images/icons/profile-user.png" class="user-image img-circle elevation-2"
-                                alt="User Image">
+                            <img src="{{ asset('images/icons/profile-user.png') }}"
+                                class="user-image img-circle elevation-2" alt="User Image">
                             <span class="d-none d-md-inline">{{ Auth::user()->fname }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                             <!-- User image -->
                             <li class="user-header bg-gradient-info">
-                                <img src="images/icons/user.png" class="img-circle elevation-2 mt-3" alt="User Image">
+                                <img src="{{ asset('images/icons/user.png') }}" class="img-circle elevation-2 mt-3"
+                                    alt="User Image">
                                 <p>
                                     {{ Auth::user()->name }}
                                     <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
