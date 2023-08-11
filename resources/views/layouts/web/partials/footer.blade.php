@@ -8,8 +8,8 @@
                         <div class="single-wedge">
                             <div class="footer-logo">
                                 <a href="{{ route('home') }}">
-                                    <img src="images/logo/Logo.png" class="img-fluid mx-auto" alt="Site Logo"
-                                        style="max-height: 30px; width: auto;">
+                                    <img src="{{ asset('images/logo/Logo.png') }}" class="img-fluid mx-auto"
+                                        alt="Site Logo" style="max-height: 30px; width: auto;">
                                     <span class="d-inline-block mx-2"
                                         style="color: #ffffff; font-size: 22px">Daisy</span><span
                                         style="color: #fb5d5d; font-size: 22px" class="d-inline-block">

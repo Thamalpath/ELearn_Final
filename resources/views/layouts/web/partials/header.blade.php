@@ -5,7 +5,7 @@
                 <div class="col-auto align-self-center">
                     <div class="header-logo text-center">
                         <a href="{{ url('/') }}" class="d-block">
-                            <img src="images/logo/Logo.png" class="img-fluid mx-auto py-2" alt="Site Logo"
+                            <img src="{{ asset('images/logo/Logo.png') }}" class="img-fluid mx-auto py-2" alt="Site Logo"
                                 style="max-height: 80px; width: auto;" />
                             <span class="d-inline-block mx-2" style="color: #4c4c4c">Daisy</span><span
                                 style="color: #fb5d5d" class="d-inline-block">
@@ -123,7 +123,7 @@
                 <li><a href="{{ url('/') }}">Home</a></li>
 
                 <li class="dropdown position-static">
-                    <a href="{{ route('all.products') }}">Shop <i class="pe-7s-angle-down"></i></a>
+                    <a href="#">Shop <i class="pe-7s-angle-down"></i></a>
                     <ul class="mega-menu d-block">
                         <li class="d-flex">
                             <ul class="d-block">
