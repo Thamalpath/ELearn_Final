@@ -5,9 +5,12 @@
 {{-- CSRF Token --}}
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>@yield('title')</title>
+<title>
+    @hasSection('title')
+        @yield('title')@else{{ config('app.name', 'Laravel') }}
+    @endif
+</title>
 
-<meta name="description" content="Jesco - Fashoin eCommerce HTML Template" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 <!-- Add site Favicon -->
