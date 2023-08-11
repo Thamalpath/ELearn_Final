@@ -41,6 +41,18 @@ class HomeController extends Controller
         return view('home.index', compact('categories', 'products', 'menProducts', 'womenProducts', 'kidsProducts', 'trendingProducts', 'popularProducts'));
     }
 
+    public function about()
+    {
+        $categories = Category::with('subCategories')->get();
+        return view('web.about', compact('categories'));
+    }
+
+    public function contact()
+    {
+        $categories = Category::with('subCategories')->get();
+        return view('web.contact', compact('categories'));
+    }
+
     public function orderDetails()
     {
         $categories = Category::with('subCategories')->get();

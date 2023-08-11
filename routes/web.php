@@ -29,6 +29,8 @@ use App\Http\Controllers\HomeController;
 
 // Define the route for the home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::post('searchProduct', [HomeController::class, 'search'])->name('searchProduct');
 

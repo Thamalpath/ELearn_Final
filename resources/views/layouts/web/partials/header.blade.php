@@ -49,8 +49,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
+                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                 <li><a href="{{ url('/') }}">Home</a></li>
 
                 <li class="dropdown position-static">
-                    <a href="#">Shop <i class="pe-7s-angle-down"></i></a>
+                    <a href="{{ route('all.products') }}">Shop <i class="pe-7s-angle-down"></i></a>
                     <ul class="mega-menu d-block">
                         <li class="d-flex">
                             <ul class="d-block">
@@ -153,8 +153,8 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="{{ route('about') }}">About Us</a></li>
+                <li><a href="{{ route('contact') }}">Contact Us</a></li>
             </ul>
         </div>
         <!-- OffCanvas Menu End -->
