@@ -30,7 +30,7 @@ class WebProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::with('subCategory')->where('slug', $slug)->first();
         $categories = Category::with('subCategories')->get();
         $ratings = Rating::where('prod_id', $product->id)->get();
         $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');

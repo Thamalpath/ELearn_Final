@@ -47,9 +47,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
-                    <!-- Shop Top Area Start -->
-                    <x-product.shop-top />
-                    <!-- Shop Top Area End -->
 
                     <!-- Shop Bottom Area Start -->
                     <div class="shop-bottom-area">

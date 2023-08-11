@@ -119,11 +119,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     }); 
 });
 
-
 Route::get('/all-products', [WebProductController::class, 'index'])->name('all.products'); // Show all products listing
-Route::get('/subcategory/{subcategory:slug}', [WebProductController::class, 'productsBySubcategory'])->name('subcategory.products'); // Show products by subcategory
+// Show products by subcategory
+Route::get('/subcategory/{subcategory:slug}', [WebProductController::class, 'productsBySubcategory'])->name('subcategory.products'); 
 Route::get('/product/{slug}', [WebProductController::class, 'show'])->name('product.show'); // Show individual product details
-
 
 Route::get('email', [WebCheckoutController::class, 'email']);
 
