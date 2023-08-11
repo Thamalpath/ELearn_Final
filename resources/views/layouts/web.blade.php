@@ -413,46 +413,6 @@
     </div>
     <!-- Deal Area End -->
 
-    <!-- Banner Area Start -->
-    <div class="banner-area pt-100px">
-        <div class="row m-0">
-            <div class="col-12 col-lg-4 mb-md-30px mb-lm-30px">
-                <div class="single-banner-2">
-                    <img src="images/banner/Women's Wear.jpg" alt="">
-                    <div class="item-disc">
-                        <h4 class="title">Best Collection <br>
-                            For Women</h4>
-                        <a href="shop-left-sidebar.html" class="shop-link btn btn-primary ">Shop Now <i
-                                class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4 center-col mb-md-30px mb-lm-30px">
-                <div class="single-banner-2">
-                    <img src="images/banner/Men's Wear.jpg" alt="">
-                    <div class="item-disc">
-                        <h4 class="title">Best Collection <br>
-                            For Men</h4>
-                        <a href="shop-left-sidebar.html" class="shop-link btn btn-primary">Shop Now <i
-                                class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="single-banner-2">
-                    <img src="images/banner/Kid's Wear.jpg" alt="">
-                    <div class="item-disc">
-                        <h4 class="title">New Collection <br>
-                            For Kids</h4>
-                        <a href="shop-left-sidebar.html" class="shop-link btn btn-primary">Shop Now <i
-                                class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner Area End -->
-
     <!-- Product Area Start -->
     <div class="product-area pt-100px pb-100px">
         <div class="container">
@@ -686,7 +646,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-0">
-                        <h2 class="title line-height-1">#testimonials</h2>
+                        <h2 class="title line-height-1">Testimonials</h2>
                     </div>
                 </div>
             </div>
@@ -704,8 +664,8 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Absolutely love shopping at Daisy Wardrobe! Their collection is trendy, and the
+                                    quality is outstanding. I always find something unique and stylish for any occasion.
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -730,8 +690,9 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Daisy Wardrobe is my go-to online store for clothing. The variety of options they
+                                    offer, along with excellent customer service, makes every shopping experience
+                                    enjoyable.
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -756,8 +717,9 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Shopping at Daisy Wardrobe is a delight. The website is user-friendly, and their
+                                    delivery is prompt. The clothes are exactly as shown and described. Highly
+                                    recommend!
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -782,8 +744,8 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>Daisy Wardrobe has become my fashion haven. From casual wear to elegant dresses, they
+                                    have it all. The quality, style, and affordability keep me coming back for more.
                                 </p>
                             </div>
                             <div class="testi-author">
@@ -808,8 +770,8 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </div>
                             <div class="testi-content">
-                                <p>Lorem ipsum dolor sit amet, consect adipisici elit, sed do eiusmod tempol incididunt
-                                    ut labore et dolore magna aliqua. Ut enim ad minim veniamfhq nostrud exercitation.
+                                <p>I've never been disappointed with Daisy Wardrobe. The clothes are not only
+                                    fashionable but also durable. It's my one-stop-shop for updating my wardrobe.
                                 </p>
                             </div>
                             <div class="testi-author">
