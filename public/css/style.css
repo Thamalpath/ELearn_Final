@@ -2413,7 +2413,7 @@ body.offcanvas-open {
     background-color: #d28200;
 }
 .shop-sidebar-wrap .sidebar-widget-list.color ul li a.black::before {
-    background-color: #505050;
+    background-color: #080808;
 }
 .shop-sidebar-wrap .sidebar-widget-list.color ul li a.red::before {
     background-color: #ff1616;
