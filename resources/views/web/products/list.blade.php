@@ -46,7 +46,7 @@
     <div class="shop-category-area pt-100px pb-100px">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                <div class="col-lg-12 order-lg-last col-md-12 order-md-first">
 
                     <!-- Shop Bottom Area Start -->
                     <div class="shop-bottom-area">
@@ -70,10 +70,6 @@
                     <!-- Shop Bottom Area End -->
 
                 </div>
-
-                <!-- Sidebar Area Start -->
-                <x-product.shop-sidebar />
-                <!-- Sidebar Area End -->
             </div>
         </div>
     </div>

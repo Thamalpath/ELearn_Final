@@ -184,11 +184,6 @@
                                                         <span class="new">Popular</span>
                                                     @endif
                                                 </span>
-                                                <div class="actions">
-                                                    <a href="#" class="action quickview" title="Quick view"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </div>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -239,11 +234,6 @@
                                                         <span class="new">Popular</span>
                                                     @endif
                                                 </span>
-                                                <div class="actions">
-                                                    <a href="#" class="action quickview" title="Quick view"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </div>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -294,11 +284,6 @@
                                                         <span class="new">Popular</span>
                                                     @endif
                                                 </span>
-                                                <div class="actions">
-                                                    <a href="#" class="action quickview" title="Quick view"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </div>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -349,11 +334,6 @@
                                                         <span class="new">Popular</span>
                                                     @endif
                                                 </span>
-                                                <div class="actions">
-                                                    <a href="#" class="action quickview" title="Quick view"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                            class="pe-7s-search"></i></a>
-                                                </div>
                                             </div>
                                             <div class="content">
                                                 <span class="ratings">
@@ -471,11 +451,6 @@
                                                             <span class="new">Popular</span>
                                                         @endif
                                                     </span>
-                                                    <div class="actions">
-                                                        <a href="#" class="action quickview" title="Quick view"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                                class="pe-7s-search"></i></a>
-                                                    </div>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -534,11 +509,6 @@
                                                             <span class="new">Popular</span>
                                                         @endif
                                                     </span>
-                                                    <div class="actions">
-                                                        <a href="#" class="action quickview" title="Quick view"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                                class="pe-7s-search"></i></a>
-                                                    </div>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -597,11 +567,6 @@
                                                             <span class="new">Popular</span>
                                                         @endif
                                                     </span>
-                                                    <div class="actions">
-                                                        <a href="#" class="action quickview" title="Quick view"
-                                                            data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                                class="pe-7s-search"></i></a>
-                                                    </div>
                                                 </div>
                                                 <div class="content">
                                                     <span class="ratings">
@@ -838,9 +803,6 @@
 
     <!-- Search Modal -->
     <x-home.search-modal />
-
-    <!-- Product Modal -->
-    <x-home.product-modal />
 
     <!-- Vendor JS -->
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>

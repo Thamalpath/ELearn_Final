@@ -34,11 +34,6 @@
     <!-- Search Modal -->
     <x-home.search-modal />
 
-    <!-- Product Modal -->
-    <x-home.product-modal />
-
-    <!-- medium-zoom JS -->
-
     <!-- Vendor JS -->
     <script src="{{ asset('js/vendor/modernizr-3.11.2.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery-3.6.0.min.js') }}"></script>
