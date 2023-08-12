@@ -31,4 +31,9 @@
             </div>
         </div>
     @endsection
+    @section('scripts')
+        <script>
+            let table = new DataTable('#users');
+        </script>
+    @endsection
 </x-app-layout>
