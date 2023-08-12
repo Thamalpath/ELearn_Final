@@ -106,23 +106,20 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $categories = Category::with('subCategories')->get();
         $searched_product = $request->product_name;
 
-        if($searched_product != "")
-        {
-            $product = Product::where("name","LIKE","%$searched_product%")->first();
-            if ($product)
-            {
-                return redirect('product'.'/'.$product->slug);
+        if ($searched_product != "") {
+            $products = Product::where("name", "LIKE", "%$searched_product%")->get();
+
+            if ($products->isEmpty()) {
+                return view('web.products.search-list', compact('products', 'categories'))
+                    ->with('noResults', true); // Add a flag to indicate no results
             }
-            else
-            {
-                return redirect()->back()->with("status", "No products match your search");
-            }
-        }
-        else
-        {
-            return redirect()->back();
+
+            return view('web.products.search-list', compact('products', 'categories'));
+        } else {
+            return redirect()->route('home');
         }
     }
 }
