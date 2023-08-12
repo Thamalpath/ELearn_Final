@@ -55,10 +55,6 @@
                                                 <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                             <div class="button-box">
-                                                <div class="login-toggle-btn">
-                                                    <input type="checkbox" id="remember">
-                                                    <label for="remember">Remember Me</label>
-                                                </div>
                                                 <button type="submit"><span>Login</span></button>
                                             </div>
                                         </form>

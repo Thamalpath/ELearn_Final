@@ -94,17 +94,9 @@
                                             </div>
 
                                             <div class="button-box mb-4">
-                                                <div class="login-toggle-btn">
-                                                    <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                                                    <label for="agreeTerms">
-                                                        I agree to the <a class="ms-1" href="#">terms</a>
-                                                    </label>
-                                                </div>
                                                 <button type="submit">Register</button>
                                             </div>
                                         </form>
-                                        <a class="text-center" href="{{ route('login') }}">I already have a
-                                            membership</a>
                                     </div>
                                 </div>
                             </div>
