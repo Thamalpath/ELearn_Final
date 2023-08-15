@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('content')
         <div class="m-3">
-            <table id="sub_categories" class="table table-bordered table-striped dataTable dtr-inline">
+            <table id="sub_categories" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Sub_Cat_ID</th>
@@ -15,64 +15,74 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sub_categories as $sub_category)
-                        <tr>
-                            <td>{{ $sub_category->number }}</td>
-                            <td>{{ $sub_category->category_name }}</td>
-                            <td>{{ $sub_category->name }}</td>
-                            <td>{{ $sub_category->description }}</td>
-                            <td>{{ $sub_category->status }}</td>
-                            <td>
-                                <img src="{{ asset('storage/' . $sub_category->image) }}" alt="Image" height="125px"
-                                    width="90px">
-                            </td>
-                            <td>{{ $sub_category->meta_title }}</td>
-                            <td>
-                                <a href="{{ route('sub_category.edit', $sub_category->id) }}"
-                                    class="btn btn-primary mr-2">Edit</a>
-
-                                <button type="button" class="btn btn-danger delete-btn"
-                                    data-sub_category_id={{ $sub_category->id }} data-bs-toggle="modal"
-                                    data-bs-target="#deletesub_categoryModal">
-                                    Delete
-                                </button>
-                            </td>
-                    @endforeach
-                <tbody>
+                </tbody>
             </table>
         </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="deletesub_categoryModal" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="deletesub_categoryModal">Delete Sub Category</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form method="post" id="deleteForm">
-                        @csrf
-                        @method('DELETE')
-                        <div class="modal-body">
-                            Are you sure?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Confirm</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     @endsection
-    @section('scripts')
+    @push('css')
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css">
+    @endpush
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
         <script>
-            let table = new DataTable('#sub_categories');
-            $('.delete-btn').on('click', function() {
-                let sub_category_id = $(this).data('sub_category_id');
-                $('#deleteForm').attr('action', '/sub_category/' + sub_category_id + '/delete');
+            $(document).ready(function() {
+                var dataTable = $('#sub_categories').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "lengthMenu": [
+                        [5, 10, 25, 50, -1],
+                        [5, 10, 25, 50, "All"]
+                    ],
+                    "ajax": {
+                        "url": "{{ route('sub_category.subCategoriesTable') }}",
+                        "method": "GET",
+                    },
+                    "initComplete": function() {
+                        this.api().columns().every(function() {
+                            var column = this;
+                            var input = document.createElement("input");
+                            $(input).appendTo($(column.footer()).empty())
+                                .on('keyup change', function() {
+                                    column.search($(this).val(), false, false, true).draw();
+                                });
+                        });
+                    }
+                });
+
+                $(document).on('click', '.delete-btn', function() {
+                    let id = $(this).data('id');
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "{{ url('sub_category') }}/" + id + '/delete',
+                                method: 'DELETE',
+                                data: {
+                                    _token: "{{ csrf_token() }}"
+                                },
+                                success: function(response) {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        response.message,
+                                        'success'
+                                    )
+                                    dataTable.draw();
+                                },
+                                error: function(response) {
+                                    console.log(response);
+                                }
+                            })
+                        }
+                    })
+                });
             });
         </script>
-    @endsection
+    @endpush
 </x-app-layout>

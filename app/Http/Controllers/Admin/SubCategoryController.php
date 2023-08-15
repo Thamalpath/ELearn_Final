@@ -96,7 +96,7 @@ class SubCategoryController extends Controller
         // Get the category name based on the selected category_id
         $category = Category::find($request->category_id);
         if ($category) {
-            $data['category_id'] = $request->category_id; // Update the category_id
+            $data['category_id'] = $request->category_id;
             $data['category_name'] = $category->name;
         }
 
@@ -109,8 +109,17 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $sub_category)
     {
-        $sub_category->delete($sub_category);
-        return redirect()->route('sub_category.index')->with('status',"Sub Category Deleted Successfully");
+        if($sub_category->delete()){
+            return response()->json([
+                'message' => 'Sub Category Deleted Successfully',
+                'status' => true
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Unknown error occurred',
+                'status' => false
+            ]);
+        }
     }
 
     // Image Upload Function
@@ -134,5 +143,69 @@ class SubCategoryController extends Controller
                 'message' => 'Image upload failed'
             ]);
         }
+    }
+
+    public function dataTable(Request $request)
+    {
+        $columns = [
+            'id',
+            'number',
+            'category_name',
+            'name',
+            'description',
+            'status',
+            'image',
+            'meta_title',
+        ];
+
+        $totalData = SubCategory::count();
+        $totalFiltered = $totalData;
+
+        $length = $request->input('length');
+        $length = $length == -1 ? $totalData : $length;
+
+        $searchValue = $request->input('search.value'); // Get search value
+
+        // Query builder for searching
+        $query = SubCategory::select($columns)
+            ->orderBy($columns[$request->input('order.0.column')], $request->input('order.0.dir'));
+
+        if (!empty($searchValue)) {
+            $query->where(function ($query) use ($columns, $searchValue) {
+                foreach ($columns as $column) {
+                    $query->orWhere($column, 'LIKE', '%' . $searchValue . '%');
+                }
+            });
+
+            $totalFiltered = $query->count();
+        }
+
+        $subCategories = $query->skip($request->input('start'))
+            ->take($length)
+            ->get();
+
+        $data = [];
+        foreach ($subCategories as $subCategory) {
+            $data[] = [
+                $subCategory->number,
+                $subCategory->category_name,
+                $subCategory->name,
+                $subCategory->description,
+                $subCategory->status,
+                '<img src="' . asset('storage/' . $subCategory->image) . '" alt="Image" height="125px" width="90px">',
+                $subCategory->meta_title,
+                '<a href="'.route('sub_category.edit', $subCategory->id).'" class="btn btn-primary edit-btn ms-2 mt-2" data-id="'.$subCategory->id.'">Edit</a>
+                <button type="button" class="btn btn-danger delete-btn" data-id="'.$subCategory->id.'">Delete</button>'  
+            ];
+        }
+
+        $output = [
+            "draw" => $request->draw,
+            "recordsTotal" => $totalData,
+            "recordsFiltered" => $totalFiltered,
+            "data" => $data,
+        ];
+
+        return response()->json($output);
     }
 }
