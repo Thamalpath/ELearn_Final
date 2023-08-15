@@ -187,16 +187,22 @@
         // Show sub-category image on hover
         $(".sub-category-link").hover(
             function () {
+                // Hide all sub-category images
+                $(".sub-category-image").hide();
+
                 // Get the index of the hovered sub-category link
-                var index = $(this).parent().index() - 1;
+                var index = $(this).index(".sub-category-link");
+
                 // Show the corresponding sub-category image
                 $(".sub-category-image").eq(index).show();
+
                 // Hide the shop image
                 $(".shop-image").hide();
             },
             function () {
                 // Hide the sub-category image when not hovered
                 $(".sub-category-image").hide();
+
                 // Show the shop image
                 $(".shop-image").show();
             }
