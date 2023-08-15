@@ -60,14 +60,15 @@
                         @auth
                             @if (auth()->check() && auth()->user()->role_as == '0')
                                 <div class="dropdown">
-                                    <a href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
+                                    <a href="#" role="button" class="nav-auth" id="accountDropdown"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{ auth()->user()->fname }} <i class="pe-7s-angle-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                                        <li><a class="dropdown-item" href="{{ url('my-account') }}">Account</a></li>
+                                        <li><a class="dropdown-item auth-dropdown"
+                                                href="{{ url('my-account') }}">Account</a></li>
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            <a class="dropdown-item auth-dropdown" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">Logout</a>
                                         </li>

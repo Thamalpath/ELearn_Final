@@ -95,3 +95,24 @@
     position: relative;
     line-height: 100px;
 }
+
+.nav-auth {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #4c4c4c;
+}
+
+.nav-auth:hover {
+    color: #fb5d5d;
+}
+
+.auth-dropdown {
+    font-size: 18px;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.auth-dropdown:hover {
+    background-color: #fb5d5d;
+    color: #fff;
+}
